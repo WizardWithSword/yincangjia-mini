@@ -3,7 +3,7 @@ const app = getApp()
 
 Page({
   data: {
-    avatarUrl: './user-unlogin.png',
+    avatarUrl: '../../images/user-unlogin.png',
     userInfo: {},
     logged: false,
     takeSession: false,
@@ -37,6 +37,7 @@ Page({
   },
 
   onGetUserInfo: function(e) {
+    console.log('eee', e)
     if (!this.logged && e.detail.userInfo) {
       this.setData({
         logged: true,
@@ -46,7 +47,8 @@ Page({
     }
   },
 
-  onGetOpenid: function() {
+  onGetOpenid: function(e) {
+    console.log('ee22', e)
     // 调用云函数
     wx.cloud.callFunction({
       name: 'login',
@@ -54,6 +56,7 @@ Page({
       success: res => {
         console.log('[云函数] [login] user openid: ', res.result.openid)
         app.globalData.openid = res.result.openid
+        console.log('云函数 login, result:', res.result)
         wx.navigateTo({
           url: '../userConsole/userConsole',
         })
