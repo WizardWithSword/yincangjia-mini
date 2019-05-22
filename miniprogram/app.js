@@ -18,7 +18,6 @@ App({
       console.log('get keys:', d)
     })
 
-
   }
 })
 

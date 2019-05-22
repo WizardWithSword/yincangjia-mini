@@ -29,7 +29,7 @@ function formatTimeToDate (time) {
 function formatTime (time) {
   if (time) {
     var date2 = getDate(time)
-    var now = getDate('');
+    var now = getDate()
     var last = (now.getTime() - date2.getTime()) / 1000 // 秒
     if (last < 60) {
       return '刚刚'

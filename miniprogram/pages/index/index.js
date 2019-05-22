@@ -33,6 +33,36 @@ Page({
       url: '/pages/thing/detail?tid=' + id
     })
   },
+  // 点击回到首页
+  goIndex: function () {
+    console.log('点击逛逛', this)
+    if (this.route === 'pages/index/index') {
+      return false
+    }
+    wx.navigateTo({
+      url: '/pages/index/index'
+    })
+  },
+  // 点击回到发布藏品页面
+  goAddIndex: function () {
+    console.log('点击发布')
+    if (this.route === 'pages/thing/add') {
+      return false
+    }
+    wx.navigateTo({
+      url: '/pages/thing/add'
+    })
+  },
+  // 点击回到个人中心
+  goMyIndex: function () {
+    console.log('点击我的')
+    if (this.route === 'pages/user/index') {
+      return false
+    }
+    wx.navigateTo({
+      url: '/pages/user/index'
+    })
+  },
 
   onLoad: function() {
     var uid = wx.getStorageSync('uid')
@@ -85,6 +115,7 @@ Page({
     var tmp = arr
     for (var i = arr.length - 1; i >= 0; i--) {
       arr[i].showAll = false
+      arr[i].imagesList = arr[i].images.split(';')
     }
     return tmp
   },
@@ -138,56 +169,6 @@ Page({
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)
-      }
-    })
-  },
-
-  // 上传图片
-  doUpload: function () {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
-
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-        
-        // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
-            
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-
-      },
-      fail: e => {
-        console.error(e)
       }
     })
   }

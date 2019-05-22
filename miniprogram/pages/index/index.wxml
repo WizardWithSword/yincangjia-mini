@@ -27,24 +27,30 @@
           <view class="title">{{item.name}}</view>
           <view class="content" wx:if="{{item.content.length > 54 && item.showAll == false}}">{{tools.substr(item.content, 0, 48) + '...'}} <view class="span" bindtap="showAll" data-idx="{{index}}" data-tid="{{item.tid}}">全文</view></view>
           <view class="content" wx:else>{{item.content}}</view>
-          <view class="images" wx:if="{{item.images.split(';').length == 1}}">
-            <image class="card-img" src="https://7961-yamoon-test-52afba-1258905543.tcb.qcloud.la/test-image/top_banner.png?sign=7652ca7412b050e492c1739b9fc01f1c&t=1557734579"></image>
+          <view class="images" wx:if="{{item.imagesList.length == 1}}">
+            <image class="card-img" src="{{item.images}}"></image>
           </view>
           <view class="images-more" wx:else>
-            <image class="" src="https://7961-yamoon-test-52afba-1258905543.tcb.qcloud.la/test-image/top_banner.png?sign=7652ca7412b050e492c1739b9fc01f1c&t=1557734579"></image>
-            <image class="" src="https://7961-yamoon-test-52afba-1258905543.tcb.qcloud.la/test-image/top_banner.png?sign=7652ca7412b050e492c1739b9fc01f1c&t=1557734579"></image>
+            <image wx:for="{{item.imagesList}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="imgIndex" class="" src="{{imgItem}}"></image>
+            <!-- <image class="" src="https://7961-yamoon-test-52afba-1258905543.tcb.qcloud.la/test-image/top_banner.png?sign=7652ca7412b050e492c1739b9fc01f1c&t=1557734579"></image> -->
           </view>
         </view>
       </view>
       <view class="function">
         <view class="like" wx:if="false"> <span class="icon icon-heart-outline"></span> <span>喜欢</span></view>
         <view class="" wx:else> <span class="icon icon-heart"></span></view>
-        <view class="praise"> <span class="icon icon-thumbs-up"></span> <span>168</span> </view>
-        <view class="comment"> <span class="icon icon-message"></span> <span>32</span></view>
+        <view class="praise"> <span class="icon icon-thumbs-up"></span> <span>{{item.praisenum}}</span> </view>
+        <view class="comment"> <span class="icon icon-message"></span> <span>{{item.commentnum}}</span></view>
       </view>
     </view>
   </view>
 </view>
+<view class="footer">
+  <view bindtap="goIndex">逛逛</view>
+  <view class="middle" bindtap="goAddIndex">发帖</view>
+  <view bindtap="goMyIndex">我的</view>
+</view>
+
 <view class="userinfo" wx:if="{{showGetUserinfo}}">
     <view class="mask"></view>
     <view class="content">
@@ -55,8 +61,4 @@
         class="userinfo-btn"
       >点击授权</button>
     </view>
-    
-    <!-- <view> 
-      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button> 
-    </view>  -->
 </view> 

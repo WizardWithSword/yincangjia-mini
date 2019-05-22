@@ -1,21 +1,23 @@
-<!--pages/deployFunctions/deployFunctions.wxml-->
+<!--pages/thing/add.wxml-->
 <view class="container">
 
   <view class="list">
     <view class="list-item">
-      <text class="black">调用失败</text>
+      <input bindblur="inputBlur" type="text" name="title" maxlength="50" placeholder="单个藏品标题" value="{{title}}"></input>
     </view>
     <view class="list-item">
-      <text class="request-text">请检查 login 云函数是否已部署</text>
+      <textarea bindblur="textBlur" placeholder="可以从年代、器型、品相等多个方面介绍你要发布的这件藏品。建议一次发一件，展示更清晰，管理藏品更方便~" maxlength="1000" value="{{content}}"></textarea>
+    </view>
+    <view class="img-list">
+      <view class="one-image" wx:for="{{imagesCloud}}" wx:key="index">
+        <image src="{{item}}" data-index="{{index}}" bindtap="deleteImg"></image>
+      </view>
+      <view class="addImage"  bindtap="doUpload" wx:if="{{imagesCloud.length < 6}}">+</view>
     </view>
   </view>
-
-  <view class="guide">
-    <text class="headline">部署 login 云函数</text>
-    <text class="p">1. 确保已通过工具栏云开发入口开通云开发</text>
-    <text class="p">2. 在 cloudfunctions/login 目录上右键上传并部署</text>
-    <text class="p">3. 回到首页，重新点击获取 openid</text>
+  <view class="btn-list">
+    <button bindtap="save">保存到草稿</button>
+    <button bindtap="saveOnline">发布</button>
   </view>
-
 </view>
 
