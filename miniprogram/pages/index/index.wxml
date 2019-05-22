@@ -1,43 +1,62 @@
 <!--index.wxml-->
+<wxs src="./../../wxs/utils.wxs" module="tools" />
+
 <view class="container">
-
-  <!-- 用户 openid -->
-  <view class="userinfo">
-    <button 
-      open-type="getUserInfo" 
-      bindgetuserinfo="onGetUserInfo"
-      class="userinfo-avatar"
-      style="background-image: url({{avatarUrl}})"
-    ></button>
-    <view>
-      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+  <view class="banner">
+    <image class="banner-img" src="https://7961-yamoon-test-52afba-1258905543.tcb.qcloud.la/test-image/top_banner.png?sign=7652ca7412b050e492c1739b9fc01f1c&t=1557734579"></image>
+  </view>
+  <view class="notice-wrap">
+  <swiper class="notice-swiper" autoplay="true" duration="500" vertical="true" interval="2000">
+    <swiper-item wx:for="{{noticeList}}" wx:key="item.noticeid">
+      <view class="one-notice" bindtap="goNoticeDetail" data-noticeid="{{item.noticeid}}">
+        <view class="btn">公告</view>
+        <view class="label">{{item.title}}</view>
+      </view>
+    </swiper-item>
+  </swiper>
+  </view>
+  <view class="thing-wrap">
+    <view class="one-card" wx:for="{{itemList}}" wx:key="item.tid" >
+      <view class="top">
+        <view class="left">
+          <image class="header-img" src="{{item.wechatheader}}"></image>
+        </view>
+        <view class="right">
+          <view class="name">{{item.wechatnick}}<view class="label utag" wx:if="{{item.personaltag}}">{{item.personaltag}}</view></view>
+          <view class="time">{{tools.formatTime(item.updatetime)}}</view>
+          <view class="title">{{item.name}}</view>
+          <view class="content" wx:if="{{item.content.length > 54 && item.showAll == false}}">{{tools.substr(item.content, 0, 48) + '...'}} <view class="span" bindtap="showAll" data-idx="{{index}}" data-tid="{{item.tid}}">全文</view></view>
+          <view class="content" wx:else>{{item.content}}</view>
+          <view class="images" wx:if="{{item.images.split(';').length == 1}}">
+            <image class="card-img" src="https://7961-yamoon-test-52afba-1258905543.tcb.qcloud.la/test-image/top_banner.png?sign=7652ca7412b050e492c1739b9fc01f1c&t=1557734579"></image>
+          </view>
+          <view class="images-more" wx:else>
+            <image class="" src="https://7961-yamoon-test-52afba-1258905543.tcb.qcloud.la/test-image/top_banner.png?sign=7652ca7412b050e492c1739b9fc01f1c&t=1557734579"></image>
+            <image class="" src="https://7961-yamoon-test-52afba-1258905543.tcb.qcloud.la/test-image/top_banner.png?sign=7652ca7412b050e492c1739b9fc01f1c&t=1557734579"></image>
+          </view>
+        </view>
+      </view>
+      <view class="function">
+        <view class="like" wx:if="false"> <span class="icon icon-heart-outline"></span> <span>喜欢</span></view>
+        <view class="" wx:else> <span class="icon icon-heart"></span></view>
+        <view class="praise"> <span class="icon icon-thumbs-up"></span> <span>168</span> </view>
+        <view class="comment"> <span class="icon icon-message"></span> <span>32</span></view>
+      </view>
     </view>
   </view>
-
-
-  <!-- 上传图片 -->
-  <view class="uploader">
-    <view class="uploader-text" bindtap="doUpload">
-      <text>上传图片</text>
-    </view>
-    <view class="uploader-container" wx:if="{{imgUrl}}">
-      <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
-    </view>
-  </view>
-
-
-  <!-- 操作数据库 -->
-  <view class="uploader">
-    <navigator url="../databaseGuide/databaseGuide" open-type="navigate" class="uploader-text">
-      <text>前端操作数据库</text>
-    </navigator>
-  </view>
-
-  <!-- 新建云函数 -->
-  <view class="uploader">
-    <navigator url="../addFunction/addFunction" open-type="navigate" class="uploader-text">
-      <text>快速新建云函数</text>
-    </navigator>
-  </view>
-
 </view>
+<view class="userinfo" wx:if="{{showGetUserinfo}}">
+    <view class="mask"></view>
+    <view class="content">
+      <view class="title">嗨~ 新的隐藏家，授权登录后方能正常使用哦</view>
+      <button  
+        open-type="getUserInfo"  
+        bindgetuserinfo="onGetUserInfo" 
+        class="userinfo-btn"
+      >点击授权</button>
+    </view>
+    
+    <!-- <view> 
+      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button> 
+    </view>  -->
+</view> 

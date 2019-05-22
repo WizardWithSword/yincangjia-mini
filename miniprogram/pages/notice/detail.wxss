@@ -1,0 +1,28 @@
+/* pages/notice/detail.wxss */
+.container{
+  padding: 40rpx;
+}
+.title{
+  font-size: 44rpx;
+  margin-bottom: 20rpx;
+}
+
+.btn{
+  margin-right: 10rpx;
+}
+.author{
+  display: inline-block;
+  margin-right: 30rpx;
+}
+.time{
+  display: inline-block;
+}
+.hr{
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  margin: 20rpx 0;
+}
+.content{
+  margin-top: 40rpx;
+  font-size: 30rpx;
+}

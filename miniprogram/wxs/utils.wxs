@@ -1,10 +1,15 @@
+var utils = {}
+utils.substr = function (str, start, end) {
+  return str.substring(start, end)
+}
+
 function addZero (val) {
   return val < 10 ? '0' + val : val
 }
 function formatTimeToDate (time) {
   if (time) {
-    let date = new Date(time)
-    let Y, M, D, h, m, s
+    var date = getDate(time)
+    var Y, M, D, h, m, s
     Y = date.getFullYear() + '-'
     M = addZero(date.getMonth() + 1) + '-'
     D = addZero(date.getDate()) + ' '
@@ -23,9 +28,9 @@ function formatTimeToDate (time) {
  */
 function formatTime (time) {
   if (time) {
-    let date = new Date(time)
-    let now = new Date()
-    let last = (now.getTime() - date.getTime()) / 1000 // 秒
+    var date2 = getDate(time)
+    var now = getDate('');
+    var last = (now.getTime() - date2.getTime()) / 1000 // 秒
     if (last < 60) {
       return '刚刚'
     } else if (last > 60 && last < 60 * 60) {
@@ -41,7 +46,7 @@ function formatTime (time) {
     return ''
   }
 }
-const common = {}
-common.formatTime = formatTime
-common.formatTimeToDate = formatTimeToDate
-module.exports = common
+utils.formatTime = formatTime
+
+
+module.exports = utils

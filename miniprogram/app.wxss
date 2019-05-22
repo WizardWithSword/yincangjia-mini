@@ -1,7 +1,29 @@
 /**app.wxss**/
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+swiper,
+swiper-item,
+view{
   box-sizing: border-box;
-} 
+}
+image{
+  width: 100%;
+  display: block;
+}
+page {
+  background: #f6f6f6;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 22rpx;
+}
+.span{
+  display: inline-block;
+}
+.label{
+  display: inline-block;
+}
+.btn{
+  display: inline-block;
+  border: 1rpx solid #ccc;
+  padding: 5rpx;
+  border-radius: 10rpx;
+}

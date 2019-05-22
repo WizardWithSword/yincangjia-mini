@@ -1,3 +1,4 @@
+const api = require('./utils/api.js')
 //app.js
 App({
   onLaunch: function () {
@@ -11,5 +12,13 @@ App({
     }
 
     this.globalData = {}
+    this.globalData.API = api
+    // 获取全局通信证书
+    api.getKeys().then(function (d) {
+      console.log('get keys:', d)
+    })
+
+
   }
 })
+

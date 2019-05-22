@@ -1,32 +1,39 @@
 import {apiDomain} from '../config/index.js'
-var JSEncrypt = require('../utils/jsencrypt.js')
+// var JSEncrypt = require('../utils/jsencrypt.js')
+var JSEncrypt = require('../utils/jsencrypt.min.js')
 var CryptoJS = require('../utils/crypto-js.min.js')
 var api = {}
 api.getKeys = function () {
   return httpRequest('GET', '/api/keys', '').then((res) => {
-    console.log('keys', res)
     if (res.code === '200') {
       wx.setStorageSync('pri', res.result.pri)
       wx.setStorageSync('pub', res.result.pub)
     }
     return res
-  })
+  }, failcallback)
 }
 api.getNoticeList = function () {
   return httpRequest('GET', '/api/notice/list').then(res => {
     return apiResDataDeal(res)
-  })
+  }, failcallback)
 }
 api.get = function (url, data) {
   return httpRequest('GET', url, data).then(res => {
     return apiResDataDeal(res)
-  })
+  }, failcallback)
 }
 api.post = function (url, data) {
   var encdata = encryptData(data)
   return httpRequest('POST', url, encdata).then(res => {
     return apiResDataDeal(res)
-  })
+  }, failcallback)
+}
+
+function failcallback () {
+  return {
+    code: 'error',
+    message: '请求失败！'
+  }
 }
 
 function httpRequest (method, url, param) {

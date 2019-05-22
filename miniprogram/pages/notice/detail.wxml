@@ -1,0 +1,12 @@
+<!--pages/notice/notice.wxml-->
+<view class="container">
+  <view class="title">{{notice.title}}</view>
+  <view class="line2">
+    <view class="btn">公告</view>
+    <view class="author">{{notice.author}}</view>
+    <view class="time">{{notice.createtime}}</view>    
+  </view>
+  <view class="hr"></view>
+  <view class="content">{{notice.content}}</view>
+</view>
+

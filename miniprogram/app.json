@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/notice/detail",
     "pages/detail/index",
     "pages/user/index",
     "pages/user/setting",
@@ -14,5 +15,6 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "隐藏家",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

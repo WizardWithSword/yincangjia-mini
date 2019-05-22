@@ -12,6 +12,8 @@
 	"appid": "wx9cb42adfa3f45c25",
 	"projectname": "moon",
 	"libVersion": "2.2.5",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
