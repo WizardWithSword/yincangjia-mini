@@ -6,7 +6,7 @@
     <image class="banner-img" src="https://7961-yamoon-test-52afba-1258905543.tcb.qcloud.la/test-image/top_banner.png?sign=7652ca7412b050e492c1739b9fc01f1c&t=1557734579"></image>
   </view>
   <view class="notice-wrap">
-  <swiper class="notice-swiper" autoplay="true" duration="500" vertical="true" interval="2000">
+  <swiper class="notice-swiper" circular="true" autoplay="true" duration="500" vertical="true" interval="2000">
     <swiper-item wx:for="{{noticeList}}" wx:key="item.noticeid">
       <view class="one-notice" bindtap="goNoticeDetail" data-noticeid="{{item.noticeid}}">
         <view class="btn">公告</view>
@@ -17,7 +17,7 @@
   </view>
   <view class="thing-wrap">
     <view class="one-card" wx:for="{{itemList}}" wx:key="item.tid" >
-      <view class="top">
+      <view class="top" bindtap="goDetail" data-tid="{{item.tid}}"  data-idx="{{index}}">
         <view class="left">
           <image class="header-img" src="{{item.wechatheader}}"></image>
         </view>
@@ -37,10 +37,10 @@
         </view>
       </view>
       <view class="function">
-        <view class="like" wx:if="false"> <span class="icon icon-heart-outline"></span> <span>喜欢</span></view>
-        <view class="" wx:else> <span class="icon icon-heart"></span></view>
-        <view class="praise"> <span class="icon icon-thumbs-up"></span> <span>{{item.praisenum}}</span> </view>
-        <view class="comment"> <span class="icon icon-message"></span> <span>{{item.commentnum}}</span></view>
+        <view class="like" wx:if="{{item.likeThisThing}}" bindtap="goLike" data-tid="{{item.tid}}"  data-idx="{{index}}"> <span class="icon icon-heart"></span> <span>喜欢</span></view>
+        <view class="like" bindtap="goLike" data-tid="{{item.tid}}"  data-idx="{{index}}" wx:else> <span class="icon icon-heart-outline"></span> <span>喜欢</span></view>
+        <view class="praise" bindtap="goPraise" data-tid="{{item.tid}}"  data-idx="{{index}}"> <span class="icon icon-thumbs-up"></span> <span>{{item.praisenum}}</span> </view>
+        <view class="comment" bindtap="goDetail" data-tid="{{item.tid}}"  data-idx="{{index}}"> <span class="icon icon-message"></span> <span>{{item.commentnum}}</span></view>
       </view>
     </view>
   </view>

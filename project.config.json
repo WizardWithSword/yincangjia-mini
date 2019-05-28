@@ -31,12 +31,39 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
 					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "单人邀请 - 进入",
+					"pathName": "pages/index/index",
+					"query": "f=user&type=invite&uid=3",
+					"scene": 1007
+				},
+				{
+					"id": -1,
+					"name": "群邀请 - 进入",
+					"pathName": "pages/index/index",
+					"query": "f=group&type=invite&uid=3",
+					"scene": 1008
+				},
+				{
+					"id": -1,
+					"name": "分享的群邀请 - 进入",
+					"pathName": "pages/index/index",
+					"query": "f=group&type=invite&uid=3",
+					"scene": 1044,
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "1Pa3qf3NNZL7ukzV2LeCml02lh27z2tVvC_YLqDgLDs@cr4dev",
+						"shareKey": "3Tr8x3PccOcmwwXKbJj27hS4nb1RiLML2cQ2uIb32SRCzww_Pvy1DiZVl_c0kjVvW9EGEXxvuLNgigh5FdC2Rw~~"
+					}
 				}
 			]
 		}

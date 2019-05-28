@@ -1,21 +1,15 @@
-<!--pages/deployFunctions/deployFunctions.wxml-->
+<!--pages/user/invite.wxml-->
 <view class="container">
-
-  <view class="list">
-    <view class="list-item">
-      <text class="black">调用失败</text>
-    </view>
-    <view class="list-item">
-      <text class="request-text">请检查 login 云函数是否已部署</text>
-    </view>
+  <view class="tips">
+    <view><text>温馨提示：</text></view>
+    <view><text>1、邀请单个好友，邀请函一次性有效。</text></view>
+    <view><text>2、邀请群组，群内成员均可接受邀请。</text></view>
+    <view><text>3、邀请函有效期为30天，转发无效。</text></view>
   </view>
-
-  <view class="guide">
-    <text class="headline">部署 login 云函数</text>
-    <text class="p">1. 确保已通过工具栏云开发入口开通云开发</text>
-    <text class="p">2. 在 cloudfunctions/login 目录上右键上传并部署</text>
-    <text class="p">3. 回到首页，重新点击获取 openid</text>
+  <view class="btn-wrap">
+    <button type="default" class="btn" open-type="share" data-to="user">发送邀请给朋友</button>
   </view>
-
+  <view class="btn-wrap">
+    <button type="default" class="btn" open-type="share" data-to="group">发送邀请到群组</button>
+  </view>
 </view>
-

@@ -1,0 +1,81 @@
+/* pages/footer/index.wxss */
+/*@import "../../style/style.wxss";*/
+.span{
+  display: inline-block;
+}
+
+.one-thing-card{
+  border: 1rpx solid #ccc;
+  box-shadow: 5rpx 5rpx 5rpx #ddd;
+  width: 690rpx;
+  margin: 20rpx auto;
+  padding: 20rpx 10rpx;
+  text-align:left;
+
+}
+.one-thing-card .top{
+  display: flex;
+  align-items: top;
+}
+.one-thing-card .left{
+  margin-right: 20rpx;
+}
+
+.one-thing-card .images-more{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 10rpx;
+}
+.one-thing-card .images-more image{
+  width:180rpx;
+  height:160rpx;
+  margin-bottom: 10rpx;
+  margin-right:10rpx;
+}
+.one-thing-card .title{
+  font-size: 26rpx;
+  line-height: 52rpx;
+}
+.one-thing-card .content{
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+.one-thing-card .name{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.one-thing-card .utag{
+  font-size: 26rpx;
+  font-weight: normal;
+  border: 1rpx solid #ccc;
+  padding: 0 10rpx;
+  margin-left: 20rpx;
+}
+.one-thing-card .header-img{
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  margin-right: 5rpx;
+}
+
+
+.function{
+  padding: 20rpx 30rpx 0rpx 10rpx;
+  margin-top: 20rpx;
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+}
+.function view{
+  display: flex;
+  align-items: center;
+}
+.function .icon{
+  font-size: 28rpx;
+  line-height: 48rpx;
+  margin-right: 10rpx;
+}

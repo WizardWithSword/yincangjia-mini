@@ -1,4 +1,7 @@
 {
-  "navigationBarTitleText": "部署云函数",
-  "usingComponents": {}
+  "navigationBarTitleText": "个人中心",
+  "usingComponents": {
+    "footer": "/components/footer/index",
+    "onething": "/components/thing/card"
+  }
 }

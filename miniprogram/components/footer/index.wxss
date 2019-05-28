@@ -1,0 +1,25 @@
+/* pages/footer/index.wxss */
+
+.footer{
+  position: fixed;
+  width: 100%;
+  height: 90rpx;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  background-color: white;
+}
+.footer .middle{
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+.footer .onefooter{
+  width: 33%;
+  text-align: center;
+  font-size: 32rpx;
+  line-height: 90rpx;
+}

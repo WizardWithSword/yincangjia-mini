@@ -8,6 +8,7 @@ Page({
     itemList: [],
     avatarUrl: '../../images/user-unlogin.png',
     userInfo: {},
+    showReg: false,
     showGetUserinfo: false
   },
   // 点击前往公告详情
@@ -24,6 +25,7 @@ Page({
     this.setData({
       ['itemList[' + idx + '].showAll']: true
     })
+    return false
   },
   // 点击前往商品详情
   goDetail: function (event) {
@@ -31,6 +33,59 @@ Page({
     console.log('点击', event)
     wx.navigateTo({
       url: '/pages/thing/detail?tid=' + id
+    })
+    return false
+  },
+  // 点击大拇指点赞
+  goPraise: function (event) {
+    var tid = event.currentTarget.dataset.tid
+    var idx = event.currentTarget.dataset.idx
+    var data = {
+      tid: tid,
+      uheader: app.globalData.wxuser.avatarUrl
+    }
+    api.post('/api/thing/markpraise', data).then(d => {
+      console.log('/thing/markpraise 返回值', d)
+      if (d.code == '200') {
+        var num = this.data.itemList[idx].praisenum
+        num++
+        this.setData({
+         ['itemList[' + idx + '].praisenum']: num
+        })
+      } else {
+        wx.showToast({
+          icon: 'none',
+          title: d.message
+        })
+      }
+    })
+  },
+  // 点击标记喜欢
+  goLike: function (event) {
+    var tid = event.currentTarget.dataset.tid
+    var idx = event.currentTarget.dataset.idx
+    var data = {
+      tid: tid,
+      uheader: app.globalData.wxuser.avatarUrl
+    }
+    console.log('点击', event)
+    api.post('/api/thing/marklike', data).then(d => {
+      console.log('/thing/marklike 返回值', d)
+      if (d.code == '50001') {
+        this.setData({
+         ['itemList[' + idx + '].likeThisThing']: true
+        })
+      }
+      if (d.code == '200') {
+        this.setData({
+         ['itemList[' + idx + '].likeThisThing']: true
+        })
+      } else {
+        wx.showToast({
+          icon: 'none',
+          title: d.message
+        })
+      }
     })
   },
   // 点击回到首页
@@ -72,6 +127,11 @@ Page({
       this.setData({
         showGetUserinfo: true
       })
+    } else {
+      // 如果当前用户没有邀请人，但是本次进入是通过邀请进入的
+      if (app.globalData.thisuser.inviteuid == null && app.globalData.inviteinfo && app.globalData.inviteinfo.query.uid) {
+        this._showReg()
+      }
     }
 
     api.getNoticeList().then(res => {
@@ -115,21 +175,34 @@ Page({
     var tmp = arr
     for (var i = arr.length - 1; i >= 0; i--) {
       arr[i].showAll = false
+      arr[i].likeThisThing = false
       arr[i].imagesList = arr[i].images.split(';')
     }
     return tmp
+  },
+  // 显示注册页面。其实是更新用户信息页面
+  _showReg: function () {
+    this.setData({
+      showReg: true
+    })
+    wx.showToast({
+      icon: 'none',
+      title: '显示注册',
+    })
   },
 
   onGetUserInfo: function(e) {
     console.log('e 用户信息按钮', e)
     if (e.detail.userInfo) {
       this.setData({
-        showGetUserinfo: false,
+        // showGetUserinfo: false,
         avatarUrl: e.detail.userInfo.avatarUrl,
         userInfo: e.detail.userInfo
       })
       // 全局记录微信用户信息
       app.globalData.wxuser = e.detail.userInfo
+      wx.setStorageSync('wxuser', e.detail.userInfo)
+
       // console.log('this.userinfo', this.userInfo)
       var obj = {
         openid: app.globalData.openid,
@@ -139,20 +212,26 @@ Page({
       // console.log('当前用户信息', obj)
       api.post('/api/user/threelogin', obj).then(res => {
         if (res.code === '200') {
-          console.log('登录结果:', res)
           wx.setStorageSync('uid', res.result.uid)
           // 全局记录我们的系统内的微信用户信息
           app.globalData.thisuser = res.result
-          // 取消显示登录弹框
-          this.setData({
-            showGetUserinfo: false
-          })
+          wx.setStorageSync('thisuser', res.result)
+          console.log('登录结果:', res)  
+          if (res.inviteuid == null && app.globalData.inviteinfo && app.globalData.inviteinfo.query.uid){ // 用户之前没有邀请人，但是本次有邀请人
+            this._showReg()
+          } else { // 用户没有邀请人
+
+          }
         } else {
           wx.showToast({
             icon: 'none',
             title: res.message,
           })
         }
+        // 取消显示登录弹框
+        this.setData({
+          showGetUserinfo: false
+        })
       })
     }
   },

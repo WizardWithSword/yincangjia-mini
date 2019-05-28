@@ -1,0 +1,30 @@
+<!--pages/card/index.wxml-->
+<wxs src="../../wxs/utils.wxs" module="tools" />
+
+  <view class="one-thing-card" wx:key="item.tid" >
+    <view class="top" bindtap="goDetail" data-tid="{{item.tid}}"  data-idx="{{index}}">
+      <view class="left">
+        <image class="header-img" src="{{item.wechatheader}}"></image>
+      </view>
+      <view class="right">
+        <view class="name">{{item.wechatnick}}<view class="label utag" wx:if="{{item.personaltag}}">{{item.personaltag}}</view></view>
+        <view class="time">{{tools.formatTime(item.updatetime)}}</view>
+        <view class="title">{{item.name}}</view>
+        <view class="content" wx:if="{{item.content.length > 54 && item.showAll == false}}">{{tools.substr(item.content, 0, 48) + '...'}} <view class="span" catchtap="showAll" data-idx="{{index}}" data-tid="{{item.tid}}">全文</view></view>
+        <view class="content" wx:else>{{item.content}}</view>
+        <view class="images" wx:if="{{item.imagesList.length == 1}}">
+          <image class="card-img" src="{{item.images}}"></image>
+        </view>
+        <view class="images-more" wx:else>
+          <image wx:for="{{item.imagesList}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="imgIndex" class="" src="{{imgItem}}"></image>
+          <!-- <image class="" src="https://7961-yamoon-test-52afba-1258905543.tcb.qcloud.la/test-image/top_banner.png?sign=7652ca7412b050e492c1739b9fc01f1c&t=1557734579"></image> -->
+        </view>
+      </view>
+    </view>
+    <view class="function">
+      <!-- <view class="like" wx:if="{{item.likeThisThing}}" bindtap="goLike" data-tid="{{item.tid}}"  data-idx="{{index}}"> <span class="icon icon-heart"></span> <span>喜欢</span></view>
+      <view class="like" bindtap="goLike" data-tid="{{item.tid}}"  data-idx="{{index}}" wx:else> <span class="icon icon-heart-outline"></span> <span>喜欢</span></view> -->
+      <view class="praise" data-tid="{{item.tid}}"  data-idx="{{index}}"> <span class="icon icon-thumbs-up">点赞数量：</span> <span>{{item.praisenum}}</span> </view>
+      <view class="comment" data-tid="{{item.tid}}"  data-idx="{{index}}"> <span class="icon icon-message">评论数量：</span> <span>{{item.commentnum}}</span></view>
+    </view>
+  </view>

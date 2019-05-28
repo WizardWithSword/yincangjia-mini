@@ -1,7 +1,72 @@
-/* pages/deployFunctions/deployFunctions.wxss */
+/* pages/user/index.wxss */
+page{
+  background-color: #eee;
+}
+.container{
+  font-size: 32rpx;
+  padding: 0 30rpx;
+  text-align: center;
+  padding-bottom: 100rpx;
+}
+.top{
+  background-color: #f6f6f6;
+  padding: 30rpx 0;
+}
+.top>view{
+  margin-top: 30rpx;
+}
+.invite{
+  padding: 15rpx 20rpx;
+  background-color: white;
+}
+.nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.nav>view{
+  width: 24%;
+}
+.nav-content{
+  margin-top: 20rpx;
+  min-height: 400rpx;
+}
+.nav-content .nodata{
+  margin-top: 100rpx;
+}
 
-@import "../../style/guide.wxss";
+.thing>text{
+  padding-bottom: 20rpx;
+}
+.thing .choose{
+  border-bottom: 1rpx solid #ccc;
+}
+.content{
+  background-color: white;
+  margin-top: 30rpx;
+}
+.content .title{
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.content .thing{
+  display: inline-block;
+  width: 33%;
+  text-align: center;
+}
 
-.black {
-  color: black;
+.header{
+  display: block;
+  margin: 0 auto;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 100rpx;
+}
+
+.contentswiper{
+  height: auto;
+  min-height: 200rpx;
 }

@@ -1,0 +1,7 @@
+<!--pages/footer/index.wxml-->
+<view class="footer">
+  <view class="onefooter" bindtap="goIndex">逛逛</view>
+  <view class="onefooter middle" bindtap="goAddIndex">发帖</view>
+  <view class="onefooter" bindtap="goMyIndex">我的</view>
+</view>
+

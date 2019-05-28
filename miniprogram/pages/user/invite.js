@@ -1,4 +1,5 @@
-// pages/deployFunctions/deployFunctions.js
+// pages/user/invite.js
+const app = getApp()
 Page({
 
   /**
@@ -12,21 +13,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.hideShareMenu()
+    wx.updateShareMenu({
+      withShareTicket: true,
+      success() { }
+    })
+    console.log('2小程序启动2:', options)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function (op) {
+    console.log('show', op)
   },
 
   /**
@@ -60,7 +65,33 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (options) {
+    console.log('options', options)
+    var title = wx.getStorageSync('wxuser').nickName + '诚邀您加入隐藏家'
+    var path = '/pages/index/index?type=invite&uid=' + wx.getStorageSync('uid')
+    if (options.target.dataset.to == 'user') {
+      console.log('分享到个人')
+      path += '&f=user'
+    } else if (options.target.dataset.to == 'group') {
+      console.log('分享到群')
+      path += '&f=group'
+    }
+    path += '&t=' + (new Date()).getTime()
+    return {
+      title: title,
+      imageUrl: 'http://images.kaishiba.com/o_1dberhg031d4gte716932b193i2e.jpeg?imageView2/2/w/640',
+      path: path,
+      success: function (res) {
+        console.log('success', res)
+        var target = res.shareTickets ? '群' : '个人'
+        wx.showToast({
+          icon: 'none',
+          title: '分享成功：' + target
+        })
+      },
+      complete: function (res) {
+        console.log('complete', res)
+      }
+    }
   }
 })

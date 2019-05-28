@@ -1,21 +1,46 @@
-<!--pages/deployFunctions/deployFunctions.wxml-->
+<!--pages/user/index.wxml-->
 <view class="container">
-
-  <view class="list">
-    <view class="list-item">
-      <text class="black">调用失败</text>
+  <view class="top">
+    <image class="header" src="{{wxuser.avatarUrl}}"></image>
+    <view><text>{{wxuser.nickName}}</text></view>
+    <view wx:if="{{ourUserinfo.experenceyear}}"><text>入行{{ourUserinfo.experenceyear}}年</text></view>
+    <view wx:if="{{ourUserinfo.hasshop == 1}}"><text>实体店铺：{{ourUserinfo.shopname}}</text></view>
+    <view bindtap="goPage" data-page="invite" class="invite btn"> + 邀请朋友</view>
+  </view>
+  <view class="nav">
+    <view bindtap="goPage" data-page="message">消息</view>
+    <view bindtap="goPage" data-page="followers">关注</view>
+    <view bindtap="goPage" data-page="feedback">反馈</view>
+    <view bindtap="goPage" data-page="setting">设置</view>
+  </view>
+  <view class="content">
+    <view class="title">藏品专栏</view>
+    <view class="nav">
+      <view class="thing"><text bindtap="goswiper" data-idx="0" class="{{swiperIndex == 0 ? 'choose' : ''}}">已发布</text></view>
+      <view class="thing"><text bindtap="goswiper" data-idx="1" class="{{swiperIndex == 1 ? 'choose' : ''}}">草稿箱</text></view>
+      <view class="thing"><text bindtap="goswiper" data-idx="2" class="{{swiperIndex == 2 ? 'choose' : ''}}">我喜欢的</text></view>
     </view>
-    <view class="list-item">
-      <text class="request-text">请检查 login 云函数是否已部署</text>
+    <view class="nav-content">
+      <view class="nav0" wx:if="{{swiperIndex == 0}}">
+        <block wx:for="{{itemList1}}" wx:key="{{index}}">
+          <onething item="{{item}}" clicktype="detail"></onething>
+        </block>
+        <view class="nodata" wx:if="{{itemList2.length == 0}}">暂无已发布藏品</view>
+      </view>
+      <view class="nav1" wx:if="{{swiperIndex == 1}}">
+        <block wx:for="{{itemList2}}" wx:key="{{index}}">
+          <onething item="{{item}}" clicktype="edit"></onething>
+        </block>
+        <view class="nodata" wx:if="{{itemList2.length == 0}}">草稿箱暂无藏品</view>
+      </view>
+      <view class="nav2" wx:if="{{swiperIndex == 2}}">
+        <block wx:for="{{itemList3}}" wx:key="{{index}}">
+          <onething item="{{item}}" clicktype="detail"></onething>
+        </block>
+        <view class="nodata" wx:if="{{itemList3.length == 0}}">暂无喜欢的藏品</view>
+      </view>
     </view>
   </view>
-
-  <view class="guide">
-    <text class="headline">部署 login 云函数</text>
-    <text class="p">1. 确保已通过工具栏云开发入口开通云开发</text>
-    <text class="p">2. 在 cloudfunctions/login 目录上右键上传并部署</text>
-    <text class="p">3. 回到首页，重新点击获取 openid</text>
-  </view>
-
+  <footer></footer>
 </view>
 

@@ -1,7 +1,16 @@
-/* pages/deployFunctions/deployFunctions.wxss */
-
-@import "../../style/guide.wxss";
-
-.black {
-  color: black;
+/* pages/user/invite.wxss */
+.tips{
+  width: 700rpx;
+  background-color: white;
+  padding: 50rpx;
+  margin: 30rpx auto;
+  font-size: 26rpx;
+  line-height: 50rpx;
+}
+.btn-wrap{
+  text-align: center;
+  margin-top: 50rpx;
+}
+.btn{
+  padding: 5rpx 25rpx;
 }
