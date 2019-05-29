@@ -76,7 +76,8 @@ Page({
       console.log('分享到群')
       path += '&f=group'
     }
-    path += '&t=' + (new Date()).getTime()
+    var ext = (new Date()).getTime() + 30 * 24 * 60 * 60 * 1000
+    path += '&t=' + ext
     return {
       title: title,
       imageUrl: 'http://images.kaishiba.com/o_1dberhg031d4gte716932b193i2e.jpeg?imageView2/2/w/640',

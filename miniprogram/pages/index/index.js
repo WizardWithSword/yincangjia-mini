@@ -3,6 +3,16 @@ const app = getApp()
 const api = require('../../utils/api.js')
 Page({
   data: {
+    yearArray: [2,3,4,5,6,7,8,9,10,11],
+    yearIndex: 0,
+    hasShop: false,
+    hasShopArray: ['有', '没有'],
+    hasShopIndex: 0,
+    personSign: '',
+    shopcityArr: [],
+    customItem: '其他',
+    shopName: '',
+    shopAddr: '',
     noticeList: [],
     noticeVertical: true,
     itemList: [],
@@ -118,7 +128,9 @@ Page({
       url: '/pages/user/index'
     })
   },
-
+  _showNeedInvite: function () {
+    wx.showModal({title: '您好',content:'当前社区私密'})
+  },
   onLoad: function() {
     var uid = wx.getStorageSync('uid')
     if (uid == '') {
@@ -128,10 +140,22 @@ Page({
         showGetUserinfo: true
       })
     } else {
-      // 如果当前用户没有邀请人，但是本次进入是通过邀请进入的
-      if (app.globalData.thisuser.inviteuid == null && app.globalData.inviteinfo && app.globalData.inviteinfo.query.uid) {
-        this._showReg()
-      }
+      this._updateUserinfo().then(res => {
+        // 如果当前用户没有邀请人，但是本次进入是通过邀请进入的
+        if (app.globalData.thisuser.inviteuid == null && app.globalData.inviteinfo && app.globalData.inviteinfo.query.uid) {
+          this._showReg()
+        } else if (app.globalData.thisuser.inviteuid){
+          console.log('正常已注册用户')
+        } else {
+          this._showNeedInvite()
+        }
+      })
+    }
+    if (app.globalData.wxuser) {
+      this.setData({
+        avatarUrl: app.globalData.wxuser.avatarUrl,
+        userInfo: app.globalData.wxuser
+      })
     }
 
     api.getNoticeList().then(res => {
@@ -185,10 +209,10 @@ Page({
     this.setData({
       showReg: true
     })
-    wx.showToast({
-      icon: 'none',
-      title: '显示注册',
-    })
+    // wx.showToast({
+    //   icon: 'none',
+    //   title: '显示注册',
+    // })
   },
 
   onGetUserInfo: function(e) {
@@ -216,11 +240,13 @@ Page({
           // 全局记录我们的系统内的微信用户信息
           app.globalData.thisuser = res.result
           wx.setStorageSync('thisuser', res.result)
-          console.log('登录结果:', res)  
+          console.log('登录结果:', res)
           if (res.inviteuid == null && app.globalData.inviteinfo && app.globalData.inviteinfo.query.uid){ // 用户之前没有邀请人，但是本次有邀请人
             this._showReg()
-          } else { // 用户没有邀请人
-
+          } else if (res.inviteuid == null) { // 用户没有邀请人
+            this._showNeedInvite()
+          } else {
+            console.log('正常已注册用户2')
           }
         } else {
           wx.showToast({
@@ -250,6 +276,92 @@ Page({
         console.error('[云函数] [login] 调用失败', err)
       }
     })
+  },
+  selectCHange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      yearIndex: e.detail.value
+    })
+  },
+  selectCHangeHasShop: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      hasShopIndex: e.detail.value
+    })
+  },
+  selectChangeShopCity: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      shopcityArr: e.detail.value
+    })
+  },
+  bindInputShopname: function(e) {
+    this.setData({
+      shopName: e.detail.value
+    })
+  },
+  bindInputShopaddr: function(e) {
+    this.setData({
+      shopAddr: e.detail.value
+    })
+  },
+  bindInputSign: function (e) {
+    this.setData({
+      personSign: e.detail.value
+    })
+  },
+  // 保存个人信息
+  saveUser: function () {
+    var obj = {}
+    obj.inviteuid = app.globalData.inviteinfo.query.uid
+    obj.hasshop = this.data.hasShopIndex == 0 ? 1 : 0 // 是否有店铺
+    obj.shopname = this.data.shopName
+    obj.experenceyear = this.data.yearArray[this.data.yearIndex]
+    obj.personalsign = this.data.personSign // 个性签名
+    obj.shopcity = this.data.shopcityArr.join(',') // 店铺城市名称
+    obj.shopaddr = this.data.shopAddr // 详细地址
+    if (obj.hasshop) {
+      if (obj.shopname == '' || obj.shopaddr == '') {
+        wx.showToast({
+          icon: 'none',
+          title: '请填写店铺名称以及地址'
+        })
+        return false
+      }
+    }
+    console.log('更新的个人信息有', obj)
+    api.post('/api/user/invitereg', obj).then(res => {
+      if (res.code == '200') {
+        wx.showToast({
+          icon: 'none',
+          title: '注册成功'
+        })
+        this.setData({
+          showReg: false
+        })
+        this._updateUserinfo()
+      } else {
+        wx.showToast({
+          icon: 'none',
+          title: '系统异常，请稍后再试'
+        })
+      }
+    })
+  },
+  // 更新当前用户信息
+  _updateUserinfo: function () {
+    var uid = wx.getStorageSync('uid')
+    if (uid && app.globalData.thisuser.uid) {
+      return api.get('/api/user/detail').then(res => {
+        console.log('当前用户信息:', res)
+        if(res.code == '200') {
+          wx.setStorageSync('uid', res.result.uid)
+          // 全局记录我们的系统内的微信用户信息
+          app.globalData.thisuser = res.result
+          wx.setStorageSync('thisuser', res.result)
+        }
+      })
+    }
   }
 })
 
