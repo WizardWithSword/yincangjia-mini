@@ -172,6 +172,16 @@ Page({
         })
       }
     })
+
+    this._getIndexData()
+    // var feed = {}
+    // feed.contact = '18767104983'
+    // feed.content = '中美最后一轮磋商，A股大涨...也是醉了'
+    // api.post('/api/feedback/add', feed).then(function(d) {
+    //   console.log('feedback/add 返回值:', d)
+    // })
+  },
+  _getIndexData: function () {
     api.get('/api/index').then(res => {
       console.log('内容列表：', res)
       if (res.code === '200') {
@@ -187,12 +197,6 @@ Page({
         })
       }
     })
-    // var feed = {}
-    // feed.contact = '18767104983'
-    // feed.content = '中美最后一轮磋商，A股大涨...也是醉了'
-    // api.post('/api/feedback/add', feed).then(function(d) {
-    //   console.log('feedback/add 返回值:', d)
-    // })
   },
   // 首页列表数据处理
   _dealData: function (arr) {
@@ -362,6 +366,12 @@ Page({
         }
       })
     }
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    this._getIndexData()
   }
 })
 
