@@ -141,10 +141,11 @@ Page({
       })
     } else {
       this._updateUserinfo().then(res => {
+        console.log('更新后的用户信息,', res)
         // 如果当前用户没有邀请人，但是本次进入是通过邀请进入的
         if (app.globalData.thisuser.inviteuid == null && app.globalData.inviteinfo && app.globalData.inviteinfo.query.uid) {
           this._showReg()
-        } else if (app.globalData.thisuser.inviteuid){
+        } else if (app.globalData.thisuser.inviteuid || res.inviteuid){
           console.log('正常已注册用户')
         } else {
           this._showNeedInvite()
@@ -245,9 +246,9 @@ Page({
           app.globalData.thisuser = res.result
           wx.setStorageSync('thisuser', res.result)
           console.log('登录结果:', res)
-          if (res.inviteuid == null && app.globalData.inviteinfo && app.globalData.inviteinfo.query.uid){ // 用户之前没有邀请人，但是本次有邀请人
+          if (res.result.inviteuid == null && app.globalData.inviteinfo && app.globalData.inviteinfo.query.uid){ // 用户之前没有邀请人，但是本次有邀请人
             this._showReg()
-          } else if (res.inviteuid == null) { // 用户没有邀请人
+          } else if (res.result.inviteuid == null) { // 用户没有邀请人
             this._showNeedInvite()
           } else {
             console.log('正常已注册用户2')
@@ -364,6 +365,7 @@ Page({
           app.globalData.thisuser = res.result
           wx.setStorageSync('thisuser', res.result)
         }
+        return res.result
       })
     }
   },
