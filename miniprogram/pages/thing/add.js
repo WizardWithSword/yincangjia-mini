@@ -129,6 +129,7 @@ Page({
       })
     } else {
       thing.tid = this.data.tid
+      console.log('thing/update 请求值:', thing)
       return api.post('/api/thing/update', thing).then(d => {
         console.log('thing/update 返回值:', d)
         if (d.code == '200') {
@@ -139,7 +140,7 @@ Page({
         } else {
           wx.showToast({
             icon: 'none',
-            title: '保存失败，请重新尝试'
+            title: '再次保存失败，请重新尝试'
           })
         }
       })

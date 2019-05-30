@@ -22,16 +22,16 @@
     </view>
     <view class="nav-content">
       <view class="nav0" wx:if="{{swiperIndex == 0}}">
-        <block wx:for="{{itemList1}}" wx:key="{{index}}">
+        <block wx:for="{{itemList2}}" wx:key="{{index}}">
           <onething item="{{item}}" clicktype="detail"></onething>
         </block>
         <view class="nodata" wx:if="{{itemList2.length == 0}}">暂无已发布藏品</view>
       </view>
       <view class="nav1" wx:if="{{swiperIndex == 1}}">
-        <block wx:for="{{itemList2}}" wx:key="{{index}}">
+        <block wx:for="{{itemList1}}" wx:key="{{index}}">
           <onething item="{{item}}" clicktype="edit"></onething>
         </block>
-        <view class="nodata" wx:if="{{itemList2.length == 0}}">草稿箱暂无藏品</view>
+        <view class="nodata" wx:if="{{itemList1.length == 0}}">草稿箱暂无藏品</view>
       </view>
       <view class="nav2" wx:if="{{swiperIndex == 2}}">
         <block wx:for="{{itemList3}}" wx:key="{{index}}">
