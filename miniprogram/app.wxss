@@ -15,6 +15,9 @@ page {
   box-sizing: border-box;
   font-size: 22rpx;
 }
+button{
+  border: 1rpx solid #ccc;
+}
 button::after{ border: none; }
 
 .span{
