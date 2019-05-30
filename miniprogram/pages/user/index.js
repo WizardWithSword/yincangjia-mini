@@ -97,7 +97,7 @@ Page({
       if (res.code == '200') {
         var things = this._dealMyRes(res.result)
         this.setData({
-          itemList1: things
+          itemList3: things
         })
       } else {
         wx.showToast({
