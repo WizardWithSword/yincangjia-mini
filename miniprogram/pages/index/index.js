@@ -21,6 +21,14 @@ Page({
     showReg: false,
     showGetUserinfo: false
   },
+  showImg: function (event) {
+    var idx = event.currentTarget.dataset.idx
+    var arr = this.data.itemList[idx].imagesList
+    wx.previewImage({
+      urls: arr
+    })
+    return false
+  },
   // 点击前往公告详情
   goNoticeDetail: function (event) {
     var id = event.currentTarget.dataset.noticeid
@@ -181,6 +189,11 @@ Page({
     // api.post('/api/feedback/add', feed).then(function(d) {
     //   console.log('feedback/add 返回值:', d)
     // })
+  },
+  onShow: function () {
+    // 进入首页
+    console.log('更新 index')
+    this._getIndexData()
   },
   _getIndexData: function () {
     api.get('/api/index').then(res => {

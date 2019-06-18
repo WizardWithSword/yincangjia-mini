@@ -149,12 +149,37 @@ Page({
   // 发布
   saveOnline: function () {
     if (this.data.tid == '') {
-      wx.showToast({
-        icon: 'none',
-        title: '请先保存草稿'
+      var thing1 = {}
+      thing1.name = this.data.title
+      thing1.content = this.data.content
+      thing1.images = this.data.imagesCloud.join(';')
+      api.post('/api/thing/add', thing1).then(d => {
+        console.log('thing/add 返回值:', d)
+        if (d.code == '200') {
+          console.log('d.result.tid', d.result.tid)
+          this.setData({
+            tid: d.result.tid
+          })
+          // 设置为上线
+          this._online()
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '保存失败，请重新尝试'
+          })
+        }
       })
       return false
+    } else {
+      // 直接设置为上线
+      this._online()
     }
+  },
+  _back: function () {
+    wx.navigateBack()
+  },
+  // 将内容设置为上线。
+  _online: function () {
     var thing = {
       tid: this.data.tid,
       status: 2
@@ -166,13 +191,14 @@ Page({
           icon: 'none',
           title: '发布成功'
         })
+        this._back()
       } else {
         wx.showToast({
           icon: 'none',
           title: '发布失败, 请稍后再试'
         })
       }
-    })
+    })    
   },
   /**
    * 生命周期函数--监听页面加载

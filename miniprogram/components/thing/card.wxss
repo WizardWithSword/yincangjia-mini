@@ -1,5 +1,5 @@
 /* pages/footer/index.wxss */
-/*@import "../../style/style.wxss";*/
+
 .span{
   display: inline-block;
 }
@@ -19,6 +19,12 @@
 }
 .one-thing-card .left{
   margin-right: 20rpx;
+}
+.one-thing-card .right{
+  width: 600rpx;
+}
+.images{
+  width: 100%;
 }
 
 .one-thing-card .images-more{
