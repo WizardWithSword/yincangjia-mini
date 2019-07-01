@@ -1,0 +1,74 @@
+<!--pages/thing/detail.wxml-->
+<wxs src="./../../wxs/utils.wxs" module="tools" />
+<view class="container">
+  <view class="content">
+    <view class="head">
+      <view class="left">
+        <image class="header" src="{{thingDetail.wechatheader}}" mode="aspectFill"></image>
+      </view>
+      <view class="right">
+        <view><text class="name">{{thingDetail.wechatnick}}</text></view>
+        <view><text class="time">{{tools.formatTime(thingDetail.createtime)}}</text></view>
+      </view>
+    </view>
+    <view class="text-title">
+      <text>{{thingDetail.name}}</text>
+    </view>
+    <view class="text-content">
+      <text>{{thingDetail.content}}</text>
+    </view>
+    <view class="img-wrap">
+      <image bindtap="showbigimage" wx:for="{{thingDetail.imagesArr}}" wx:key="{{index}}" src="{{item}}" data-url="{{item}}" class="one-img" mode="aspectFill"></image>
+    </view>
+  </view>
+  <view class="func">
+    <view class="one-func"><button type="mine" class="share-btn" open-type="share" >分享</button></view>
+    <view class="one-func {{showtab == 'collect' ? 'choosed' : ''}}" bindtap="choosenav" data-tab="collect">喜欢 {{thingDetail.collectnum}}</view>
+    <view class="one-func {{showtab == 'parise' ? 'choosed' : ''}}" bindtap="choosenav" data-tab="parise">赞{{thingDetail.praisenum}}</view>
+    <view class="one-func {{showtab == 'comment' ? 'choosed' : ''}}" bindtap="choosenav" data-tab="comment">评论{{thingDetail.commentnum || commentLists.length}}</view>
+  </view>
+  <!-- 评论区 -->
+  <view class="comment-wrap"  wx:if="{{showtab == 'comment'}}">
+    <view wx:if="{{commentLists.length == 0}}">暂无评论</view>
+    <view wx:for="{{commentLists}}" wx:key="{{index}}" class="one-comment">
+      <view class="left">
+        <image class="user-header" src="{{item.wechatheader}}" mode="aspectFill"></image>
+      </view>
+      <view class="right">
+        <view class="nick">{{item.uname}}</view>
+        <view class="comment">{{item.content}}</view>
+        <view class="child-comment" wx:if="{{item.children.length > 0}}">
+          <view class="one-child-comment" wx:for="{{item.children}}" wx:for-item="itemchild" wx:key="{{itemchild.cid}}">
+            <text class="child-nick">{{itemchild.uname}}:</text>
+            <text class="child-content">{{itemchild.content}}</text>
+          </view>
+        </view>
+        <view class="date">
+          <text>{{tools.formatTime(item.createtime)}}</text>
+          <view class="child-func">
+            <!-- <image data-cid="{{item.cid}}" class="child-btn btn-zan" src="../../images/dianzan-14.png">赞</image> -->
+            <image bindtap="goaddChildrenComment" data-cid="{{item.cid}}" class="child-btn btn-comment" src="../../images/shoucang.png">评论</image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 收藏的人头像 -->
+  <view class="parise-wrap" wx:if="{{showtab == 'collect'}}">
+    <image wx:for="{{collectHeaders}}" wx:key="{{index}}" src="{{item.uheader}}" class="user-header" mode="aspectFill"></image>
+  </view>
+  <!-- 点赞的人头像 -->
+  <view class="like-wrap"  wx:if="{{showtab == 'parise'}}">
+    <view wx:if="{{pariseHeaders.length == 0}}">暂无点赞</view>
+    <image wx:for="{{pariseHeaders}}" wx:key="{{index}}" src="{{item.uheader}}" class="user-header" mode="aspectFill"></image>
+  </view>
+  <view class="padding-bottom-60"> </view>
+  <view class="add-comment">
+    <text class="add-icon" bindtap="goaddComment">发表评论</text>
+    <view class="right">
+      <image bindtap="goCollectComment" class="add-btn btn-shoucang" src="../../images/shoucang.png">喜欢</image>
+      <image bindtap="goPraiseComment" class="add-btn btn-zan" src="../../images/dianzan-14.png">赞</image>
+    </view>
+  </view>
+</view>
+

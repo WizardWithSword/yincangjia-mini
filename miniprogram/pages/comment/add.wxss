@@ -1,0 +1,14 @@
+/* pages/comment/add.wxss */
+
+.textarea{
+  border: 1rpx solid #eee;
+  width: 700rpx;
+  margin: 20rpx auto;
+  background-color: white;
+  font-size: 28rpx;
+  line-height: 50rpx;
+}
+.submit{
+  width: 200rpx;
+  margin: 0 auto;
+}

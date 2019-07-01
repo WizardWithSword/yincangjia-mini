@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/notice/detail",
-    "pages/detail/index",
+    "pages/thing/detail",
+    "pages/comment/add",
     "pages/user/index",
     "pages/user/setting",
     "pages/user/invite",

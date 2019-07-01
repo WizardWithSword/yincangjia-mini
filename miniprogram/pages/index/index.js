@@ -190,9 +190,9 @@ Page({
     //   console.log('feedback/add 返回值:', d)
     // })
   },
-  onShow: function () {
+  onShow: function (options) {
     // 进入首页
-    console.log('更新 index')
+    console.log('更新 index', options)
     this._getIndexData()
   },
   _getIndexData: function () {

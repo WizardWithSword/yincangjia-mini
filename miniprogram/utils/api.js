@@ -30,6 +30,10 @@ api.post = function (url, data) {
 }
 
 function failcallback () {
+  wx.showToast({
+    icon: 'failed',
+    title: 'something wrong'
+  })
   return {
     code: 'error',
     message: '请求失败！'

@@ -1,0 +1,198 @@
+/* pages/thing/detail.wxss */
+page{
+  background-color: #f2f2f2;
+}
+.content{
+  background-color: white;
+  padding: 25rpx;
+}
+.head{
+  display: flex;
+  align-items: center;
+  padding-top: 30rpx;
+}
+.head .header{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+}
+.head .left{
+  margin-right: 16rpx;
+}
+.head .name{
+  font-size: 28rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: rgb(51,51,51);
+}
+.head .time{
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 24rpx;
+  color: rgb(147,147,147);
+}
+
+.text-content,
+.text-title{
+  padding-top: 24rpx;
+  color: rgb(51,51,51);
+  font-size: 32rpx;
+  line-height: 48rpx;
+}
+
+.img-wrap{
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.one-img{
+  width: 220rpx;
+  height: 220rpx;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.func{
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10rpx 0 0 0;
+  padding: 0 40rpx 0 20rpx;
+  font-size: 28rpx;
+  color: rgb(165, 174, 181);
+  line-height: 56rpx;
+  height: 80rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.one-func{
+  /*min-width: 90rpx;*/
+  text-align: center;
+  /*background-color: red;*/
+}
+.choosed{
+  border-bottom: 4rpx solid #697480;
+}
+.share-btn{
+  background-color: white;
+  border: none;
+  outline: none;
+  font-size: 28rpx;
+  color: rgb(165, 174, 181);
+  height: 70rpx;
+  line-height: 70rpx;
+  -webkit-tap-highlight-color: white;
+}
+
+.comment-wrap,
+.like-wrap,
+.parise-wrap{
+  min-height: 100rpx;
+  background-color: white;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  padding-top: 20rpx;
+}
+.like-wrap,
+.parise-wrap{
+  display: flex;
+}
+.user-header{
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 32rpx;
+  margin-right: 10rpx;
+}
+
+.padding-bottom-60{
+  height: 10rpx;
+  width: 100%;
+  margin-bottom: 110rpx;
+}
+.add-comment{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-top: 1rpx solid hsla(0,0%,68.6%,.5);
+  padding-left: 20rpx;
+  color: #a5adb5;
+  font-size: 32rpx;
+}
+.add-comment .add-icon{
+  padding: 20rpx 140rpx 20rpx 0;
+}
+.add-comment .right{
+  display: flex;
+  align-items: center;
+}
+.add-btn{
+  width: 40rpx;
+  height: 40rpx;
+  display: inline-block;
+  margin-right: 30rpx;
+}
+.btn-shoucang{
+  margin-top: 10rpx;
+}
+
+.one-comment{
+  display: flex;
+}
+.one-comment .user-header{
+  margin-right: 16rpx;
+}
+.one-comment .nick{
+  color: #333;
+  font-size: 28rpx;
+  line-height: 42rpx;
+  height: 42rpx;
+  margin-bottom: 10rpx;
+}
+.one-comment .comment{
+  color: #333;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  margin-bottom: 16rpx;
+}
+.one-comment .date{
+  color: #999;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+  margin-top: 12rpx;
+}
+.child-btn{
+  display: inline-block;
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+}
+.one-comment .right{
+  width: 650rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.child-comment{
+  padding: 20rpx;
+  background: #f7f7f7;
+}
+.one-child-comment{
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #333;
+}
+.child-nick{
+  color: #507DAF;
+}
+.child-content{
+
+}
+

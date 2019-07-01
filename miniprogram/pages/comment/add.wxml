@@ -1,0 +1,5 @@
+<!--pages/comment/add.wxml-->
+<view class="container">
+  <textarea bindinput="inputcomment" class="textarea" placeholder="写评论..." maxlength="125"></textarea>
+  <button class="submit" bindtap="submit">发送</button>
+</view>
