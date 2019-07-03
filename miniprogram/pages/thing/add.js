@@ -184,7 +184,7 @@ Page({
       tid: this.data.tid,
       status: 2
     }
-    api.post('/api/thing/online', thing).then(function(d) {
+    api.post('/api/thing/online', thing).then((d) => {
       console.log('/thing/online 返回值:', d)
       if (d.code == '200') {
         wx.showToast({
