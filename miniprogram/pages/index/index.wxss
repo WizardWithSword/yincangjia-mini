@@ -44,15 +44,24 @@
 
 
 .one-card{
-  border: 1rpx solid #ccc;
-  box-shadow: 5rpx 5rpx 5rpx #ddd;
-  width: 690rpx;
+  /*border-bottom: 1rpx solid #ccc;*/
+  /*box-shadow: 5rpx 5rpx 5rpx #ddd;*/
+  width: 750rpx;
   margin: 20rpx auto;
-  padding: 20rpx 10rpx;
+  padding: 30rpx 10rpx;
+  background-color: white;
 }
 .one-card .top{
   display: flex;
   align-items: top;
+  padding: 0 25rpx;
+  margin-bottom: 20rpx;
+}
+.one-card .middle{
+  padding: 0 25rpx;
+}
+.one-card .function{
+  padding: 0 25rpx;
 }
 .one-card .left{
   margin-right: 20rpx;
@@ -71,23 +80,33 @@
   margin-right:10rpx;
 }
 .one-card .title{
-  font-size: 26rpx;
-  line-height: 52rpx;
+  color: rgb(51,51,51);
+  font-size: 32rpx;
+  line-height: 48rpx;
 }
 .one-card .content{
-  font-size: 24rpx;
-  line-height: 28rpx;
+  color: rgb(51,51,51);
+  font-size: 32rpx;
+  line-height: 48rpx;
 }
 .one-card .name{
-  font-size: 32rpx;
-  font-weight: bold;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  color: #333;
+}
+.one-card .time{
+  font-size: 24rpx;
+  line-height: 38rpx;
+  color: rgb(147,147,147);
 }
 .one-card .utag{
-  font-size: 26rpx;
+  font-size: 20rpx;
   font-weight: normal;
   border: 1rpx solid #ccc;
   padding: 0 10rpx;
   margin-left: 20rpx;
+  height: 30rpx;
+  line-height: 30rpx;
 }
 .one-card .header-img{
   display: inline-block;
@@ -96,15 +115,27 @@
   border-radius: 30rpx;
   margin-right: 5rpx;
 }
+.function .sharebtn{
+  padding: 0;
+  display: flex;
+  align-items: center;
+  width: 130rpx;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 26rpx;
+  line-height: 26rpx;
+}
 
 .function{
   padding: 20rpx 30rpx 0rpx 10rpx;
   margin-top: 20rpx;
-  border-top: 1px solid #eee;
+  /*border-top: 1rpx solid #eee;*/
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 34rpx;
+  font-size: 26rpx;
+  line-height: 26rpx;
 }
 .function view{
   display: flex;
@@ -113,11 +144,11 @@
   height: 50rpx;
 }
 .function .icon{
-  font-size: 48rpx;
-  line-height: 48rpx;
+  font-size: 26rpx;
+  line-height: 26rpx;
   margin-right: 10rpx;
-  width: 40rpx;
-  height: 40rpx;
+  width: 36rpx;
+  height: 36rpx;
   /*display: inline-block;*/
 }
 

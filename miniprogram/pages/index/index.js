@@ -3,6 +3,7 @@ const app = getApp()
 const api = require('../../utils/api.js')
 Page({
   data: {
+    shareinfo: {}, // 分享的信息
     yearArray: [2,3,4,5,6,7,8,9,10,11],
     yearIndex: 0,
     hasShop: false,
@@ -203,6 +204,7 @@ Page({
         this.setData({
           itemList: d
         })
+        this._dealShareImg()
       } else {
         wx.showToast({
           title: res.message,
@@ -218,6 +220,7 @@ Page({
     for (var i = arr.length - 1; i >= 0; i--) {
       arr[i].showAll = false
       arr[i].likeThisThing = false
+      arr[i].shareImg = ''
       arr[i].imagesList = arr[i].images.split(';')
     }
     return tmp
@@ -387,6 +390,85 @@ Page({
    */
   onPullDownRefresh: function () {
     this._getIndexData()
+  },
+  goShare: function (event) {
+    var tid = event.currentTarget.dataset.tid
+    var idx = event.currentTarget.dataset.idx
+    var item = this.data.itemList[idx]
+    var name = item.name
+    var obj = {}
+    obj.path = '/pages/thing/detail?tid=' + tid
+    obj.name = name
+    obj.img = item.shareImg
+    this.setData({
+      shareinfo: obj
+    })
+  },
+  // 开始处理商品的分享图片
+  _dealShareImg: function () {
+    var arr = this.data.itemList
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].shareImg == '') {
+        this._gethttpurl(arr[i].imagesList[0], i)
+      }
+    }
+  },
+  _gethttpurl: function (fildid, idx) {
+    return wx.cloud.getTempFileURL({
+      fileList: [{
+        fileID: fildid,
+        maxAge: 60 * 60, // one hour
+      }]
+    }).then(res => {
+      // get temp file URL
+      if (res.fileList[0].status == 0) {
+        var img = res.fileList[0].tempFileURL
+        console.log('换取地址：', img)
+        this.setData({
+         ['itemList[' + idx + '].shareImg']: img
+        })
+      } else {
+        return ''
+      }
+    }).catch(error => {
+      // handle error
+      console.log('换取地址失败：', error)
+    })
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function (options) {
+    console.log(options)
+    if (options.from == 'button') {
+      var target = options.target.dataset
+      var idx = target.idx
+      var item = this.data.itemList[idx]
+      var title = item.name
+      var img = item.shareImg
+      var path = '/pages/thing/detail?tid=' + target.tid
+      console.log('分享所需的img', img)
+      return {
+        title: title,
+        imageUrl: img,
+        path: path,
+        success: function (res) {
+          console.log('success', res)
+          wx.showToast({
+            icon: 'none',
+            title: '分享成功'
+          })
+        },
+        complete: function (res) {
+          console.log('complete', res)
+        }
+      }
+    } else {
+      return {
+        title: '隐藏家',
+        path: '/pages/index/index'
+      }
+    }
   }
 })
 
