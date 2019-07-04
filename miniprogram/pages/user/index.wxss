@@ -4,21 +4,55 @@ page{
 }
 .container{
   font-size: 32rpx;
-  padding: 0 30rpx;
+  /*padding: 0 30rpx;*/
   text-align: center;
   padding-bottom: 100rpx;
 }
 .top{
-  background-color: #f6f6f6;
+  background-color: white;
   padding: 30rpx 0;
+  display: flex;
+  align-items: top;
+  justify-content: flex-start;
 }
-.top>view{
-  margin-top: 30rpx;
+.top .header{
+  width: 128rpx;
+  height: 128rpx;
+  margin: 0 30rpx;
 }
-.invite{
-  padding: 15rpx 20rpx;
+.top .right{
+  text-align: left;
+  width: 400rpx;
+}
+.top .name{
+  font-size: 42rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #333;
+}
+.top .desc{
+  line-height: 40rpx;
+  font-size: 26rpx;
+  color: rgb(153,153,153);
+}
+.topfunction{
   background-color: white;
 }
+
+.invite{
+  /*padding: 5rpx 20rpx;*/
+  /*background-color: #f6f6f6;*/
+  border: 1rpx solid #ccc;
+  display: inline-block;
+  width: 200rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  margin-right: 10rpx;
+  border-radius: 10rpx;
+}
+
+
 .nav{
   display: flex;
   align-items: center;
@@ -33,6 +67,7 @@ page{
 .nav-content{
   margin-top: 20rpx;
   min-height: 400rpx;
+  padding-bottom: 50rpx;
 }
 .nav-content .nodata{
   margin-top: 100rpx;

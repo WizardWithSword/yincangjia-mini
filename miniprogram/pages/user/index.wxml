@@ -1,15 +1,26 @@
 <!--pages/user/index.wxml-->
 <view class="container">
   <view class="top">
-    <image class="header" src="{{wxuser.avatarUrl}}"></image>
-    <view><text>{{wxuser.nickName}}</text></view>
-    <view wx:if="{{ourUserinfo.experenceyear}}"><text>入行{{ourUserinfo.experenceyear}}年</text></view>
-    <view wx:if="{{ourUserinfo.hasshop == 1}}"><text>实体店铺：{{ourUserinfo.shopname}}</text></view>
-    <view bindtap="goPage" data-page="invite" class="invite btn"> + 邀请朋友</view>
+    <view class="left">
+      <image class="header" src="{{wxuser.avatarUrl}}"></image>
+    </view>
+    <view class="right">
+      <view class="name"><text>{{wxuser.nickName}}</text></view>
+      <view class="desc" wx:if="{{ourUserinfo.experenceyear}}"><text>入行{{ourUserinfo.experenceyear}}年</text></view>
+      <view class="desc" wx:if="{{ourUserinfo.personaltag}}"><text>{{ourUserinfo.personaltag}}</text></view>
+      <view class="desc" wx:if="{{ourUserinfo.hasshop == 1}}"><text>实体店铺：{{ourUserinfo.shopname}}</text></view>
+      <view class="desc" wx:if="{{ourUserinfo.hasshop == 1}}"><text>地址：{{ourUserinfo.shopcity}} {{ourUserinfo.shopaddr}}</text></view>
+      <view class="desc" wx:if="{{ourUserinfo.personalsign && ourUserinfo.personalsign.length > 0}}"><text>个性签名：{{ourUserinfo.personalsign}}</text></view>      
+    </view>
+    <view class="topfunction">
+      <view bindtap="goPage" data-page="invite" class="invite"> + 邀请朋友</view>
+    </view>
   </view>
+
   <view class="nav">
     <view bindtap="goPage" data-page="message">消息</view>
     <view bindtap="goPage" data-page="followers">关注</view>
+    <view bindtap="goPage" data-page="idcards">名片</view>
     <view bindtap="goPage" data-page="feedback">反馈</view>
     <view bindtap="goPage" data-page="setting">设置</view>
   </view>
