@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    shareimg: '', // 当前藏品分享图片
     tid: '',
     thingDetail: {},
     commentLists: [],
@@ -94,6 +95,7 @@ Page({
           thingDetail: res.result
         })
         this._getViewpoints()
+        this._getShareImg()
       } else {
         this._tip(res)
       }
@@ -199,11 +201,47 @@ Page({
   onReachBottom: function () {
 
   },
-
+  _getShareImg: function () {
+    wx.cloud.getTempFileURL({
+      fileList: [{
+        fileID: this.data.thingDetail.imagesArr[0],
+        maxAge: 60 * 60 * 12, // one hour
+      }]
+    }).then(res => {
+      // get temp file URL
+      var file = res.fileList[0]
+      console.log('获取的云端地址', file)
+      if (file.status == 0) {
+        this.setData({
+          'shareimg': file.tempFileURL
+        })
+      }
+    }).catch(error => {
+      // handle error
+    })    
+  },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    var title = this.data.thingDetail.name
+    var img = this.data.shareimg
+    var path = '/pages/thing/detail?tid=' + this.data.thingDetail.tid
+    console.log('分享所需的img', img)
+    return {
+      title: title,
+      imageUrl: img,
+      path: path,
+      success: function (res) {
+        console.log('success', res)
+        wx.showToast({
+          icon: 'none',
+          title: '分享成功'
+        })
+      },
+      complete: function (res) {
+        console.log('complete', res)
+      }
+    }
   }
 })
