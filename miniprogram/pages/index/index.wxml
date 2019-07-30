@@ -22,7 +22,10 @@
           <image class="header-img" src="{{item.wechatheader}}"></image>
         </view>
         <view class="right">
-          <view class="name">{{item.wechatnick}}<view class="label utag" wx:if="{{item.personaltag}}">{{item.personaltag}}</view></view>
+          <view class="name">{{item.wechatnick}}
+            <view class="label utag" wx:if="{{item.personaltag}}">{{item.personaltag}}</view>
+            <view class="label utag">入行5年</view>
+          </view>
           <view class="time">{{tools.formatTime(item.updatetime)}}</view>
         </view>
       </view>
@@ -43,7 +46,7 @@
       <view class="function">
         <view class="praise">
           <button class="sharebtn" open-type="share" data-tid="{{item.tid}}"  data-idx="{{index}}">
-            <image class="icon" src="../../images/dianzan-14.png"></image>
+            <image class="icon" src="../../images/icon-share.png"></image>
             <span>分享</span>            
           </button>
         </view>
@@ -52,15 +55,15 @@
           <span>喜欢</span>
         </view>
         <view class="like" bindtap="goLike" data-tid="{{item.tid}}"  data-idx="{{index}}" wx:else>
-          <image class="icon" src="../../images/shoucang.png"></image>
+          <image class="icon" src="../../images/icon-heart.png"></image>
           <span>喜欢</span>
         </view>
         <view class="praise" bindtap="goPraise" data-tid="{{item.tid}}"  data-idx="{{index}}">
-          <image class="icon" src="../../images/dianzan-14.png"></image>
+          <image class="icon" src="../../images/icon-parise.png"></image>
           <span>{{item.praisenum}}</span>
         </view>
         <view class="comment" bindtap="goDetail" data-tid="{{item.tid}}"  data-idx="{{index}}">
-          <image class="icon" src="../../images/pinglun-copy.png"></image>
+          <image class="icon" src="../../images/icon-comment.png"></image>
           <span>{{item.commentnum}}</span>
         </view>
       </view>
@@ -68,9 +71,24 @@
   </view>
 </view>
 <view class="footer">
-  <view bindtap="goIndex">逛逛</view>
-  <view class="middle" bindtap="goAddIndex">发帖</view>
-  <view bindtap="goMyIndex">我的</view>
+  <view class="onenav" bindtap="goIndex">
+    <view>
+      <image class="navicon" src="../../images/nav/icon-walk.png"></image>
+    </view>
+    <view class="word">逛逛</view>
+  </view>
+  <view class="onenav middle" bindtap="goAddIndex">
+    <view>
+      <image mode="aspectFill" class="nav-add-icon" src="../../images/nav/icon-add.png"></image>
+    </view>
+    <view class="word m-word">发帖</view>
+  </view>
+  <view class="onenav" bindtap="goMyIndex">
+    <view>
+      <image class="navicon-mine" src="../../images/nav/icon-mine.png"></image>
+    </view>
+    <view class="word ">我的</view>
+  </view>
 </view>
 
 <view class="userinfo" wx:if="{{showGetUserinfo}}">
