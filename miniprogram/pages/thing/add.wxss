@@ -38,10 +38,24 @@
   height: 200rpx;
   margin-right: 20rpx;
   margin-bottom: 30rpx;
+  position: relative;
 }
 .one-image image{
   width: 100%;
   height: 100%;
+}
+.one-image .icon-close{
+  position: absolute;
+  right: -10rpx;
+  top: -10rpx;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  background-color: white;
+  border-radius: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  border: 1rpx solid #ccc;
 }
 .addImage{
   display: inline-block;

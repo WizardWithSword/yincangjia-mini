@@ -25,6 +25,14 @@ Page({
       content: e.detail.value
     })
   },
+  showImg: function (event) {
+    var idx = event.currentTarget.dataset.idx
+    var arr = this.data.imagesCloud[idx]
+    wx.previewImage({
+      urls: this.data.imagesCloud
+    })
+    return false
+  },
   deleteImg: function (e) {
     var that = this
     var idx = e.target.dataset.index
@@ -50,9 +58,10 @@ Page({
   // 上传图片
   doUpload: function () {
     var that = this
+    var count = 6 - this.data.imagesCloud.length
     // 选择图片
     wx.chooseImage({
-      count: 1,
+      count: count,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: function (res) {

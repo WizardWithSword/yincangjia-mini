@@ -10,7 +10,8 @@
     </view>
     <view class="img-list">
       <view class="one-image" wx:for="{{imagesCloud}}" wx:key="index">
-        <image mode="aspectFill" src="{{item}}" data-index="{{index}}" bindtap="deleteImg"></image>
+        <image mode="aspectFill" src="{{item}}" data-index="{{index}}" bindtap="showImg" data-idx="{{index}}"></image>
+        <view class="icon-close" bindtap="deleteImg">x</view>
       </view>
       <view class="addImage"  bindtap="doUpload" wx:if="{{imagesCloud.length < 6}}">+</view>
     </view>
