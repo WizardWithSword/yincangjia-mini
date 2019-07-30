@@ -7,6 +7,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showComment: false,
+    commentdata: {
+      tid: '',
+      parentcid: 0,
+      text: ''
+    },
     shareimg: '', // 当前藏品分享图片
     tid: '',
     thingDetail: {},
@@ -14,6 +20,55 @@ Page({
     collectHeaders: [],
     pariseHeaders: [],
     showtab: 'comment'
+  },
+  inputcomment: function (event) {
+    this.setData({
+      'commentdata.text': event.detail.value
+    })
+  },
+  cancel: function () {
+    this.setData({
+      showComment: false
+    })
+  },
+  submit: function () {
+    var obj = {
+      uid: -1,
+      uname: '',
+      tid: -1, // 评论的藏品
+      parentcid: 0, // 一级评论
+      content: '又是一条评论。第一条评论的内容。我是老大'
+    }
+    obj.content = this.data.commentdata.text
+    if (obj.content == '') {
+      wx.showToast({
+        icon: 'none',
+        title: '请填写您的评论'
+      })
+      return false
+    }
+    obj.uid = wx.getStorageSync('uid')
+    obj.uname = wx.getStorageSync('wxuser').nickName
+    obj.tid = this.data.commentdata.tid
+    obj.parentcid = this.data.commentdata.parentcid
+    api.post('/api/comment/add', obj).then(function (d) {
+      console.log('/comment/add 的返回值：', d)
+      if (d.code == '200') {
+        wx.showToast({
+          icon: 'none',
+          title: '评论成功'
+        })
+        this.setData({
+          showComment: false
+        })
+        this._getComments()
+      } else {
+        wx.showToast({
+          icon: 'none',
+          title: d.message
+        })
+      }
+    })
   },
   choosenav: function (event) {
     var tab = event.currentTarget.dataset.tab
@@ -61,19 +116,31 @@ Page({
   },
   // 前往添加藏品评论页面
   goaddComment: function () {
-    var url = '/pages/comment/add'
-    url += '?tid=' + this.data.tid + '&parentcid=0'
-    wx.navigateTo({
-      url: url
+    // var url = '/pages/comment/add'
+    // url += '?tid=' + this.data.tid + '&parentcid=0'
+    // wx.navigateTo({
+    //   url: url
+    // })
+    this.setData({
+      'commentdata.tid': this.data.tid,
+      'commentdata.parentcid': 0,
+      'commentdata.text': '',
+      showComment: true
     })
   },
   // 前往添加评论的评论页面
   goaddChildrenComment: function (event) {
     var cid = event.currentTarget.dataset.cid
-    var url = '/pages/comment/add'
-    url += '?tid=' + this.data.tid + '&parentcid=' + cid
-    wx.navigateTo({
-      url: url
+    // var url = '/pages/comment/add'
+    // url += '?tid=' + this.data.tid + '&parentcid=' + cid
+    // wx.navigateTo({
+    //   url: url
+    // })
+    this.setData({
+      'commentdata.tid': this.data.tid,
+      'commentdata.parentcid': cid,
+      'commentdata.text': '',
+      showComment: true
     })
   },
   _tip: function (res) {

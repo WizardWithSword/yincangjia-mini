@@ -71,4 +71,11 @@
     </view>
   </view>
 </view>
+<view class="comment-container" wx:if="{{showComment}}">
+  <textarea bindinput="inputcomment" class="textarea" placeholder="写评论..." maxlength="125"></textarea>
+  <view class="tc">
+    <button class="cancel" bindtap="cancel">取消</button>
+    <button class="submit" bindtap="submit">发送</button>
+  </view>
+</view>
 
