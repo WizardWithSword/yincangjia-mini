@@ -1,0 +1,18 @@
+/* pages/feedback/add.wxss */
+.text{
+  width: 700rpx;
+  margin: 20rpx auto;
+  background-color: white;
+}
+.input {
+  width: 700rpx;
+  margin: 20rpx auto;
+  background-color: white;
+}
+.btn{
+  width: 700rpx;
+  margin: 0 auto;
+}
+.tc{
+  text-align: center;
+}

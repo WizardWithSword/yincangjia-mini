@@ -7,6 +7,7 @@
     "pages/user/index",
     "pages/user/setting",
     "pages/user/invite",
+    "pages/feedback/add",
     "pages/thing/add",
     "pages/thing/edit"
   ],

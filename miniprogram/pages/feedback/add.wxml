@@ -1,0 +1,8 @@
+<!--pages/feedback/add.wxml-->
+<view class="container">
+  <textarea class="text" bindinput="textBlur" placeholder="您对把玩有什么新的想法或建议吗？" maxlength="256"></textarea>
+  <input class="input" bindinput="inputBlur" type="text" name="phone" placeholder="您的联系方式(可选)" maxlength="30"></input>
+  <view class="tc">
+    <button bindtap="submit" class="btn">提交</button>
+  </view>
+</view>

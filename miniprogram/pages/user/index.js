@@ -35,14 +35,14 @@ Page({
         url += 'user/followers'
         break
       case 'feedback':
-        url += 'user/feedback'
+        url += 'feedback/add'
         break
       case 'setting':
         url += 'user/setting'
         break
     }
     console.log('前往页面：', url)
-    if (page == "invite") {
+    if (page == "invite" || page == "feedback" || page == "setting") {
       wx.navigateTo({
         url: url
       })      
