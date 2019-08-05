@@ -9,9 +9,36 @@ Page({
     tid: '',
     title: '',
     content: '',
+    cateArray: [{"id":"0","value":"其他"},{"id":"10","value":"石器"},{"id":"20","value":"玉器"},{"id":"30","value":"陶器"},{"id":"40","value":"铜器"},{"id":"50","value":"书画"},{"id":"60","value":"木器"},{"id":"70","value":"石刻"},{"id":"80","value":"瓷器"},{"id":"90","value":"杂项"},{"id":"100","value":"铁器"},{"id":"110","value":"金属器"},{"id":"120","value":"牙膏器"},{"id":"130","value":"丝织品"},{"id":"140","value":"砖瓦"},{"id":"150","value":"印章"},{"id":"160","value":"徽章"},{"id":"170","value":"舆图"},{"id":"180","value":"珠宝"}],
+    cateIndex: 0,
+    eraArray: [{"id":"0","value":"未知"},{"id":"10","value":"汉"},{"id":"20","value":"秦"},{"id":"30","value":"宋"},{"id":"40","value":"唐"},{"id":"50","value":"明"},{"id":"60","value":"明清"},{"id":"70","value":"清"},{"id":"80","value":"战国"},{"id":"90","value":"春秋战国"},{"id":"100","value":"秦汉"},{"id":"110","value":"魏晋"},{"id":"120","value":"夏商周"},{"id":"130","value":"南北朝"},{"id":"140","value":"隋唐"},{"id":"150","value":"五代十国"},{"id":"160","value":"北宋"},{"id":"170","value":"南宋"},{"id":"180","value":"辽金"},{"id":"190","value":"旧石器"},{"id":"200","value":"新石器"},{"id":"210","value":"夏"},{"id":"220","value":"商"},{"id":"230","value":"周"},{"id":"240","value":"春秋"},{"id":"250","value":"民国"},{"id":"260","value":"当代"}],
+    eraIndex: 0,
+    intergrityArray: [{"id":"0","value":"未知"},{"id":"10","value":"全品"},{"id":"20","value":"瑕疵"},{"id":"30","value":"残品"}],
+    intergrityIndex: 0,
     imagesCloud: [],
     // imagesCloud: ['cloud://yamoon-test-52afba.7961-yamoon-test-52afba-1258905543/my-image.png', 'cloud://yamoon-test-52afba.7961-yamoon-test-52afba-1258905543/thing/4/t1558514847326.png', 'http://tmp/wx9cb42adfa3f45c25.o6zAJsz2VXXb72bDLglI1OIVSp-8.mI3BeyVxDwtI57f3c8f766963bfd4c68de6a75b4a302.png'],
     imagesLocal: []
+  },
+  // 品类选择
+  bindCategoryChange: function (e) {
+    console.log('品类', e.detail.value)
+    this.setData({
+      cateIndex: e.detail.value
+    })
+  },
+  // 年代选择
+  bindEraChange: function (e) {
+    console.log('年代', e.detail.value)
+    this.setData({
+      eraIndex: e.detail.value
+    })
+  },
+  // 品相选择
+  bindIntergChange: function (e) {
+    console.log('品相', e.detail.value)
+    this.setData({
+      intergrityIndex: e.detail.value
+    })
   },
   inputBlur: function (e) {
     console.log(e.detail.value)
@@ -121,6 +148,9 @@ Page({
     thing.name = this.data.title
     thing.content = this.data.content
     thing.images = this.data.imagesCloud.join(';')
+    thing.era = this.data.eraArray[this.data.eraIndex].id
+    thing.category = this.data.cateArray[this.data.cateIndex].id
+    thing.intergrity = this.data.intergrityArray[this.data.intergrityIndex].id
     if (this.data.tid == '') {
       return api.post('/api/thing/add', thing).then(d => {
         console.log('thing/add 返回值:', d)
@@ -162,6 +192,10 @@ Page({
       thing1.name = this.data.title
       thing1.content = this.data.content
       thing1.images = this.data.imagesCloud.join(';')
+      thing.era = this.data.eraArray[this.data.eraIndex].id
+      thing.category = this.data.cateArray[this.data.cateIndex].id
+      thing.intergrity = this.data.intergrityArray[this.data.intergrityIndex].id
+
       api.post('/api/thing/add', thing1).then(d => {
         console.log('thing/add 返回值:', d)
         if (d.code == '200') {
@@ -209,6 +243,35 @@ Page({
       }
     })    
   },
+  _computedIdx: function (obj) {
+    var eraid = 0
+    var cateid = 0
+    var intergid = 0
+    console.log('obj相关', obj.era, obj.category, obj.intergrity)
+    for (var key1 = 0; key1 < this.data.eraArray.length; key1++) {
+      if (this.data.eraArray[key1].id == obj.era) {
+        eraid = key1
+        break
+      }
+    }
+    for (var key2 = 0; key2 < this.data.cateArray.length; key2++) {
+      if (this.data.cateArray[key2].id == obj.category) {
+        cateid = key2
+        break
+      }
+    }
+    for (let key3 in this.data.intergrityArray) {
+      if (this.data.intergrityArray[key3].id == obj.intergrity) {
+        intergid = key3
+        break
+      }
+    }
+    this.setData({
+      eraIndex: eraid,
+      cateIndex: cateid,
+      intergrityIndex: intergid
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -228,6 +291,7 @@ Page({
             content: d.result.content,
             imagesCloud: d.result.images.split(';')
           })
+          this._computedIdx(d.result)
         } else {
           wx.showToast({
             icon: 'none',

@@ -16,6 +16,31 @@
       <view class="addImage"  bindtap="doUpload" wx:if="{{imagesCloud.length < 6}}">+</view>
     </view>
   </view>
+  <view class="h3">标签</view>
+  <view class="oneform">
+    <text>品类:</text>
+    <picker bindchange="bindCategoryChange" value="{{cateIndex}}" range="{{cateArray}}" range-key="value">
+      <view class="picker">
+        {{cateArray[cateIndex].value}} 
+      </view>
+    </picker>
+  </view>
+  <view class="oneform">
+    <text>年代:</text>
+    <picker bindchange="bindEraChange" value="{{eraIndex}}" range="{{eraArray}}" range-key="value">
+      <view class="picker">
+        {{eraArray[eraIndex].value}} 
+      </view>
+    </picker>
+  </view>
+  <view class="oneform">
+    <text>品相:</text>
+    <picker bindchange="bindIntergChange" value="{{intergrityIndex}}" range="{{intergrityArray}}" range-key="value">
+      <view class="picker">
+        {{intergrityArray[intergrityIndex].value}} 
+      </view>
+    </picker>
+  </view>
   <view class="btn-list">
     <button bindtap="save">保存到草稿</button>
     <button bindtap="saveOnline">发布</button>

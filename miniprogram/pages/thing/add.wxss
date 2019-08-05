@@ -59,13 +59,13 @@
 }
 .addImage{
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1rpx solid #ccc;
   background-color: white;
   width: 200rpx;
   height: 200rpx;
   line-height: 200rpx;
   text-align: center;
-  font-size: 42px;
+  font-size: 42rpx;
 }
 .btn-list{
   display: flex;
@@ -76,4 +76,23 @@
 .btn-list button{
   width: 300rpx;
   text-align: center;
+}
+.h3{
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-top: 30rpx;
+}
+.oneform{
+  display: flex;
+  font-size: 24rpx;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.oneform text{
+  margin-right: 20rpx;
+}
+.picker{
+  border: 1rpx solid #ccc;
+  border-radius: 10rpx;
+  padding: 5rpx 15rpx;
 }
