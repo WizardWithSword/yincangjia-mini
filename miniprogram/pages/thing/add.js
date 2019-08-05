@@ -97,45 +97,54 @@ Page({
           title: '上传中',
         })
 
-        const filePath = res.tempFilePaths[0]
+        // const filePath = res.tempFilePaths[0]
         var uid = wx.getStorageSync('uid')
-        var time = (new Date()).getTime()
         // 上传图片
-        const cloudPath = 'thing/' + uid + '/t' + time + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-            // app.globalData.fileID = res.fileID
-            // app.globalData.cloudPath = cloudPath
-            // app.globalData.imagePath = filePath
-            var imgCloud = that.data.imagesCloud
-            var imgLocal = that.data.imagesLocal
-            imgCloud.push(res.fileID)
-            imgLocal.push(filePath)
-            that.setData({
-              imagesCloud: imgCloud,
-              imagesLocal: imgLocal
-            })
-            console.log('[上传文件] 成功后，数据：', that)
-            wx.showToast({
-              icon:'none',
-              title: '上传成功',
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-
+        // const cloudPath = 'thing/' + uid + '/t' + time + filePath.match(/\.[^.]+?$/)[0]
+        console.log('选择的图片资源：', res.tempFilePaths)
+        var doneNums = 0
+        for (let i = 0; i < res.tempFilePaths.length; i++) {
+          var filePath = res.tempFilePaths[i]
+          var time = (new Date()).getTime()
+          var cloudPath = 'thing/' + uid + '/t' + time + filePath.match(/\.[^.]+?$/)[0]
+          wx.cloud.uploadFile({
+            cloudPath,
+            filePath,
+            success: res => {
+              console.log('[上传文件] 成功：', res)
+              // app.globalData.fileID = res.fileID
+              // app.globalData.cloudPath = cloudPath
+              // app.globalData.imagePath = filePath
+              var imgCloud = that.data.imagesCloud
+              var imgLocal = that.data.imagesLocal
+              imgCloud.push(res.fileID)
+              imgLocal.push(filePath)
+              that.setData({
+                imagesCloud: imgCloud,
+                imagesLocal: imgLocal
+              })
+              // console.log('[上传文件] 成功后，数据：', that)
+              // wx.showToast({
+              //   icon:'none',
+              //   title: '上传成功',
+              // })
+            },
+            fail: e => {
+              console.error('[上传文件] 失败：', e)
+              wx.hideLoading()
+              wx.showToast({
+                icon: 'none',
+                title: '有图片上传失败',
+              })
+            },
+            complete: () => {
+              doneNums++
+              if (doneNums >= res.tempFilePaths.length) {
+                wx.hideLoading()
+              }
+            }
+          })
+        }
       },
       fail: e => {
         console.error(e)

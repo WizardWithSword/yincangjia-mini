@@ -8,10 +8,10 @@ page {
   padding-bottom: 120rpx;
 }
 .banner-img{
-  width: 695rpx;
-  height: 312rpx;
+  /*width: 695rpx;
+  height: 312rpx;*/
   border-radius: 20rpx;
-  margin: 34rpx auto;
+  /*margin: 34rpx auto;*/
   display: block;
 }
 .notice-wrap{
@@ -222,12 +222,12 @@ page {
   border-right: 1px solid #ccc;*/
 }
 .footer .navicon{
-  width: 50rpx;
+  width: 40rpx;
   height: 40rpx;
   margin: 0 auto;
 }
 .footer .navicon-mine{
-  width: 42rpx;
+  width: 40rpx;
   height: 40rpx;
   margin: 0 auto;
 }

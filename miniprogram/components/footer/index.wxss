@@ -18,12 +18,12 @@
   border-right: 1px solid #ccc;*/
 }
 .footer .navicon{
-  width: 50rpx;
+  width: 40rpx;
   height: 40rpx;
   margin: 0 auto;
 }
 .footer .navicon-mine{
-  width: 42rpx;
+  width: 40rpx;
   height: 40rpx;
   margin: 0 auto;
 }

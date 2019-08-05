@@ -3,7 +3,7 @@
 
 <view class="container">
   <view class="banner">
-    <image class="banner-img" src="../../images/index_bg.png"></image>
+    <image class="banner-img" src="../../images/index_banner.png"></image>
   </view>
   <view class="notice-wrap" wx:if="{{noticeList.length > 0}}">
   <swiper class="notice-swiper" circular="true" autoplay="true" duration="500" vertical="true" interval="2000">
