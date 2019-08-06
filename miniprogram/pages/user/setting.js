@@ -1,18 +1,132 @@
-// pages/deployFunctions/deployFunctions.js
+// pages/user/setting.js
+const app = getApp()
+const api = require('../../utils/api.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    yearArray: [2,3,4,5,6,7,8,9,10,11],
+    yearIndex: 0,
+    hasShop: false,
+    hasShopArray: ['有', '没有'],
+    hasShopIndex: 0,
+    personSign: '',
+    shopcityArr: [],
+    customItem: '其他',
+    shopName: '',
+    shopAddr: '',
   },
-
+  selectCHange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      yearIndex: e.detail.value
+    })
+  },
+  selectCHangeHasShop: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      hasShopIndex: e.detail.value
+    })
+  },
+  selectChangeShopCity: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      shopcityArr: e.detail.value
+    })
+  },
+  bindInputShopname: function(e) {
+    this.setData({
+      shopName: e.detail.value
+    })
+  },
+  bindInputShopaddr: function(e) {
+    this.setData({
+      shopAddr: e.detail.value
+    })
+  },
+  bindInputSign: function (e) {
+    this.setData({
+      personSign: e.detail.value
+    })
+  },
+  // 保存个人信息
+  saveUser: function () {
+    var obj = {}
+    obj.hasshop = this.data.hasShopIndex == 0 ? 1 : 0 // 是否有店铺
+    obj.shopname = this.data.shopName
+    obj.experenceyear = this.data.yearArray[this.data.yearIndex]
+    obj.personalsign = this.data.personSign // 个性签名
+    obj.shopcity = this.data.shopcityArr.join(',') // 店铺城市名称
+    obj.shopaddr = this.data.shopAddr // 详细地址
+    if (obj.hasshop) {
+      if (obj.shopname == '' || obj.shopaddr == '') {
+        wx.showToast({
+          icon: 'none',
+          title: '请填写店铺名称以及地址'
+        })
+        return false
+      }
+    }
+    console.log('更新的个人信息有', obj)
+    api.post('/api/user/invitereg', obj).then(res => {
+      if (res.code == '200') {
+        wx.showToast({
+          icon: 'none',
+          title: '更新成功'
+        })
+      } else {
+        wx.showToast({
+          icon: 'none',
+          title: '系统异常，请稍后再试'
+        })
+      }
+    })
+  },
+  // 更新当前用户信息
+  _updateUserinfo: function () {
+    var uid = wx.getStorageSync('uid')
+    if (uid && app.globalData.thisuser.uid) {
+      return api.get('/api/user/detail').then(res => {
+        console.log('当前用户信息:', res)
+        if(res.code == '200') {
+          // 全局记录我们的系统内的微信用户信息
+          app.globalData.thisuser = res.result
+          wx.setStorageSync('thisuser', res.result)
+          this.setData({
+            hasShopIndex: res.result.hasshop == 1 ? 0 : 1,
+            shopName: res.result.shopname || '',
+            personSign: res.result.personalsign || '',
+            shopAddr: res.result.shopaddr || ''
+          })
+          if (res.result.shopcity) {
+            this.setData({
+              shopcityArr: res.result.shopcity.split(',')
+            })
+          } else {
+            this.setData({
+              shopcityArr: []
+            })
+          }
+          for (var i = 0; i < this.data.yearArray.length; i++) {
+            if (this.data.yearArray[i] == res.result.experenceyear) {
+              this.setData({
+                yearIndex: i
+              })
+              break
+            }
+          }
+        }
+        return res.result
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this._updateUserinfo()
   },
 
   /**

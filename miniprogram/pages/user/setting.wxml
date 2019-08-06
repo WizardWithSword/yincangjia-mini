@@ -1,21 +1,42 @@
-<!--pages/deployFunctions/deployFunctions.wxml-->
+<!--pages/user/setting.wxml-->
 <view class="container">
-
-  <view class="list">
-    <view class="list-item">
-      <text class="black">调用失败</text>
+  <view><text class="h1">行业信息</text></view>
+    <view class="oneline">
+      <text class="text">行业经验<text class="tip">(必填)</text></text>
+      <picker class="input" mode="selector" bindchange="selectCHange" value="{{yearIndex}}" range="{{yearArray}}">
+        <view class="picker">{{yearArray[yearIndex]}}年经验</view>
+      </picker>
     </view>
-    <view class="list-item">
-      <text class="request-text">请检查 login 云函数是否已部署</text>
+    <view class="oneline">
+      <text class="text">个人签名<text class="tip">(非必填)</text></text>
+      <input class="input" bindinput="bindInputSign" maxlength="20" placeholder="认证头衔等，限20字" value="{{personSign}}" />
     </view>
-  </view>
-
-  <view class="guide">
-    <text class="headline">部署 login 云函数</text>
-    <text class="p">1. 确保已通过工具栏云开发入口开通云开发</text>
-    <text class="p">2. 在 cloudfunctions/login 目录上右键上传并部署</text>
-    <text class="p">3. 回到首页，重新点击获取 openid</text>
-  </view>
-
+    <view class="oneline">
+      <text class="text">实体店铺<text class="tip">(必填)</text></text>
+      <picker class="input" mode="selector" bindchange="selectCHangeHasShop" value="{{hasShopIndex}}" range="{{hasShopArray}}">
+        <view class="picker">{{hasShopArray[hasShopIndex]}}</view>
+      </picker>
+    </view>
+    <view class="oneline">
+      <text class="text">实体店铺名称</text>
+      <input class="input" bindinput="bindInputShopname" maxlength="30" placeholder="" value="{{shopName}}" />
+    </view>
+    <view class="oneline">
+      <text class="text">实体店铺地址</text>
+      <picker class="input" mode="region" bindchange="selectChangeShopCity" value="{{shopcityArr}}" custom-item="{{customItem}}">
+        <view class="picker">
+        {{shopcityArr[0]}}，{{shopcityArr[1]}}，{{shopcityArr[2]}}
+        </view>
+      </picker>
+    </view>
+    <view class="oneline">
+      <input class="input biginput" bindinput="bindInputShopaddr" maxlength="125" placeholder="店铺街道等详情信息" value="{{shopAddr}}" />
+    </view>
+    <view>
+      <text class="smalltip">*以上信息均公开展示，后续您可在我的页面更新</text>
+    </view>
+    <view>
+      <button bindtap="saveUser" class="save">保存</button>
+    </view>
 </view>
 
