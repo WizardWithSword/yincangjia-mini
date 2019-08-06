@@ -32,7 +32,7 @@ Page({
         url += 'user/message'
         break
       case 'followers':
-        url += 'user/followers'
+        url += 'user/follow'
         break
       case 'feedback':
         url += 'feedback/add'
@@ -42,10 +42,10 @@ Page({
         break
     }
     console.log('前往页面：', url)
-    if (page == "invite" || page == "feedback" || page == "setting") {
+    if (page == "invite" || page == "feedback" || page == "setting" || page == "followers") {
       wx.navigateTo({
         url: url
-      })      
+      })
     } else {
       wx.showToast({
         icon: 'none',

@@ -24,7 +24,7 @@
         <view class="right">
           <view class="name">{{item.wechatnick}}
             <view class="label utag" wx:if="{{item.personaltag}}">{{item.personaltag}}</view>
-            <view class="label utag">入行5年</view>
+            <!-- <view class="label utag">入行5年</view> -->
           </view>
           <view class="time">{{tools.formatTime(item.updatetime)}}</view>
         </view>

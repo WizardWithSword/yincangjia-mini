@@ -1,0 +1,42 @@
+/* pages/user/follow.wxss */
+.one{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 700rpx;
+  margin: 0 auto;
+  height: 140rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+.one .left{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.header{
+  margin-right: 20rpx;
+}
+.header-img{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+}
+.name .top{
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+.name .bottom{
+  font-size: 24rpx;
+  color: #939393;
+  max-width: 350rpx;
+}
+.btn{
+  font-size: 20rpx;
+  padding: 5rpx 15rpx;
+}
+.empty-tip{
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: 100rpx;
+}

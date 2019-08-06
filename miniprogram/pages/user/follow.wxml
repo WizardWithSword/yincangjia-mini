@@ -1,0 +1,19 @@
+<!--pages/user/follow.wxml-->
+<view class="container">
+  <view class="empty-tip" wx:if="{{list.length == 0}}">您还没有关注任何人，先去首页逛逛吧</view>
+  <view class="one" wx:for="{{list}}" wx:key="{{index}}">
+    <view class="left" bindtap="goUserIndex" data-uid="{{item.fuid}}">
+      <view class="header">
+        <image class="header-img" mode="aspectFill" src="{{item.wechatheader}}"></image>
+      </view>
+      <view class="name">
+        <view class="top">{{item.wechatnick}}</view>
+        <view class="bottom">{{item.personalsign}}</view>
+      </view>
+    </view>
+    <view class="right">
+      <button bindtap="cancelFollow" data-uid="{{item.fuid}}" class="btn">取消关注</button>
+    </view>
+  </view>
+
+</view>

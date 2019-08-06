@@ -1,0 +1,120 @@
+/* pages/footer/index.wxss */
+
+.span{
+  display: inline-block;
+}
+
+.one-thing-card{
+  /*border-bottom: 1rpx solid #ccc;*/
+  /*box-shadow: 5rpx 5rpx 5rpx #ddd;*/
+  width: 750rpx;
+  margin: 0rpx auto;
+  padding: 30rpx 10rpx 40rpx 10rpx;
+  background-color: white;
+}
+.one-thing-card .top{
+  display: flex;
+  align-items: top;
+  padding: 0 25rpx;
+  margin-bottom: 20rpx;
+}
+.one-thing-card .middle{
+  padding: 0 25rpx;
+}
+.one-thing-card .function{
+  padding: 0 25rpx;
+}
+.one-thing-card .left{
+  margin-right: 20rpx;
+}
+
+.one-thing-card .images-more{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 10rpx;
+}
+.one-thing-card .images-more image{
+  width:210rpx;
+  height:210rpx;
+  margin-bottom: 10rpx;
+  margin-right:10rpx;
+}
+.one-thing-card .title{
+  color: rgb(51,51,51);
+  font-size: 28rpx;
+  line-height: 40rpx;
+  font-weight: 600;
+}
+.one-thing-card .content{
+  color: rgb(51,51,51);
+  font-size: 24rpx;
+  line-height: 40rpx;
+}
+.one-thing-card .name{
+  font-size: 32rpx;
+  line-height: 40rpx;
+  color: #121212;
+  font-weight: 600;
+}
+.one-thing-card .time{
+  font-size: 20rpx;
+  line-height: 38rpx;
+  color: rgb(147,147,147);
+}
+.one-thing-card .utag{
+  font-size: 20rpx;
+  font-weight: normal;
+  /*border: 1rpx solid #ccc;*/
+  padding: 0 10rpx;
+  margin-left: 20rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  background: #FFE9E6;
+  border-radius: 16rpx;
+}
+.one-thing-card .header-img{
+  display: inline-block;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50rpx;
+  margin-right: 5rpx;
+}
+.function .sharebtn{
+  padding: 0;
+  display: flex;
+  align-items: center;
+  width: 130rpx;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  color: #595C69;
+}
+
+.function{
+  padding: 20rpx 30rpx 0rpx 10rpx;
+  margin-top: 10rpx;
+  /*border-top: 1rpx solid #eee;*/
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  color: #595C69;
+}
+.function view{
+  display: flex;
+  align-items: center;
+  line-height: 50rpx;
+  height: 50rpx;
+}
+.function .icon{
+  font-size: 26rpx;
+  line-height: 26rpx;
+  margin-right: 10rpx;
+  width: 36rpx;
+  height: 36rpx;
+  /*display: inline-block;*/
+}

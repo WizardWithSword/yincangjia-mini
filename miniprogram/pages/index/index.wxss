@@ -82,7 +82,7 @@ page {
   width:210rpx;
   height:210rpx;
   margin-bottom: 10rpx;
-  margin-right:20rpx;
+  margin-right:10rpx;
 }
 .one-card .title{
   color: rgb(51,51,51);

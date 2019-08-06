@@ -1,0 +1,44 @@
+<!--pages/card/index.wxml-->
+<wxs src="../../wxs/utils.wxs" module="tools" />
+
+  <view class="one-thing-card" wx:key="item.tid" >
+    <view class="top" bindtap="goDetail" data-tid="{{item.tid}}"  data-idx="{{index}}">
+      <view class="left">
+        <image class="header-img" src="{{item.wechatheader || userinfo.wechatheader}}"></image>
+      </view>
+      <view class="right">
+        <view class="name">{{item.wechatnick || userinfo.wechatnick}}
+          <view class="label utag" wx:if="{{item.personaltag}}">{{item.personaltag}}</view>
+        </view>
+        <view class="time">{{tools.formatTime(item.updatetime)}}</view>
+      </view>
+    </view>
+    <view class="middle">
+        <view class="title">{{item.name}}</view>
+        <view class="content" wx:if="{{item.content.length > 54 && item.showAll == false}}">{{tools.substr(item.content, 0, 48) + '...'}} <view class="span" catchtap="showAll" data-idx="{{index}}" data-tid="{{item.tid}}">全文</view></view>
+        <view class="content" wx:else>{{item.content}}</view>
+        <!-- <view class="images" wx:if="{{item.imagesList.length == 1}}">
+          <image class="card-img" src="{{item.images}}"></image>
+        </view> -->
+        <view class="images-more">
+          <image mode="aspectFill" wx:for="{{item.imagesList}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="imgIndex" class="" src="{{imgItem}}"></image>
+        </view>
+    </view>
+    <view class="function">
+        <!-- <view class="praise">
+          <button class="sharebtn" open-type="share" data-tid="{{item.tid}}"  data-idx="{{index}}">
+            <image class="icon" src="../../images/icon-share.png"></image>
+            <span>分享</span>            
+          </button>
+        </view> -->
+
+        <view class="praise" bindtap="goPraise" data-tid="{{item.tid}}"  data-idx="{{index}}">
+          <image class="icon" src="../../images/icon-parise.png"></image>
+          <span>{{item.praisenum}}</span>
+        </view>
+        <view class="comment" data-tid="{{item.tid}}"  data-idx="{{index}}">
+          <image class="icon" src="../../images/icon-comment.png"></image>
+          <span>{{item.commentnum}}</span>
+        </view>
+    </view>
+  </view>
