@@ -10,6 +10,10 @@
         <view><text class="name">{{thingDetail.wechatnick}}</text></view>
         <view><text class="time">{{tools.formatTime(thingDetail.createtime)}}</text></view>
       </view>
+      <view class="follow">
+        <view bindtap="cancelFollow" class="cancel-follow" wx:if="{{isFollow}}">已关注</view>
+        <view bindtap="addFollow" class="add-follow" wx:else> + 关注</view>
+      </view>
     </view>
     <view class="text-title">
       <text>{{thingDetail.name}}</text>

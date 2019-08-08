@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isFollow: false,
     showComment: false,
     commentdata: {
       tid: '',
@@ -51,7 +52,7 @@ Page({
     obj.uname = wx.getStorageSync('wxuser').nickName
     obj.tid = this.data.commentdata.tid
     obj.parentcid = this.data.commentdata.parentcid
-    api.post('/api/comment/add', obj).then(function (d) {
+    api.post('/api/comment/add', obj).then((d) => {
       console.log('/comment/add 的返回值：', d)
       if (d.code == '200') {
         wx.showToast({
@@ -143,10 +144,10 @@ Page({
       showComment: true
     })
   },
-  _tip: function (res) {
+  _tip: function (str) {
     wx.showToast({
       icon: 'none',
-      title: res.message
+      title: str
     })    
   },
   // 获取商品详情
@@ -163,6 +164,7 @@ Page({
         })
         this._getViewpoints()
         this._getShareImg()
+        this._getIsFollow()
       } else {
         this._tip(res)
       }
@@ -211,6 +213,54 @@ Page({
         })
       } else {
         this._tip(res)
+      }
+    })
+  },
+  // 添加关注
+  addFollow () {
+    var obj = {
+      fuid: this.data.thingDetail.uid
+    }
+    api.post('/api/user/follow/add', obj).then(res => {
+      console.log('关注结果：', res)
+      if (res.code == '200') {
+        this._tip('关注成功')
+        this.setData({
+          isFollow: true
+        })
+      } else {
+        this._tip(res.message)
+      }
+    })
+  },
+  cancelFollow () {
+    var obj = {
+      fuid: this.data.thingDetail.uid
+    }
+    api.post('/api/user/follow/cancel', obj).then(res => {
+      console.log('取消关注结果:', res)
+      if (res.code == '200') {
+        this._tip('取关成功')
+        this.setData({
+          isFollow: false
+        })
+      } else {
+        this._tip(res.message)
+      }
+    })
+  },
+  _getIsFollow () {
+    var obj = {
+      fuid: this.data.thingDetail.uid
+    }
+    api.get('/api/user/follow/isfollow', obj).then(res => {
+      console.log('是否关注？', res)
+      if (res.code == '200') {
+        this.setData({
+          isFollow: res.result == '1'
+        })
+      } else {
+        this._tip(res.message)
       }
     })
   },
