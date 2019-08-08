@@ -1,107 +1,170 @@
 /* pages/user/index.wxss */
 page{
-  background-color: #eee;
+  background-color: #F4F4F4;
 }
-.container{
-  font-size: 32rpx;
-  /*padding: 0 30rpx;*/
-  text-align: center;
-  padding-bottom: 100rpx;
+.topbg-wrap{
+  position: fixed;
+  z-index: -10;
+  width: 750rpx;
+  left: 0;
+  top: 0;
+  height: 350rpx;
+  overflow: hidden;
 }
-.top{
+.bg-mask{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  background: #ED473B;
+  z-index: -5;
+}
+.bg-header{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -8;
+  transform: scale(3);
+  filter: blur(10rpx);
+}
+.top-card{
+  position: relative;
+  z-index: 1;
+  width: 694rpx;
+  height: 412rpx;
+  margin: 56rpx auto 0 auto;
   background-color: white;
-  padding: 30rpx 0;
+  border-radius: 20rpx;
+}
+
+.line1{
   display: flex;
-  align-items: top;
-  justify-content: flex-start;
+  position: relative;
+  height: 130rpx;
 }
-.top .header{
-  width: 128rpx;
-  height: 128rpx;
-  margin: 0 30rpx;
+.real-header{
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 80rpx;
+  position: absolute;
+  top: -30rpx;
+  left: 30rpx;
 }
-.top .right{
-  text-align: left;
-  width: 400rpx;
+.info{
+  width: 300rpx;
+  margin-left: 220rpx;
 }
-.top .name{
-  font-size: 42rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  color: #333;
+.name{
+  margin: 12rpx 0;
+  font-size: 32rpx;
+  color: #121212;
+  font-weight: 600;
 }
-.top .desc{
-  line-height: 40rpx;
-  font-size: 26rpx;
-  color: rgb(153,153,153);
+.tag-desc{
+  background: #FFE9E6;
+  border-radius: 16rpx;
+  padding: 5rpx 10rpx;
+  font-size: 20rpx;
+  color: #121212;
 }
-.topfunction{
-  background-color: white;
-}
-
 .invite{
-  /*padding: 5rpx 20rpx;*/
-  /*background-color: #f6f6f6;*/
-  border: 1rpx solid #ccc;
   display: inline-block;
-  width: 200rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  font-size: 26rpx;
-  margin-right: 10rpx;
-  border-radius: 10rpx;
+  width: 140rpx;
+  height: 52rpx;
+  text-align: center;
+  color: white;
+  line-height: 52rpx;
+  font-size: 28rpx;
+  background-image: linear-gradient(151deg, #ED7E74 0%, #D54840 100%);
+  border-radius: 26rpx;
+  margin-top: 64rpx;
 }
 
-
-.nav{
+.line2{
+  height: 90rpx;
+}
+.icon-shop{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 18rpx;
+}
+.shop-wrap{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: white;
-  height: 100rpx;
-  line-height: 100rpx;
+  line-height: 90rpx;
+  padding-left: 35rpx;
+  color: #D54840;
 }
-.nav>view{
-  width: 24%;
+.line3{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 190rpx;
+  border-top: 1rpx solid #ccc;
 }
-.nav-content{
+.icon-nav{
+  width: 64rpx;
+  height: 64rpx;
+}
+.txt{
   margin-top: 20rpx;
-  min-height: 400rpx;
-  padding-bottom: 50rpx;
-}
-.nav-content .nodata{
-  margin-top: 100rpx;
-}
-
-.thing>text{
-  padding-bottom: 20rpx;
-}
-.thing .choose{
-  border-bottom: 1rpx solid #ccc;
-}
-.content{
-  background-color: white;
-  margin-top: 30rpx;
-}
-.content .title{
-  height: 80rpx;
-  line-height: 80rpx;
-}
-.content .thing{
-  display: inline-block;
-  width: 33%;
   text-align: center;
 }
 
-.header{
-  display: block;
+.content{
+  width: 694rpx;
   margin: 0 auto;
-  width: 200rpx;
-  height: 200rpx;
-  border-radius: 100rpx;
+  border-radius: 24rpx 24rpx 0 0;
+  background: white;
+  margin-top: 24rpx;
+  margin-bottom: 200rpx;
+}
+.content-line1{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1rpx solid #f4f4f4;
+}
+.content-line1>view{
+  display: inline-block;
+  width: 128rpx;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 32rpx;
+}
+.content-line1 .choose{
+  color: #D54840;
+  border-bottom: 2rpx solid #D54840;
+}
+.content-nav{
+  padding: 22rpx 0;
+  border-bottom: 1rpx solid #f4f4f4;
+}
+.content-nav>view{
+  display: inline-block;
+  width: 160rpx;
+  height: 56rpx;
+  text-align: center;
+  line-height: 56rpx;
+  border-radius: 28rpx;
+  display: inline-block;
+  margin-left: 32rpx;
+  background: #F4F4F4;
+  color: #595C69 ;
+  font-size: 28rpx;
+}
+.content-nav .choose{
+  background: #FFE9E6;
+  color: #D54840;
 }
 
-.contentswiper{
-  height: auto;
-  min-height: 200rpx;
+.nodata{
+  font-size: 24rpx;
+  text-align: center;
+  padding: 30rpx;
 }

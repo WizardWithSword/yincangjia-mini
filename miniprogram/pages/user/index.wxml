@@ -1,46 +1,72 @@
 <!--pages/user/index.wxml-->
 <view class="container">
-  <view class="top">
-    <view class="left">
-      <image class="header" src="{{wxuser.avatarUrl}}"></image>
-    </view>
-    <view class="right">
-      <view class="name"><text>{{wxuser.nickName}}</text></view>
-      <view class="desc" wx:if="{{ourUserinfo.experenceyear}}"><text>入行{{ourUserinfo.experenceyear}}年</text></view>
-      <view class="desc" wx:if="{{ourUserinfo.personaltag}}"><text>{{ourUserinfo.personaltag}}</text></view>
-      <view class="desc" wx:if="{{ourUserinfo.hasshop == 1}}"><text>实体店铺：{{ourUserinfo.shopname}}</text></view>
-      <view class="desc" wx:if="{{ourUserinfo.hasshop == 1}}"><text>地址：{{ourUserinfo.shopcity}} {{ourUserinfo.shopaddr}}</text></view>
-      <view class="desc" wx:if="{{ourUserinfo.personalsign && ourUserinfo.personalsign.length > 0}}"><text>个性签名：{{ourUserinfo.personalsign}}</text></view>      
-    </view>
-    <view class="topfunction">
-      <view bindtap="goPage" data-page="invite" class="invite"> + 邀请朋友</view>
-    </view>
+  <view class="topbg-wrap">
+    <view class="bg-mask"></view>
+    <image class="bg-header" src="{{wxuser.avatarUrl}}"></image>
   </view>
-
-  <view class="nav">
-    <view bindtap="goPage" data-page="message">消息</view>
-    <view bindtap="goPage" data-page="followers">关注</view>
-    <view bindtap="goPage" data-page="idcards">名片</view>
-    <view bindtap="goPage" data-page="feedback">反馈</view>
-    <view bindtap="goPage" data-page="setting">设置</view>
+  <view class="top-card">
+    <view class="line1">
+      <view class="header">
+        <image class="real-header" src="{{wxuser.avatarUrl}}"></image>
+      </view>
+      <view class="info">
+        <view class="name">名字</view>
+        <view class="tag">
+          <view><text class="tag-desc" wx:if="{{ourUserinfo.experenceyear}}">入行{{ourUserinfo.experenceyear}}年</text></view>
+        </view>
+      </view>
+      <view class="invite">
+        邀请
+      </view>
+    </view>
+    <view class="line2">
+      <view class="shop-wrap" wx:if="{{ourUserinfo.hasshop == 1}}">
+        <image class="icon-shop" src="../../images/mine/icon-shop.png"></image> <text>实体店铺  {{ourUserinfo.shopname}}</text>
+      </view>
+    </view>
+    <view class="line3">
+      <!-- <view bindtap="goPage" data-page="message">
+        <view><image class="icon-nav" src="../../images/mine/icon-follow.png"></image></view>
+        <view class="txt">消息</view>
+      </view> -->
+      <view bindtap="goPage" data-page="followers">
+        <view><image class="icon-nav" src="../../images/mine/icon-follow.png"></image></view>
+        <view class="txt">关注</view>
+      </view>
+      <view bindtap="goPage" data-page="idcards">
+        <view><image class="icon-nav" src="../../images/mine/icon-card.png"></image></view>
+        <view class="txt">名片</view>
+      </view>
+      <view bindtap="goPage" data-page="feedback">
+        <view><image class="icon-nav" src="../../images/mine/icon-feedback.png"></image></view>
+        <view class="txt">反馈</view>
+      </view>
+      <view bindtap="goPage" data-page="setting">
+        <view><image class="icon-nav" src="../../images/mine/icon-set.png"></image></view>
+        <view class="txt">设置</view>
+      </view>
+    </view>
   </view>
   <view class="content">
-    <view class="title">藏品专栏</view>
-    <view class="nav">
-      <view class="thing"><text bindtap="goswiper" data-idx="0" class="{{swiperIndex == 0 ? 'choose' : ''}}">已发布</text></view>
-      <view class="thing"><text bindtap="goswiper" data-idx="1" class="{{swiperIndex == 1 ? 'choose' : ''}}">草稿箱</text></view>
-      <view class="thing"><text bindtap="goswiper" data-idx="2" class="{{swiperIndex == 2 ? 'choose' : ''}}">我喜欢的</text></view>
+    <view class="content-line1">
+      <view bindtap="goswiper" data-idx="0" class="{{swiperIndex != 2  ? 'choose' : ''}}">我的藏品</view>
+      <view bindtap="goswiper" data-idx="2" class="{{swiperIndex == 2 ? 'choose' : ''}}">我喜欢的</view>
+    </view>
+    <view class="content-nav">
+      <view class="thing" bindtap="goswiper" data-idx="0" class="{{swiperIndex == 0 ? 'choose' : ''}}"><text>已发布</text></view>
+      <view class="thing" bindtap="goswiper" data-idx="1" class="{{swiperIndex == 1 ? 'choose' : ''}}"><text>未发布</text></view>
+      <!-- <view class="thing"><text bindtap="goswiper" data-idx="2" class="{{swiperIndex == 2 ? 'choose' : ''}}">我喜欢的</text></view> -->
     </view>
     <view class="nav-content">
       <view class="nav0" wx:if="{{swiperIndex == 0}}">
         <block wx:for="{{itemList2}}" wx:key="{{index}}">
-          <onething item="{{item}}" clicktype="detail"></onething>
+          <onething bind:deletething="dataDeltete" item="{{item}}" clicktype="detail"></onething>
         </block>
         <view class="nodata" wx:if="{{itemList2.length == 0}}">暂无已发布藏品</view>
       </view>
       <view class="nav1" wx:if="{{swiperIndex == 1}}">
         <block wx:for="{{itemList1}}" wx:key="{{index}}">
-          <onething item="{{item}}" clicktype="edit"></onething>
+          <onething bind:deletething="dataDeltete" item="{{item}}" clicktype="edit"></onething>
         </block>
         <view class="nodata" wx:if="{{itemList1.length == 0}}">草稿箱暂无藏品</view>
       </view>

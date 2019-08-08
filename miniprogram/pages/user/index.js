@@ -15,6 +15,34 @@ Page({
     wxuser: {},
     ourUserinfo: {}
   },
+  dataDeltete (options) {
+    console.log('子组件删除的东西:', options)
+    var tid = options.detail.tid
+    var arr1 = []
+    for (var i = 0; i < this.data.itemList1.length; i++) {
+      if (this.data.itemList1[i].tid !== tid) {
+        arr1.push(this.data.itemList1[i])
+      }
+    }
+    if (arr1.length < this.data.itemList1.length) {
+      this.setData({
+        itemList1: arr1
+      })
+    } else {
+      var arr2 = []
+      for (var i = 0; i < this.data.itemList2.length; i++) {
+        if (this.data.itemList2[i].tid !== tid) {
+          arr2.push(this.data.itemList2[i])
+          break
+        }
+      }
+      if (arr2.length < this.data.itemList2.length) {
+        this.setData({
+          itemList2: arr2
+        })
+      }
+    }
+  },
   goswiper: function (event) {
     this.setData({
       swiperIndex: event.currentTarget.dataset.idx

@@ -5,11 +5,9 @@
 }
 
 .one-thing-card{
-  border: 1rpx solid #ccc;
-  box-shadow: 5rpx 5rpx 5rpx #ddd;
   width: 690rpx;
   margin: 20rpx auto;
-  padding: 20rpx 10rpx;
+  padding: 10rpx 30rpx;
   text-align:left;
 
 }
@@ -50,6 +48,7 @@
 .one-thing-card .name{
   font-size: 32rpx;
   font-weight: bold;
+  margin-bottom: 15rpx;
 }
 .one-thing-card .utag{
   font-size: 26rpx;
@@ -60,17 +59,17 @@
 }
 .one-thing-card .header-img{
   display: inline-block;
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 30rpx;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 45rpx;
   margin-right: 5rpx;
 }
 
 
 .function{
-  padding: 20rpx 30rpx 0rpx 10rpx;
+  padding: 0rpx 30rpx 20rpx 10rpx;
   margin-top: 20rpx;
-  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,7 +80,17 @@
   align-items: center;
 }
 .function .icon{
-  font-size: 28rpx;
-  line-height: 48rpx;
-  margin-right: 10rpx;
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 15rpx;
+}
+.func-btn-wrap{
+  display: flex;
+  align-items: center;
+  color: #D54840;
+}
+.func-btn{
+  display: inline-block;
+  width: 60rpx;
+  margin-left: 10rpx;
 }

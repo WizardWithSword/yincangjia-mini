@@ -2,26 +2,36 @@
 <wxs src="../../wxs/utils.wxs" module="tools" />
 
   <view class="one-thing-card" wx:key="item.tid" >
-    <view class="top" bindtap="goDetail" data-tid="{{item.tid}}"  data-idx="{{index}}">
-      <view class="left">
+    <view class="top">
+      <view class="left" bindtap="goDetail" data-tid="{{item.tid}}"  data-idx="{{index}}">
         <image class="header-img" src="{{item.wechatheader}}"></image>
       </view>
-      <view class="right">
+      <view class="right" bindtap="goDetail" data-tid="{{item.tid}}"  data-idx="{{index}}">
         <view class="name">{{item.wechatnick}}<view class="label utag" wx:if="{{item.personaltag}}">{{item.personaltag}}</view></view>
-        <view class="time">{{tools.formatTime(item.updatetime)}}</view>
-        <view class="title">{{item.name}}</view>
-        <view class="content" wx:if="{{item.content.length > 54 && item.showAll == false}}">{{tools.substr(item.content, 0, 48) + '...'}} <view class="span" catchtap="showAll" data-idx="{{index}}" data-tid="{{item.tid}}">全文</view></view>
-        <view class="content" wx:else>{{item.content}}</view>
-        <!-- <view class="images" wx:if="{{item.imagesList.length == 1}}">
-          <image class="card-img" src="{{item.images}}"></image>
-        </view> -->
-        <view class="images-more">
-          <image mode="aspectFill" wx:for="{{item.imagesList}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="imgIndex" class="" src="{{imgItem}}"></image>
-        </view>
+        <view class="time">{{tools.formatTime(item.createtime)}}</view>
+        <!-- <view class="time">{{item.createtime}}</view> -->
+      </view>
+      <view class="func-btn-wrap">
+        <text class="func-btn" data-tid="{{item.tid}}" bindtap="goDelete">删除</text>
+        <text class="func-btn" data-tid="{{item.tid}}" bindtap="goEdit">编辑</text>
       </view>
     </view>
+    <view class="title" bindtap="goDetail" data-tid="{{item.tid}}">{{item.name}}</view>
+    <view class="content" wx:if="{{item.content.length > 54 && item.showAll == false}}">{{tools.substr(item.content, 0, 48) + '...'}} <view class="span" catchtap="showAll" data-idx="{{index}}" data-tid="{{item.tid}}">全文</view></view>
+    <view class="content" wx:else>{{item.content}}</view>
+    <view class="images-more" bindtap="goDetail" data-tid="{{item.tid}}">
+      <image mode="aspectFill" wx:for="{{item.imagesList}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="imgIndex" class="" src="{{imgItem}}"></image>
+    </view>
     <view class="function">
-      <view class="praise" data-tid="{{item.tid}}"  data-idx="{{index}}"> <span class="icon icon-thumbs-up">点赞数量：</span> <span>{{item.praisenum}}</span> </view>
-      <view class="comment" data-tid="{{item.tid}}"  data-idx="{{index}}"> <span class="icon icon-message">评论数量：</span> <span>{{item.commentnum}}</span></view>
+      <view class="praise" data-tid="{{item.tid}}"  data-idx="{{index}}">
+         <!-- <span>点赞数量：</span>  -->
+         <image class="icon" src="../../images/icon-parise.png"></image>
+         <span>{{item.praisenum}}</span> 
+      </view>
+      <view class="comment" data-tid="{{item.tid}}"  data-idx="{{index}}">
+         <!-- <span class="icon icon-message">评论数量：</span> -->
+         <image class="icon" src="../../images/icon-comment.png"></image>
+         <span>{{item.commentnum}}</span>
+      </view>
     </view>
   </view>

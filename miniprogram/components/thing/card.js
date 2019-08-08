@@ -1,5 +1,5 @@
 // pages/footer/index.js
-
+const api = require('../../utils/api.js')
 Component({
   properties: {
     // 这里定义了innerText属性，属性值可以在组件使用时指定
@@ -27,19 +27,51 @@ Component({
       })
       return false
     },
+    // 点击删除藏品
+    goDelete (event) {
+      wx.showModal({
+        title: '是否删除？',
+        success: res => {
+          console.log('res', res)
+          if (res.confirm) {
+            console.log('删除')
+            let tid = event.currentTarget.dataset.tid
+            let data = {
+              isdelete: 1,
+              tid: tid
+            }
+            api.post('/api/thing/delete', data).then(d => {
+              console.log('/thing/delete 返回值', d)
+              if (d.code == '200') {
+                wx.showToast({
+                  title: '删除成功'
+                })
+                this.triggerEvent('deletething', {tid: tid})
+              } else {
+                wx.showToast({
+                  icon: 'none',
+                  title: d.message
+                })
+              }
+            })
+          }
+        }
+      })
+    },
+    // 点击前往编辑
+    goEdit (event) {
+      var id = event.currentTarget.dataset.tid
+      wx.navigateTo({
+        url: '/pages/thing/add?tid=' + id
+      })
+    },
     // 点击前往商品详情
     goDetail: function (event) {
       var id = event.currentTarget.dataset.tid
       console.log('点击', event)
-      if (this.data.clicktype == 'edit') { // 编辑页面
-        wx.navigateTo({
-          url: '/pages/thing/add?tid=' + id
-        })
-      } else { // 详情页面
-        wx.navigateTo({
-          url: '/pages/thing/detail?tid=' + id
-        })
-      }
+      wx.navigateTo({
+        url: '/pages/thing/detail?tid=' + id
+      })
       return false
     },
     // 点击大拇指点赞
