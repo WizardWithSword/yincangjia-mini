@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -64,6 +64,13 @@
 						"shareName": "1Pa3qf3NNZL7ukzV2LeCml02lh27z2tVvC_YLqDgLDs@cr4dev",
 						"shareKey": "3Tr8x3PccOcmwwXKbJj27hS4nb1RiLML2cQ2uIb32SRCzww_Pvy1DiZVl_c0kjVvW9EGEXxvuLNgigh5FdC2Rw~~"
 					}
+				},
+				{
+					"id": -1,
+					"name": "群邀请，过期",
+					"pathName": "pages/index/index",
+					"query": "f=group&type=invite&uid=3&t= 1565249289695",
+					"scene": 1008
 				}
 			]
 		}

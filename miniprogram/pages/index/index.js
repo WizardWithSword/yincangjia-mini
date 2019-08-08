@@ -138,7 +138,7 @@ Page({
     })
   },
   _showNeedInvite: function () {
-    wx.showModal({title: '您好',content:'当前社区私密'})
+    wx.showModal({title: '您好',content:'隐藏家是国内首个基于卫星社交上收藏专业纯享俱乐部。您可以通过已成为俱乐部会员的好友加入我们。感谢您对隐藏家俱乐部的关注！'})
   },
   onLoad: function() {
     var uid = wx.getStorageSync('uid')
@@ -227,9 +227,21 @@ Page({
   },
   // 显示注册页面。其实是更新用户信息页面
   _showReg: function () {
-    this.setData({
-      showReg: true
-    })
+    // 检查邀请函是否失效。
+    var effect = true
+    var d = app.globalData.inviteinfo.query.t // 邀请函的失效时间
+    var now = (new Date()).getTime() // 当前时间
+    if (d && now > d) {
+      effect = false
+    }
+    if (effect) {
+      this.setData({
+        showReg: true
+      })
+    } else {
+      wx.showModal({title: '您好',content:'此邀请函已失效。您可以请已入住隐藏家俱乐部的好友之间发送邀请函给您，转发无效哦！'})
+    }
+
     // wx.showToast({
     //   icon: 'none',
     //   title: '显示注册',
@@ -367,6 +379,11 @@ Page({
           title: '系统异常，请稍后再试'
         })
       }
+    })
+  },
+  cancelReg () {
+    this.setData({
+      showReg: false
     })
   },
   // 更新当前用户信息
