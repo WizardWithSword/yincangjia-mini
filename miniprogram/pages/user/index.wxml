@@ -10,7 +10,7 @@
         <image class="real-header" src="{{wxuser.avatarUrl}}"></image>
       </view>
       <view class="info">
-        <view class="name">名字</view>
+        <view class="name">{{wxuser.nickName}}</view>
         <view class="tag">
           <view><text class="tag-desc" wx:if="{{ourUserinfo.experenceyear}}">入行{{ourUserinfo.experenceyear}}年</text></view>
         </view>
