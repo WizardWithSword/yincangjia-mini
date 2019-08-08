@@ -15,7 +15,7 @@
           <view><text class="tag-desc" wx:if="{{ourUserinfo.experenceyear}}">入行{{ourUserinfo.experenceyear}}年</text></view>
         </view>
       </view>
-      <view class="invite">
+      <view bindtap="goPage" data-page="invite"  class="invite">
         邀请
       </view>
     </view>
