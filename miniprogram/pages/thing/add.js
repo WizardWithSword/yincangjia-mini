@@ -168,6 +168,10 @@ Page({
           this.setData({
             tid: d.result.tid
           })
+          wx.showToast({
+            icon: 'none',
+            title: '保存成功'
+          })
         } else {
           wx.showToast({
             icon: 'none',

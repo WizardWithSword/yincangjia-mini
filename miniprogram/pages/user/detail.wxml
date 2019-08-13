@@ -5,12 +5,17 @@
       <image mode="aspectFill" class="header" src="{{info.wechatheader}}"></image>
     </view>
     <view class="right">
-      <view class="name"><text>{{info.wechatnick}}</text></view>
+      <view class="name">
+        <text>{{info.wechatnick}}</text>
+      </view>
       <view class="desc" wx:if="{{info.experenceyear}}"><text>入行{{info.experenceyear}}年</text></view>
       <view class="desc" wx:if="{{info.personaltag}}"><text>{{info.personaltag}}</text></view>
       <view class="desc" wx:if="{{info.hasshop == 1}}"><text>实体店铺：{{info.shopname}}</text></view>
       <view class="desc" wx:if="{{info.hasshop == 1}}"><text>地址：{{info.shopcity}} {{info.shopaddr}}</text></view>
       <view class="desc" wx:if="{{info.personalsign && info.personalsign.length > 0}}"><text>个性签名：{{info.personalsign}}</text></view>
+      <view class="getcard" wx:if="{{isCardExchange == false}}">
+        请求名片
+      </view>
     </view>
   </view>
   <view class="allthing">

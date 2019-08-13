@@ -68,7 +68,7 @@
         <block wx:for="{{itemList1}}" wx:key="{{index}}">
           <onething bind:deletething="dataDeltete" item="{{item}}" clicktype="edit"></onething>
         </block>
-        <view class="nodata" wx:if="{{itemList1.length == 0}}">草稿箱暂无藏品</view>
+        <view class="nodata" wx:if="{{itemList1.length == 0}}">暂无未发布藏品</view>
       </view>
       <view class="nav2" wx:if="{{swiperIndex == 2}}">
         <block wx:for="{{itemList3}}" wx:key="{{index}}">

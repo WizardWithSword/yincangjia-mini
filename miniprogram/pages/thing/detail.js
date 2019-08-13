@@ -22,6 +22,13 @@ Page({
     pariseHeaders: [],
     showtab: 'comment'
   },
+  // 前往用户首页
+  goUserDetail: function (event) {
+    var uid = event.currentTarget.dataset.uid
+    wx.navigateTo({
+      url: '/pages/user/detail?uid=' + uid
+    })
+  },
   inputcomment: function (event) {
     this.setData({
       'commentdata.text': event.detail.value

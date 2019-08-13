@@ -7,7 +7,7 @@
         <image class="header" src="{{thingDetail.wechatheader}}" mode="aspectFill"></image>
       </view>
       <view class="right">
-        <view><text class="name">{{thingDetail.wechatnick}}</text></view>
+        <view bindtap="goUserDetail" data-uid="{{thingDetail.uid}}"><text class="name">{{thingDetail.wechatnick}}</text></view>
         <view><text class="time">{{tools.formatTime(thingDetail.createtime)}}</text></view>
       </view>
       <view class="follow">

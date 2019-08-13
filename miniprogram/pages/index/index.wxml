@@ -24,7 +24,7 @@
         <view class="right">
           <view class="name">{{item.wechatnick}}
             <view class="label utag" wx:if="{{item.personaltag}}">{{item.personaltag}}</view>
-            <!-- <view class="label utag">入行5年</view> -->
+            <view wx:if="{{item.experenceyear}}" class="label utag">入行{{item.experenceyear}}年</view>
           </view>
           <view class="time">{{tools.formatTime(item.updatetime)}}</view>
         </view>
@@ -109,7 +109,7 @@
   <view class="content">
     <view class="h1"><text>尊敬的{{userInfo.nickName}}</text></view>
     <view class="p"><text>
-    感谢您接受邀请进入隐藏家收藏俱乐部，隐藏家是国内首个微信熟人社交的收藏专业纯享社区，您可要在此发布或评论藏品。</text></view>
+    感谢您接受邀请进入隐藏家收藏俱乐部，隐藏家是国内首个基于微信社交的线上收藏专业纯享俱乐部，您可以在此发布或管理藏品。</text></view>
     <view class="p"><text>始于诚信，基于专业，为了更好的给您提供服务，请完善您的个人信息。</text></view>
     <view class="form-wrap">
       <view class="oneline">
@@ -150,9 +150,9 @@
     <view>
       <button bindtap="saveUser" class="save">确定</button>
     </view>
-    <view class="close-wrap" bindtap="cancelReg">
+    <!-- <view class="close-wrap" bindtap="cancelReg">
       <image class="icon-close" src="../../images/icon-close.png"></image>
-    </view>
+    </view> -->
   </view>
 
 </view>

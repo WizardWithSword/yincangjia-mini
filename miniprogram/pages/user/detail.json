@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "个人中心",
+  "navigationBarTitleText": "个人主页",
   "usingComponents": {
     "onething": "/components/thing/card2"
   }

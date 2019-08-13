@@ -138,7 +138,7 @@ Page({
     })
   },
   _showNeedInvite: function () {
-    wx.showModal({title: '您好',content:'隐藏家是国内首个基于卫星社交上收藏专业纯享俱乐部。您可以通过已成为俱乐部会员的好友加入我们。感谢您对隐藏家俱乐部的关注！'})
+    wx.showModal({title: '您好',content:'隐藏家是国内首个基于微信社交上收藏专业纯享俱乐部。您可以通过已成为俱乐部会员的好友加入我们。感谢您对隐藏家俱乐部的关注！'})
   },
   onLoad: function() {
     var uid = wx.getStorageSync('uid')

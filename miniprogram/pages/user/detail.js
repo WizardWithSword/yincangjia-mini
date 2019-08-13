@@ -5,6 +5,7 @@ const api = require('../../utils/api.js')
 Page({
 
   data: {
+    isCardExchange: false,
     uid: '3',
     info: {},
     thinglist: []
