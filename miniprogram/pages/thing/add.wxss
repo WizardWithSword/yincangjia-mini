@@ -36,9 +36,14 @@ page {
   padding: 30rpx 0;
   overflow: hidden;
   font-size: 28rpx;
+  line-height: 40rpx;
   font-weight: 400;
   color: #595C69;
-
+}
+.placeholder-content{
+  font-size: 32rpx;
+  line-height: 40rpx;
+  /*color: red;*/
 }
 .img-list{
   display: flex;
@@ -80,17 +85,15 @@ page {
   text-align: center;
   font-size: 100rpx;
   font-weight: 100;
+  color: #C6C6C6;
 }
 .btn-list{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 30rpx;
+  margin-top: 80rpx;
 }
-.btn-list button{
-  width: 300rpx;
-  text-align: center;
-}
+
 .h3{
   display: flex;
   align-items: center;
@@ -153,10 +156,10 @@ page {
   min-width: 272rpx;
   height: 72rpx;
   line-height: 72rpx;
-  text-align: center;
   padding: 0 40rpx;
   color: white;
   font-size: 32rpx;
+  border: none;
 }
 .btn-ghost{
   background: #F4F4F4;
@@ -164,8 +167,9 @@ page {
   min-width: 272rpx;
   height: 72rpx;
   line-height: 72rpx;
-  text-align: center;
   padding: 0 40rpx;
   font-size: 32rpx;
   color: #595C69;
+  font-weight: 600;
+  border: none;
 }

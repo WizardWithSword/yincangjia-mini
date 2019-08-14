@@ -2,8 +2,10 @@
 <view class="container">
   <view class="often">
     <view class="title box-flex">
-      <image class="icon-title" src="https://7765-wenya-product-2yyx5-1259345295.tcb.qcloud.la/assets/icon-offen.png?sign=39ee4c43bb42f6d4d34bc1ed80911ab7&t=1565682377"></image>
-      <text>常用标签</text>
+      <view class="box-flex">
+        <image class="icon-title" src="https://7765-wenya-product-2yyx5-1259345295.tcb.qcloud.la/assets/icon-offen.png?sign=39ee4c43bb42f6d4d34bc1ed80911ab7&t=1565682377"></image>
+        <text>常用标签</text>
+      </view>
     </view>
     <view class="labellist">
       <view bindtap="chooseOne" class="btn-label {{chooseInterg.id == 10 ? 'choose': ''}}" data-type="interg" data-id="10" data-value="全品">全品</view>
