@@ -1,4 +1,5 @@
 const api = require('./utils/api.js')
+import {wechatEnv, miniversion} from 'config/index.js'
 //app.js
 App({
   onLaunch: function () {
@@ -6,13 +7,21 @@ App({
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
+      console.log('微信环境：', wechatEnv)
       wx.cloud.init({
         // env: 'wenya-dev-pt0d5',
-        env: 'wenya-product-2yyx5',
+        // env: 'wenya-product-2yyx5',
+        env: wechatEnv,
         traceUser: true,
       })
     }
-
+    var v = wx.getStorageSync('miniversion')
+    if (v == '' || v < miniversion) {
+      wx.removeStorageSync('uid')
+      wx.removeStorageSync('wxuser')
+      wx.removeStorageSync('thisuser')
+      wx.setStorageSync('miniversion', miniversion)
+    }
     this.globalData = {}
     this.globalData.API = api
     var u1 = wx.getStorageSync('wxuser')
