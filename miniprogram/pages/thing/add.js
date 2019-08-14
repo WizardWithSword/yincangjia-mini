@@ -230,12 +230,9 @@ Page({
       thing1.name = this.data.title
       thing1.content = this.data.content
       thing1.images = this.data.imagesCloud.join(';')
-      // thing.era = this.data.eraArray[this.data.eraIndex].id
-      // thing.category = this.data.cateArray[this.data.cateIndex].id
-      // thing.intergrity = this.data.intergrityArray[this.data.intergrityIndex].id
-      thing.era = this.data.chooseEra.id
-      thing.category = this.data.chooseCate.id
-      thing.intergrity = this.data.chooseInterg.id
+      thing1.era = this.data.chooseEra.id
+      thing1.category = this.data.chooseCate.id
+      thing1.intergrity = this.data.chooseInterg.id
       api.post('/api/thing/add', thing1).then(d => {
         console.log('thing/add 返回值:', d)
         if (d.code == '200') {
