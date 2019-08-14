@@ -13,8 +13,14 @@
       <view class="desc" wx:if="{{info.hasshop == 1}}"><text>实体店铺：{{info.shopname}}</text></view>
       <view class="desc" wx:if="{{info.hasshop == 1}}"><text>地址：{{info.shopcity}} {{info.shopaddr}}</text></view>
       <view class="desc" wx:if="{{info.personalsign && info.personalsign.length > 0}}"><text>个性签名：{{info.personalsign}}</text></view>
-      <view class="getcard" wx:if="{{isCardExchange == false}}">
+      <view bindtap="goApplyCard" class="getcard" wx:if="{{cardStatus == -1}}">
         请求名片
+      </view>
+      <view class="getcard" wx:if="{{cardStatus == 0}}">
+        名片已请求，等待应答
+      </view>
+      <view bindtap="goCardDetail" class="getcard" wx:if="{{cardStatus == 1}}">
+        查看名片
       </view>
     </view>
   </view>
