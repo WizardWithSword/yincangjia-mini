@@ -1,6 +1,12 @@
 /* pages/thing/add.wxss */
+page {
+  background-color: #fff;
+}
 .container{
+}
+.list{
   padding: 40rpx;
+  background-color: #f4f4f4;
 }
 .list-item {
   width: 100%;
@@ -20,12 +26,19 @@
   line-height: 88rpx;
   height: 88rpx;
   width: 100%;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #595C69;
 }
 .list-item textarea{
   color: black;
   width: 100%;
   padding: 30rpx 0;
   overflow: hidden;
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #595C69;
+
 }
 .img-list{
   display: flex;
@@ -46,53 +59,113 @@
 }
 .one-image .icon-close{
   position: absolute;
-  right: -10rpx;
-  top: -10rpx;
+  right: 10rpx;
+  top: 10rpx;
   font-size: 30rpx;
   line-height: 30rpx;
-  background-color: white;
   border-radius: 20rpx;
   width: 40rpx;
   height: 40rpx;
   text-align: center;
-  border: 1rpx solid #ccc;
+  background-image: url('https://7765-wenya-product-2yyx5-1259345295.tcb.qcloud.la/assets/icon-close.png?sign=0e6875b5f5240795f4cb1bf15d61b2eb&t=1565678970');
+  background-size: 40rpx 40rpx;
 }
 .addImage{
   display: inline-block;
-  border: 1rpx solid #ccc;
-  background-color: white;
+  border: 1rpx dashed #ccc;
+  /*background-color: white;*/
   width: 200rpx;
   height: 200rpx;
-  line-height: 200rpx;
+  line-height: 180rpx;
   text-align: center;
-  font-size: 42rpx;
+  font-size: 100rpx;
+  font-weight: 100;
 }
 .btn-list{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 100rpx;
+  margin-top: 30rpx;
 }
 .btn-list button{
   width: 300rpx;
   text-align: center;
 }
 .h3{
-  font-size: 30rpx;
-  font-weight: 600;
-  margin-top: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100rpx;
+  line-height: 100rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  border-bottom: 1rpx solid #f4f4f4;
 }
 .oneform{
   display: flex;
   font-size: 24rpx;
   align-items: center;
   margin-bottom: 10rpx;
+  padding-left: 30rpx;
+  margin-top: 28rpx;
 }
 .oneform text{
   margin-right: 20rpx;
 }
-.picker{
+/*.picker{
   border: 1rpx solid #ccc;
   border-radius: 10rpx;
   padding: 5rpx 15rpx;
+}*/
+
+.icon-label{
+  display: inline-block;
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 25rpx;
+}
+.icon-right{
+  display: inline-block;
+  width: 16rpx;
+  height: 24rpx;
+}
+
+
+
+.box-flex{
+  display: flex;
+  align-items: center;
+}
+.btn-label{
+  display: inline-block;
+  background-color: #FFE9E6;
+  border-radius: 16rpx;
+  padding: 0rpx 30rpx;
+  font-size: 20rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  color: #121212;
+}
+.btn-save{
+  background-image: linear-gradient(151deg, #ED7E74 0%, #D54840 100%);
+  border-radius: 36rpx;
+  min-width: 272rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  padding: 0 40rpx;
+  color: white;
+  font-size: 32rpx;
+}
+.btn-ghost{
+  background: #F4F4F4;
+  border-radius: 36rpx;
+  min-width: 272rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  padding: 0 40rpx;
+  font-size: 32rpx;
+  color: #595C69;
 }

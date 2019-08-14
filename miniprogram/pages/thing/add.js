@@ -15,9 +15,29 @@ Page({
     eraIndex: 0,
     intergrityArray: [{"id":"0","value":"未知"},{"id":"10","value":"全品"},{"id":"20","value":"瑕疵"},{"id":"30","value":"残品"}],
     intergrityIndex: 0,
+    chooseCate: {"id":"0","value":"其他"},
+    chooseEra: {"id":"0","value":"未知"},
+    chooseInterg: {"id":"0","value":"未知"},
     imagesCloud: [],
     // imagesCloud: ['cloud://yamoon-test-52afba.7961-yamoon-test-52afba-1258905543/my-image.png', 'cloud://yamoon-test-52afba.7961-yamoon-test-52afba-1258905543/thing/4/t1558514847326.png', 'http://tmp/wx9cb42adfa3f45c25.o6zAJsz2VXXb72bDLglI1OIVSp-8.mI3BeyVxDwtI57f3c8f766963bfd4c68de6a75b4a302.png'],
     imagesLocal: []
+  },
+  goSetPage () {
+    var params = {
+      chooseCate: this.data.chooseCate,
+      chooseEra: this.data.chooseEra,
+      chooseInterg: this.data.chooseInterg
+    }
+    wx.navigateTo({
+      url: '/pages/thing/labelset/index' + '?choose=' + JSON.stringify(params)
+    })
+  },
+  setChoose (cate, era, interg) {
+    this.setData({
+      chooseCate: cate,
+      chooseEra: era,
+      chooseInterg: interg
+    })
   },
   // 品类选择
   bindCategoryChange: function (e) {
@@ -157,9 +177,14 @@ Page({
     thing.name = this.data.title
     thing.content = this.data.content
     thing.images = this.data.imagesCloud.join(';')
-    thing.era = this.data.eraArray[this.data.eraIndex].id
-    thing.category = this.data.cateArray[this.data.cateIndex].id
-    thing.intergrity = this.data.intergrityArray[this.data.intergrityIndex].id
+    // thing.era = this.data.eraArray[this.data.eraIndex].id
+    // thing.category = this.data.cateArray[this.data.cateIndex].id
+    // thing.intergrity = this.data.intergrityArray[this.data.intergrityIndex].id
+
+    thing.era = this.data.chooseEra.id
+    thing.category = this.data.chooseCate.id
+    thing.intergrity = this.data.chooseInterg.id
+
     if (this.data.tid == '') {
       return api.post('/api/thing/add', thing).then(d => {
         console.log('thing/add 返回值:', d)
@@ -205,10 +230,12 @@ Page({
       thing1.name = this.data.title
       thing1.content = this.data.content
       thing1.images = this.data.imagesCloud.join(';')
-      thing.era = this.data.eraArray[this.data.eraIndex].id
-      thing.category = this.data.cateArray[this.data.cateIndex].id
-      thing.intergrity = this.data.intergrityArray[this.data.intergrityIndex].id
-
+      // thing.era = this.data.eraArray[this.data.eraIndex].id
+      // thing.category = this.data.cateArray[this.data.cateIndex].id
+      // thing.intergrity = this.data.intergrityArray[this.data.intergrityIndex].id
+      thing.era = this.data.chooseEra.id
+      thing.category = this.data.chooseCate.id
+      thing.intergrity = this.data.chooseInterg.id
       api.post('/api/thing/add', thing1).then(d => {
         console.log('thing/add 返回值:', d)
         if (d.code == '200') {
@@ -264,18 +291,27 @@ Page({
     for (var key1 = 0; key1 < this.data.eraArray.length; key1++) {
       if (this.data.eraArray[key1].id == obj.era) {
         eraid = key1
+        this.setData({
+          chooseEra: this.data.eraArray[key1]
+        })
         break
       }
     }
     for (var key2 = 0; key2 < this.data.cateArray.length; key2++) {
       if (this.data.cateArray[key2].id == obj.category) {
         cateid = key2
+        this.setData({
+          chooseCate: this.data.cateArray[key2]
+        })
         break
       }
     }
     for (let key3 in this.data.intergrityArray) {
       if (this.data.intergrityArray[key3].id == obj.intergrity) {
         intergid = key3
+        this.setData({
+          chooseInterg: this.data.intergrityArray[key3]
+        })
         break
       }
     }

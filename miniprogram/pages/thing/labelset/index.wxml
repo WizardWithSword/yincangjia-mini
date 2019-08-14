@@ -1,0 +1,54 @@
+<!--pages/thing/labelset.wxml-->
+<view class="container">
+  <view class="often">
+    <view class="title box-flex">
+      <image class="icon-title" src="https://7765-wenya-product-2yyx5-1259345295.tcb.qcloud.la/assets/icon-offen.png?sign=39ee4c43bb42f6d4d34bc1ed80911ab7&t=1565682377"></image>
+      <text>常用标签</text>
+    </view>
+    <view class="labellist">
+      <view bindtap="chooseOne" class="btn-label {{chooseInterg.id == 10 ? 'choose': ''}}" data-type="interg" data-id="10" data-value="全品">全品</view>
+      <view bindtap="chooseOne" class="btn-label {{chooseEra.id == 60 ? 'choose': ''}}" data-type="era" data-id="60" data-value="明清">明清</view>
+      <view bindtap="chooseOne" class="btn-label {{chooseCate.id == 180 ? 'choose': ''}}" data-type="cate" data-id="180" data-value="珠宝">珠宝</view>
+    </view>
+  </view>
+  <view class="one-type">
+    <view class="title box-flex" bindtap="showAllEraToggle">
+      <view class="box-flex">
+        <image class="icon-title" src="https://7765-wenya-product-2yyx5-1259345295.tcb.qcloud.la/assets/icon-era.png?sign=318196c8261b7a0f01496e74bb7dd1cd&t=1565682623"></image>
+        <text>年代(选择一个)</text>
+      </view>
+      <image class="right icon-arrow icon-arrow-top {{showAllEra == false ? 'icon-arrow-down' :''}}" src="../../../images/icon-arrow.png"></image>
+    </view>
+    <view class="labellist {{showAllEra==false ? 'hide' : ''}}">
+      <view wx:for="{{eraArray}}" wx:key="{{index}}" bindtap="chooseOne" class="btn-label {{chooseEra.id == item.id ? 'choose': ''}}" data-type="era" data-id="{{item.id}}" data-value="{{item.value}}">{{item.value}}</view>
+    </view>
+  </view>
+  <view class="one-type">
+    <view class="title box-flex" bindtap="showAllCateToggle">
+      <view class="box-flex">
+        <image class="icon-title" src="https://7765-wenya-product-2yyx5-1259345295.tcb.qcloud.la/assets/icon-categroy.png?sign=f1245cd5fba4d10f26ff16e2914aa837&t=1565682647"></image>
+        <text>品类(选择一个)</text>        
+      </view>
+      <image class="right icon-arrow icon-arrow-top {{showAllCate == false ? 'icon-arrow-down' :''}}" src="../../../images/icon-arrow.png"></image>
+    </view>
+    <view class="labellist {{showAllCate == false ? 'hide' : ''}}">
+      <view wx:for="{{cateArray}}" wx:key="{{index}}" bindtap="chooseOne" class="btn-label {{chooseCate.id == item.id ? 'choose': ''}}" data-type="cate" data-id="{{item.id}}" data-value="{{item.value}}">{{item.value}}</view>
+    </view>
+  </view>
+  <view class="one-type">
+    <view class="title box-flex">
+      <view class="box-flex">
+        <image class="icon-title" src="https://7765-wenya-product-2yyx5-1259345295.tcb.qcloud.la/assets/icon-pinxiang.png?sign=61cdf92dd0ef08788c481a2b3b21a5f6&t=1565682668"></image>
+        <text>品相(选择一个)</text>
+      </view>
+    </view>
+    <view class="labellist">
+      <view wx:for="{{intergrityArray}}" wx:key="{{index}}" bindtap="chooseOne" class="btn-label {{chooseInterg.id == item.id ? 'choose': ''}}" data-type="interg" data-id="{{item.id}}" data-value="{{item.value}}">{{item.value}}</view>
+    </view>
+  </view>
+
+  <view class="btn-list">
+    <button class="btn-save" bindtap="save">确定</button>
+  </view>
+</view>
+

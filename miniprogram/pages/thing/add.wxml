@@ -11,39 +11,49 @@
     <view class="img-list">
       <view class="one-image" wx:for="{{imagesCloud}}" wx:key="index">
         <image mode="aspectFill" src="{{item}}" data-index="{{index}}" bindtap="showImg" data-idx="{{index}}"></image>
-        <view class="icon-close" bindtap="deleteImg">x</view>
+        <view class="icon-close" bindtap="deleteImg">
+        </view>
       </view>
       <view class="addImage"  bindtap="doUpload" wx:if="{{imagesCloud.length < 6}}">+</view>
     </view>
   </view>
-  <view class="h3">标签</view>
-  <view class="oneform">
-    <text>品类:</text>
-    <picker bindchange="bindCategoryChange" value="{{cateIndex}}" range="{{cateArray}}" range-key="value">
-      <view class="picker">
-        {{cateArray[cateIndex].value}} 
-      </view>
-    </picker>
+  <view class="h3" bindtap="goSetPage">
+    <view class="box-flex">
+      <image class="icon-label" src="https://7765-wenya-product-2yyx5-1259345295.tcb.qcloud.la/assets/icon-group.png?sign=cd02672324884615238ce95513366036&t=1565679464"></image>
+      <text>标签设置</text>
+    </view>
+    <view><image class="icon-right" src="../../images/icon-arrow.png"></image></view>
   </view>
   <view class="oneform">
     <text>年代:</text>
-    <picker bindchange="bindEraChange" value="{{eraIndex}}" range="{{eraArray}}" range-key="value">
+    <!-- <picker bindchange="bindEraChange" value="{{eraIndex}}" range="{{eraArray}}" range-key="value">
       <view class="picker">
         {{eraArray[eraIndex].value}} 
       </view>
-    </picker>
+    </picker> -->
+    <view class="btn-label">{{chooseEra.value}}</view>
+  </view>
+  <view class="oneform">
+    <text>品类:</text>
+    <!-- <picker bindchange="bindCategoryChange" value="{{cateIndex}}" range="{{cateArray}}" range-key="value">
+      <view class="picker">
+        {{cateArray[cateIndex].value}} 
+      </view>
+    </picker> -->
+    <view class="btn-label">{{chooseCate.value}}</view>
   </view>
   <view class="oneform">
     <text>品相:</text>
-    <picker bindchange="bindIntergChange" value="{{intergrityIndex}}" range="{{intergrityArray}}" range-key="value">
+    <!-- <picker bindchange="bindIntergChange" value="{{intergrityIndex}}" range="{{intergrityArray}}" range-key="value">
       <view class="picker">
         {{intergrityArray[intergrityIndex].value}} 
       </view>
-    </picker>
+    </picker> -->
+    <view class="btn-label">{{chooseInterg.value}}</view>
   </view>
   <view class="btn-list">
-    <button bindtap="save">保存到草稿</button>
-    <button bindtap="saveOnline">发布</button>
+    <button class="btn-ghost" bindtap="save">保存,不发布</button>
+    <button class="btn-save" bindtap="saveOnline">发布</button>
   </view>
 </view>
 

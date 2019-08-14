@@ -1,0 +1,78 @@
+/* pages/thing/add.wxss */
+page {
+  background-color: #fff;
+  padding: 52rpx 20rpx;
+}
+
+
+
+.icon-arrow{
+  display: inline-block;
+  width: 20rpx;
+  height: 30rpx;
+  margin-right: 40rpx;
+}
+.icon-arrow-top{
+  transform: rotate(-90deg);
+}
+.icon-arrow-down{
+  transform: rotate(90deg);
+}
+.icon-title{
+  display: inline-block;
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 16rpx;
+}
+.title{
+  justify-content: space-between;
+}
+.title text {
+  font-size: 32rpx;
+  color: #121212;
+  letter-spacing: 0;
+  text-align: justify;
+  font-weight: 600;
+}
+.labellist{
+  margin-top: 32rpx;
+  margin-bottom: 64rpx;
+}
+.labellist.hide{
+  height: 110rpx;
+  overflow: hidden;
+}
+
+.box-flex{
+  display: flex;
+  align-items: center;
+}
+.btn-label{
+  display: inline-block;
+  background-color: #f4f4f4;
+  border-radius: 28rpx;
+  /*padding: 0rpx 30rpx;*/
+  width: 160rpx;
+  font-size: 28rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  color: #595C69;
+  margin-right: 15rpx;
+  margin-bottom: 32rpx;
+}
+.btn-label.choose{
+  background-image: linear-gradient(151deg, #ED7E74 0%, #D54840 100%);
+  color: white;
+}
+.btn-save{
+  background-image: linear-gradient(151deg, #ED7E74 0%, #D54840 100%);
+  border-radius: 36rpx;
+  min-width: 530rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  padding: 0 40rpx;
+  color: white;
+  font-size: 32rpx;
+}

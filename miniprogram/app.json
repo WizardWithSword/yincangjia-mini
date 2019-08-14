@@ -5,12 +5,13 @@
     "pages/thing/detail",
     "pages/comment/add",
     "pages/user/index",
+    "pages/thing/add",
+    "pages/thing/labelset/index",
     "pages/user/setting",
     "pages/user/invite",
     "pages/user/follow",
     "pages/user/detail",
     "pages/feedback/add",
-    "pages/thing/add",
     "pages/thing/edit"
   ],
   "window": {
