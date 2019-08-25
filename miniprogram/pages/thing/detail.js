@@ -39,13 +39,40 @@ Page({
       showComment: false
     })
   },
+  // 1、审核时期： 不要邀请也能发布。
+  // 2、正常时期： 必须要邀请才能发布。
+  _needAuth: function () {
+    if (app.globalData.needinvite === true) { // 正常流程。
+      var u = wx.getStorageSync('thisuser')
+      if (u.inviteuid > 0) { // 正常用户。不需要中断
+        return false
+      } else { // 还没有被邀请的用户。需要权限
+        return true
+      }
+    } else { // 审核流程
+      return false
+    }
+  },
+  _needLogin: function () {
+    var uid = wx.getStorageSync('uid')
+    if (uid == '') { // 未登录
+      return true // 需要登录
+    } else {
+      return false
+    }
+  },
   submit: function () {
+    var auth = this._needAuth()
+    if (auth) {
+      wx.showModal({title: '您好',content:'隐藏家是国内首个基于微信社交上收藏专业纯享俱乐部。您可以通过已成为俱乐部会员的好友加入我们。感谢您对隐藏家俱乐部的关注！'})
+      return false
+    }
     var obj = {
       uid: -1,
       uname: '',
       tid: -1, // 评论的藏品
       parentcid: 0, // 一级评论
-      content: '又是一条评论。第一条评论的内容。我是老大'
+      content: ''
     }
     obj.content = this.data.commentdata.text
     if (obj.content == '') {
@@ -98,10 +125,17 @@ Page({
   },
   // 喜欢
   goCollectComment: function () {
-
+    wx.showToast({
+      icon: 'none',
+      title: '功能开发中...'
+    })
   },
   // 点赞
   goPraiseComment: function () {
+    var gologin = this._needLogin()
+    if (gologin) {
+      return false
+    }
     var tid = this.data.tid
     var data = {
       tid: tid,
@@ -113,6 +147,10 @@ Page({
         wx.showToast({
           icon: 'none',
           title: '点赞成功'
+        })
+        this._getPraisers()
+        this.setData({
+          'thingDetail.praisenum': this.data.thingDetail.praisenum++
         })
       } else {
         wx.showToast({
@@ -225,6 +263,10 @@ Page({
   },
   // 添加关注
   addFollow () {
+    var gologin = this._needLogin()
+    if (gologin) {
+      return false
+    }
     var obj = {
       fuid: this.data.thingDetail.uid
     }
@@ -257,6 +299,10 @@ Page({
     })
   },
   _getIsFollow () {
+    var gologin = this._needLogin()
+    if (gologin) {
+      return false
+    }
     var obj = {
       fuid: this.data.thingDetail.uid
     }

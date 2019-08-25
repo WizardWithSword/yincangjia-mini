@@ -48,6 +48,10 @@ Page({
   },
   // 点击前往商品详情
   goDetail: function (event) {
+    var gologin = this._needLogin()
+    if (gologin) {
+      return false
+    }
     var id = event.currentTarget.dataset.tid
     console.log('点击', event)
     wx.navigateTo({
@@ -57,6 +61,10 @@ Page({
   },
   // 点击大拇指点赞
   goPraise: function (event) {
+    var gologin = this._needLogin()
+    if (gologin) {
+      return false
+    }
     var tid = event.currentTarget.dataset.tid
     var idx = event.currentTarget.dataset.idx
     var data = {
@@ -81,6 +89,10 @@ Page({
   },
   // 点击标记喜欢
   goLike: function (event) {
+    var gologin = this._needLogin()
+    if (gologin) {
+      return false
+    }
     var tid = event.currentTarget.dataset.tid
     var idx = event.currentTarget.dataset.idx
     var data = {
@@ -110,6 +122,10 @@ Page({
   // 点击回到首页
   goIndex: function () {
     console.log('点击逛逛', this)
+    var gologin = this._needLogin()
+    if (gologin) {
+      return false
+    }
     if (this.route === 'pages/index/index') {
       return false
     }
@@ -120,6 +136,10 @@ Page({
   // 点击回到发布藏品页面
   goAddIndex: function () {
     console.log('点击发布')
+    var gologin = this._needLogin()
+    if (gologin) {
+      return false
+    }
     if (this.route === 'pages/thing/add') {
       return false
     }
@@ -130,6 +150,10 @@ Page({
   // 点击回到个人中心
   goMyIndex: function () {
     console.log('点击我的')
+    var gologin = this._needLogin()
+    if (gologin) {
+      return false
+    }
     if (this.route === 'pages/user/index') {
       return false
     }
@@ -140,24 +164,47 @@ Page({
   _showNeedInvite: function () {
     wx.showModal({title: '您好',content:'隐藏家是国内首个基于微信社交上收藏专业纯享俱乐部。您可以通过已成为俱乐部会员的好友加入我们。感谢您对隐藏家俱乐部的关注！'})
   },
+  // 判断没有登录的话，需要登录。
+  _needLogin: function () {
+    var uid = wx.getStorageSync('uid')
+    if (uid == '') {
+      console.log('需要登录')
+      this.setData({
+        showGetUserinfo: true
+      })
+      return true
+    }
+    return false
+  },
   onLoad: function() {
     var uid = wx.getStorageSync('uid')
     if (uid == '') {
       console.log('用户未登录')
       getOpenidTologin()
-      this.setData({
-        showGetUserinfo: true
-      })
+      if (app.globalData.needinvite == true) { // 正常流程
+        this.setData({
+          showGetUserinfo: true
+        })
+      } else { // 审核流程
+        // 不需要提示
+      }
     } else {
       this._updateUserinfo().then(res => {
         console.log('更新后的用户信息,', res)
-        // 如果当前用户没有邀请人，但是本次进入是通过邀请进入的
-        if (app.globalData.thisuser.inviteuid == null && app.globalData.inviteinfo && app.globalData.inviteinfo.query.uid) {
-          this._showReg()
-        } else if (app.globalData.thisuser.inviteuid || res.inviteuid){
-          console.log('正常已注册用户')
-        } else {
-          this._showNeedInvite()
+        // 记录当前用户是否已经被邀请。true: 是。 false: 还没被邀请。
+        app.globalData.hasinvite = app.globalData.thisuser.inviteuid > 0
+        if (app.globalData.needinvite == true) { // 正常流程
+          console.log('需要邀请注册后操作')
+          // 如果当前用户没有邀请人，但是本次进入是通过邀请进入的
+          if (app.globalData.thisuser.inviteuid == null && app.globalData.inviteinfo && app.globalData.inviteinfo.query.uid) {
+            this._showReg()
+          } else if (app.globalData.thisuser.inviteuid || res.inviteuid){
+            console.log('正常已注册用户')
+          } else {
+            this._showNeedInvite()
+          }
+        } else { // 如果是审核，不需要邀请。什么都不做。
+          console.log('不需要邀请注册后操作')
         }
       })
     }
@@ -183,7 +230,7 @@ Page({
       }
     })
 
-    this._getIndexData()
+    // this._getIndexData()
     // var feed = {}
     // feed.contact = '18767104983'
     // feed.content = '中美最后一轮磋商，A股大涨...也是醉了'
@@ -247,7 +294,12 @@ Page({
     //   title: '显示注册',
     // })
   },
-
+  closeUserInfo: function () {
+    // 取消显示登录弹框
+    this.setData({
+      showGetUserinfo: false
+    })
+  },
   onGetUserInfo: function(e) {
     console.log('e 用户信息按钮', e)
     if (e.detail.userInfo) {
@@ -409,6 +461,7 @@ Page({
     this._getIndexData()
   },
   goShare: function (event) {
+    console.log('分享')
     var tid = event.currentTarget.dataset.tid
     var idx = event.currentTarget.dataset.idx
     var item = this.data.itemList[idx]

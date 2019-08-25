@@ -9,8 +9,6 @@ App({
     } else {
       console.log('微信环境：', wechatEnv)
       wx.cloud.init({
-        // env: 'wenya-dev-pt0d5',
-        // env: 'wenya-product-2yyx5',
         env: wechatEnv,
         traceUser: true,
       })
@@ -34,8 +32,17 @@ App({
     }
     console.log('app onLaunch', u1, u2)
     // 获取全局通信证书
-    api.getKeys().then(function (d) {
+    api.getKeys().then((d) => {
       console.log('get keys:', d)
+      if (d.code == '200') {
+        if (d.result.needinvite == '0') {
+          this.globalData.needinvite = false
+          // wx.setStorageSync('needinvite', '0')
+        } else {
+          this.globalData.needinvite = true
+          // wx.setStorageSync('needinvite', '1')
+        }
+      }
     })
 
   },

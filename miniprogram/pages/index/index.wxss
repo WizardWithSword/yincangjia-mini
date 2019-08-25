@@ -182,7 +182,7 @@ page {
 .userinfo .content{
   position: absolute;
   width: 600rpx;
-  height: 400rpx;
+  min-height: 400rpx;
   padding: 30rpx;
   top: 50%;
   left: 50%;

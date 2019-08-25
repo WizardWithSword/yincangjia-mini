@@ -100,6 +100,10 @@
         bindgetuserinfo="onGetUserInfo" 
         class="userinfo-btn"
       >点击授权</button>
+      <button  
+        bindtap="closeUserInfo"
+        class="userinfo-btn"
+      >再逛逛</button>
     </view>
 </view>
 

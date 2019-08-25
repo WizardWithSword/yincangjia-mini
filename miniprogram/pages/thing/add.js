@@ -1,5 +1,6 @@
 // pages/thing/add.js
 const api = require('../../utils/api.js')
+const app = getApp()
 Page({
 
   /**
@@ -217,7 +218,7 @@ Page({
         } else {
           wx.showToast({
             icon: 'none',
-            title: '再次保存失败，请重新尝试'
+            title: '再次保存失败，请修改藏品描述后重新尝试保存'
           })
         }
       })
@@ -258,8 +259,27 @@ Page({
   _back: function () {
     wx.navigateBack()
   },
+  // 1、审核时期： 不要邀请也能发布。
+  // 2、正常时期： 必须要邀请才能发布。
+  _needAuth: function () {
+    var u = wx.getStorageSync('thisuser')
+    if (app.globalData.needinvite === true) { // 正常流程。
+      if (u.inviteuid > 0) { // 正常用户。不需要中断
+        return false
+      } else { // 还没有被邀请的用户。需要权限
+        return true
+      }
+    } else { // 审核流程
+      return false
+    }
+  },
   // 将内容设置为上线。
   _online: function () {
+    var auth = this._needAuth()
+    if (auth) {
+      wx.showModal({title: '您好',content:'隐藏家是国内首个基于微信社交上收藏专业纯享俱乐部。您可以通过已成为俱乐部会员的好友加入我们。感谢您对隐藏家俱乐部的关注！'})
+      return false
+    }
     var thing = {
       tid: this.data.tid,
       status: 2
