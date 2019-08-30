@@ -68,18 +68,21 @@ Page({
       case 'setting':
         url += 'user/setting'
         break
+      case 'idcards':
+        url += 'card/index'
+        break
     }
     console.log('前往页面：', url)
-    if (page == "invite" || page == "feedback" || page == "setting" || page == "followers") {
+    // if (page == "invite" || page == "feedback" || page == "setting" || page == "followers") {
       wx.navigateTo({
         url: url
       })
-    } else {
-      wx.showToast({
-        icon: 'none',
-        title: '功能开发中..'
-      })
-    }
+    // } else {
+    //   wx.showToast({
+    //     icon: 'none',
+    //     title: '功能开发中..'
+    //   })
+    // }
 
   },
 

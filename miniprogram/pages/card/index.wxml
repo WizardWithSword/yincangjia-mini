@@ -1,0 +1,247 @@
+<!--pages/card/index.wxml-->
+<view class="container">
+
+  <view class="nav">
+    <view class="nav-item {{navIndex == 1 ? 'choose' : ''}}" bindtap="clickNav" data-nav="1">
+      <text>名片夹</text>
+    </view>
+    <view class="nav-item {{navIndex == 2 ? 'choose' : ''}}" bindtap="clickNav" data-nav="2">
+      <text>名片申请</text>
+    </view>
+  </view>
+  <!-- 名片夹的内容 -->
+  <view class="nav1" wx:if="{{navIndex == 1}}">
+    <view class="one-card">
+      <view class="one-card-top">
+        <view class="one-card-top-left">        
+          <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+          <view class="one-card-txt">
+            <view class="name">用剑的法师</view>
+            <view class="info">申请交换名片</view>
+          </view>
+        </view>
+        <view class="one-card-top-right">
+          <view class="card-show">查看名片</view>
+          <!-- <view class="card-wait">申请已发送</view>
+          <view class="card-reject">申请已拒绝</view>
+          <view class="card-confirm">
+            <view bindtap="acceptCard" data-cid="">通过</view>
+            <view bindtap="rejectCard" data-cid="">拒绝</view>
+          </view> -->
+        </view>
+      </view>
+      <view class="one-card-bottom">
+        3小时前
+      </view>
+      <view class="hr-bottom"></view>
+    </view>
+    <!-- <view class="one-card">
+      <view class="one-card-top">
+        <view class="one-card-top-left">        
+          <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+          <view class="one-card-txt">
+            <view class="name">用剑的法师</view>
+            <view class="info">申请交换名片</view>
+          </view>
+        </view>
+        <view class="one-card-top-right">
+          <view class="card-wait">申请已发送</view>
+        </view>
+      </view>
+      <view class="one-card-bottom">
+        3小时前
+      </view>
+      <view class="hr-bottom"></view>
+    </view>
+    <view class="one-card">
+      <view class="one-card-top">
+        <view class="one-card-top-left">        
+          <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+          <view class="one-card-txt">
+            <view class="name">用剑的法师</view>
+            <view class="info">申请交换名片</view>
+          </view>
+        </view>
+        <view class="one-card-top-right">
+          <view class="card-reject">申请已拒绝</view>
+        </view>
+      </view>
+      <view class="one-card-bottom">
+        3小时前
+      </view>
+      <view class="hr-bottom"></view>
+    </view>
+    <view class="one-card">
+      <view class="one-card-top">
+        <view class="one-card-top-left">        
+          <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+          <view class="one-card-txt">
+            <view class="name">用剑的法师</view>
+            <view class="info">申请交换名片</view>
+          </view>
+        </view>
+        <view class="one-card-top-right">
+          <view class="card-confirm">
+            <view bindtap="acceptCard" data-cid="">通过</view>
+            <view bindtap="rejectCard" data-cid="">拒绝</view>
+          </view>
+        </view>
+      </view>
+      <view class="one-card-bottom">
+        3小时前
+      </view>
+      <view class="hr-bottom"></view>
+    </view> -->
+  </view>
+  <!-- 名片申请的内容 -->
+  <view class="nav2" wx:if="{{navIndex == 2}}">
+    <view class="tab">
+      <view class="btn-tab {{tabIndex == 1 ? 'choose' : ''}}" bindtap="clickTap" data-tab="1">我收到的</view>
+      <view class="btn-tab {{tabIndex == 2 ? 'choose' : ''}}" bindtap="clickTap" data-tab="2">我发出的</view>
+    </view>
+    <view wx:if="{{tabIndex == 1}}">
+      <view class="one-card">
+        <view class="one-card-top">
+          <view class="one-card-top-left">        
+            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+            <view class="one-card-txt">
+              <view class="name">用剑的法师</view>
+              <view class="info">申请交换名片</view>
+            </view>
+          </view>
+          <view class="one-card-top-right">
+            <view class="card-show">查看名片</view>
+            <!-- <view class="card-wait">申请已发送</view>
+            <view class="card-reject">申请已拒绝</view>
+            <view class="card-confirm">
+              <view bindtap="acceptCard" data-cid="">通过</view>
+              <view bindtap="rejectCard" data-cid="">拒绝</view>
+            </view> -->
+          </view>
+        </view>
+        <view class="one-card-bottom">
+          3小时前
+        </view>
+        <view class="hr-bottom"></view>
+      </view>
+      <view class="one-card">
+        <view class="one-card-top">
+          <view class="one-card-top-left">        
+            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+            <view class="one-card-txt">
+              <view class="name">用剑的法师</view>
+              <view class="info">申请交换名片</view>
+            </view>
+          </view>
+          <view class="one-card-top-right">
+            <view class="card-wait">申请已发送</view>
+          </view>
+        </view>
+        <view class="one-card-bottom">
+          3小时前
+        </view>
+        <view class="hr-bottom"></view>
+      </view>
+      <view class="one-card">
+        <view class="one-card-top">
+          <view class="one-card-top-left">        
+            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+            <view class="one-card-txt">
+              <view class="name">用剑的法师</view>
+              <view class="info">申请交换名片</view>
+            </view>
+          </view>
+          <view class="one-card-top-right">
+            <view class="card-reject">申请已拒绝</view>
+          </view>
+        </view>
+        <view class="one-card-bottom">
+          3小时前
+        </view>
+        <view class="hr-bottom"></view>
+      </view>
+      <view class="one-card">
+        <view class="one-card-top">
+          <view class="one-card-top-left">        
+            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+            <view class="one-card-txt">
+              <view class="name">用剑的法师</view>
+              <view class="info">申请交换名片</view>
+            </view>
+          </view>
+          <view class="one-card-top-right">
+            <view class="card-confirm">
+              <view bindtap="acceptCard" data-cid="">通过</view>
+              <view bindtap="rejectCard" data-cid="">拒绝</view>
+            </view>
+          </view>
+        </view>
+        <view class="one-card-bottom">
+          3小时前
+        </view>
+        <view class="hr-bottom"></view>
+      </view>
+    </view>
+    <view wx:if="{{tabIndex == 2}}">
+      <view class="one-card">
+        <view class="one-card-top">
+          <view class="one-card-top-left">        
+            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+            <view class="one-card-txt">
+              <view class="name">用剑的法师</view>
+              <view class="info">申请交换名片</view>
+            </view>
+          </view>
+          <view class="one-card-top-right">
+            <view class="card-wait">申请已发送</view>
+          </view>
+        </view>
+        <view class="one-card-bottom">
+          3小时前
+        </view>
+        <view class="hr-bottom"></view>
+      </view>
+      <view class="one-card">
+        <view class="one-card-top">
+          <view class="one-card-top-left">        
+            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+            <view class="one-card-txt">
+              <view class="name">用剑的法师</view>
+              <view class="info">申请交换名片</view>
+            </view>
+          </view>
+          <view class="one-card-top-right">
+            <view class="card-reject">申请已拒绝</view>
+          </view>
+        </view>
+        <view class="one-card-bottom">
+          3小时前
+        </view>
+        <view class="hr-bottom"></view>
+      </view>
+      <view class="one-card">
+        <view class="one-card-top">
+          <view class="one-card-top-left">        
+            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+            <view class="one-card-txt">
+              <view class="name">用剑的法师</view>
+              <view class="info">申请交换名片</view>
+            </view>
+          </view>
+          <view class="one-card-top-right">
+            <view class="card-confirm">
+              <view bindtap="acceptCard" data-cid="">通过</view>
+              <view bindtap="rejectCard" data-cid="">拒绝</view>
+            </view>
+          </view>
+        </view>
+        <view class="one-card-bottom">
+          3小时前
+        </view>
+        <view class="hr-bottom"></view>
+      </view>
+    </view>
+  </view>
+
+</view>
+

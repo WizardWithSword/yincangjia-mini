@@ -7,10 +7,11 @@
     "pages/user/index",
     "pages/thing/add",
     "pages/thing/labelset/index",
-    "pages/user/setting",
     "pages/user/invite",
     "pages/user/follow",
     "pages/user/detail",
+    "pages/user/setting",
+    "pages/card/index",
     "pages/feedback/add",
     "pages/thing/edit"
   ],

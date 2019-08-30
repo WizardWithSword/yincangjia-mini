@@ -1,7 +1,24 @@
 /* pages/user/setting.wxss */
 page{
   font-size: 26rpx;
+  background-color: white;
+  color: #121212;
 }
+
+.txt-wrap{
+  padding: 52rpx 28rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #121212;
+  letter-spacing: 0;
+  text-align: justify;
+}
+.padding-split{
+  width: 100%;
+  height: 12rpx;
+  background-color: #f4f4f4;
+}
+
 .h1{
   font-weight: 600rpx;
   font-size: 30rpx;
@@ -9,7 +26,8 @@ page{
   line-height: 50rpx;
   margin-bottom: 50rpx;
   margin-top: 30rpx;
-  border-bottom: 5rpx solid black;
+  border-left: 8rpx solid #D54840;
+  padding-left: 16rpx;
 }
 .p{
   line-height: 32rpx;
@@ -18,30 +36,37 @@ page{
 .oneline{
   display: flex;
   align-items: center;
-  min-height: 120rpx;
+  justify-content: space-between;
+  min-height: 60rpx;
   margin-top: 20rpx;
   width: 700rpx;
   margin: 0 auto;
+  margin-bottom: 60rpx;
+  font-weight: 700;
 }
 .text{
   width: 260rpx;
 }
+.oneline .tip{
+  color: #C6C6C6;
+}
+
 .input{
   width:400rpx;
   border:1rpx solid #ccc;
   padding:5rpx 15rpx;
   border-radius:5rpx;
   box-sizing: border-box;
-  height: 80rpx;
-  line-height: 80rpx;
+  height: 60rpx;
+  line-height: 60rpx;
 }
 .picker{
-  line-height: 70rpx;
+  line-height: 60rpx;
 }
 .biginput{
-  height:70rpx;
-  line-height:70rpx;
-  width: 500rpx;
+  height:60rpx;
+  line-height:60rpx;
+  width: 700rpx;
 }
 .smalltip{
   font-size: 20rpx;
@@ -49,9 +74,20 @@ page{
   margin-left: 25rpx;
 }
 .save{
-  width: 300rpx;
-  border: 1rpx solid #ccc;
+  width: 530rpx;
+  /*border: 1rpx solid #ccc;*/
   margin-top: 50rpx;
+  background-image: linear-gradient(151deg, #ED7E74 0%, #D54840 100%);
+  border-radius: 36rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  text-align: justify;
+  line-height: 72rpx;
+  height: 72rpx;
+  text-align: center;
+  border: none;
 }
 .mask{
   position: fixed;

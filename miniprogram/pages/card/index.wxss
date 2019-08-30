@@ -1,0 +1,120 @@
+/* pages/card/index.wxss */
+page{
+  background-color: white;
+  letter-spacing: 0;
+  font-family: PingFangSC-Regular;
+}
+
+.nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 92rpx;
+  color: #121212;
+  border-bottom: 1px solid #f4f4f4;
+}
+.nav-item{
+  height: 92rpx;
+  line-height: 92rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.nav .choose{
+  border-bottom: 4rpx solid #D54840;
+}
+
+.tab{
+  padding: 22rpx 60rpx;
+  border-bottom: 1px solid #f4f4f4;
+}
+.btn-tab{
+  display: inline-block;
+  padding: 0;
+  width: 160rpx;
+  height: 56rpx;
+  background-color: #f4f4f4;
+  border-radius: 28rpx;
+  text-align: center;
+  line-height: 56rpx;
+  color: #595C69;
+  border: none;
+  margin-right: 28rpx;
+}
+.btn-tab.choose{
+  background-color: #FFE9E6;
+  color: #D54840;
+}
+
+
+.one-card{
+  padding: 28rpx;
+  padding-bottom: 0;
+}
+.one-card-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+.one-card-top-left{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header{
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 36rpx;
+  object-fit: cover;
+  margin-right: 16rpx;
+}
+.name{
+  font-family: PingFangSC-Medium;
+  font-size: 32rpx;
+  color: #121212;
+  font-weight: 600;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.info{
+  font-size: 24rpx;
+  color: #595C69;
+  height: 34rpx;
+  line-height: 34rpx;
+}
+.one-card-top-right{
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.card-show{
+  color: #32A130;
+}
+.card-wait{
+  color: #595C69;
+}
+.card-reject,
+.card-confirm{
+  color: #E49800;
+}
+.card-confirm{
+  display: flex;
+  align-items: center;
+}
+.card-confirm>view{
+  margin-left: 20rpx;
+}
+.one-card-bottom{
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #595C69;
+}
+.hr-bottom{
+  width: 650rpx;
+  height: 2px;
+  background-color: #f4f4f4;
+  margin-left: 100rpx;
+  margin-top: 33rpx;
+}
