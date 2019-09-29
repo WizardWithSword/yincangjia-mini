@@ -35,7 +35,7 @@ Component({
     },
     // 点击回到个人中心
     goMyIndex: function () {
-      console.log('点击我的')
+      console.log('点击我的', this.route)
       if (this.route === 'pages/user/index') {
         return false
       }

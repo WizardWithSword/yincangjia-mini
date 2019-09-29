@@ -1,53 +1,53 @@
 <!--pages/user/setting.wxml-->
 <view class="container">
 
-<view class="txt-wrap">
-  <view class="li">· 欢迎加入隐藏家俱乐部</view>
-  <view class="li">· 隐藏家是专业熟人社交收藏俱乐部，所以我们需要您进一步完善您的信息，以便与其他藏家建立更具信任感的交流。</view>
-</view>
-<view class="padding-split"></view>
-<view class="form">
-    <view class="h1"><text>个人信息</text></view>
-    <view class="oneline">
-      <text class="text">行业经验<text class="tip">(必填)</text></text>
-      <picker class="input" mode="selector" bindchange="selectCHange" value="{{yearIndex}}" range="{{yearArray}}">
-        <view class="picker">{{yearArray[yearIndex]}}年经验</view>
-      </picker>
-    </view>
-    <view class="oneline">
-      <text class="text">个人签名<text class="tip">(非必填)</text></text>
-      <input class="input" bindinput="bindInputSign" maxlength="20" placeholder="认证头衔等，限20字" value="{{personSign}}" />
-    </view>
-    <view class="h1"><text>店铺信息</text></view>
+  <view class="txt-wrap">
+    <view class="li">· 欢迎加入隐藏家俱乐部</view>
+    <view class="li">· 隐藏家是专业熟人社交收藏俱乐部，所以我们需要您进一步完善您的信息，以便与其他藏家建立更具信任感的交流。</view>
+  </view>
+  <view class="padding-split"></view>
+  <view class="form">
+      <view class="h1"><text>个人信息</text></view>
+      <view class="oneline">
+        <text class="text">行业经验<text class="tip">(必填)</text></text>
+        <picker class="input" mode="selector" bindchange="selectCHange" value="{{yearIndex}}" range="{{yearArray}}">
+          <view class="picker">{{yearArray[yearIndex]}}年经验</view>
+        </picker>
+      </view>
+      <view class="oneline">
+        <text class="text">个人签名<text class="tip">(非必填)</text></text>
+        <input class="input" bindinput="bindInputSign" maxlength="20" placeholder="认证头衔等，限20字" value="{{personSign}}" />
+      </view>
+      <view class="h1"><text>店铺信息</text></view>
 
-    <view class="oneline">
-      <text class="text">实体店铺<text class="tip">(必填)</text></text>
-      <picker class="input" mode="selector" bindchange="selectCHangeHasShop" value="{{hasShopIndex}}" range="{{hasShopArray}}">
-        <view class="picker">{{hasShopArray[hasShopIndex]}}</view>
-      </picker>
-    </view>
-    <view class="oneline">
-      <text class="text">实体店铺名称</text>
-      <input class="input" bindinput="bindInputShopname" maxlength="30" placeholder="" value="{{shopName}}" />
-    </view>
-    <view class="oneline">
-      <text class="text">实体店铺地址</text>
-      <picker class="input" mode="region" bindchange="selectChangeShopCity" value="{{shopcityArr}}" custom-item="{{customItem}}">
-        <view class="picker">
-        {{shopcityArr[0]}}，{{shopcityArr[1]}}，{{shopcityArr[2]}}
-        </view>
-      </picker>
-    </view>
-    <view class="oneline">
-      <input class="input biginput" bindinput="bindInputShopaddr" maxlength="125" placeholder="店铺街道等详情信息" value="{{shopAddr}}" />
-    </view>
-    <view>
-      <text class="smalltip">*以上信息均公开展示，后续您可在我的页面更新</text>
-    </view>
-    <view>
-      <button bindtap="saveUser" class="save">保存</button>
-    </view>  
-</view>
+      <view class="oneline">
+        <text class="text">实体店铺<text class="tip">(必填)</text></text>
+        <picker class="input" mode="selector" bindchange="selectCHangeHasShop" value="{{hasShopIndex}}" range="{{hasShopArray}}">
+          <view class="picker">{{hasShopArray[hasShopIndex]}}</view>
+        </picker>
+      </view>
+      <view class="oneline">
+        <text class="text">实体店铺名称</text>
+        <input class="input" bindinput="bindInputShopname" maxlength="30" placeholder="" value="{{shopName}}" />
+      </view>
+      <view class="oneline">
+        <text class="text">实体店铺地址</text>
+        <picker class="input" mode="region" bindchange="selectChangeShopCity" value="{{shopcityArr}}" custom-item="{{customItem}}">
+          <view class="picker">
+          {{shopcityArr[0]}}，{{shopcityArr[1]}}，{{shopcityArr[2]}}
+          </view>
+        </picker>
+      </view>
+      <view class="oneline">
+        <input class="input biginput" bindinput="bindInputShopaddr" maxlength="125" placeholder="店铺街道等详情信息" value="{{shopAddr}}" />
+      </view>
+      <view>
+        <text class="smalltip">*以上信息均公开展示，后续您可在我的页面更新</text>
+      </view>
+      <view>
+        <button bindtap="saveUser" class="save">保存</button>
+      </view>  
+  </view>
 
 
 </view>

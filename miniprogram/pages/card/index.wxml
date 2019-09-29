@@ -1,4 +1,5 @@
 <!--pages/card/index.wxml-->
+<wxs src="./../../wxs/utils.wxs" module="tools" />
 <view class="container">
 
   <view class="nav">
@@ -11,87 +12,23 @@
   </view>
   <!-- 名片夹的内容 -->
   <view class="nav1" wx:if="{{navIndex == 1}}">
-    <view class="one-card">
+    <view class="one-card" wx:for="{{nav1List}}" wx:key="index">
       <view class="one-card-top">
-        <view class="one-card-top-left">        
-          <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+        <view class="one-card-top-left">
+          <image class="header" src="{{item.wechatheader}}" alt="头像"></image>
           <view class="one-card-txt">
-            <view class="name">用剑的法师</view>
-            <view class="info">申请交换名片</view>
+            <view class="name">{{item.wechatnick}}</view>
           </view>
         </view>
-        <view class="one-card-top-right">
+        <view class="one-card-top-right" bindtap="showThisCard" data-uid="{{item.applyuid}}" data-idx="{{index}}">
           <view class="card-show">查看名片</view>
-          <!-- <view class="card-wait">申请已发送</view>
-          <view class="card-reject">申请已拒绝</view>
-          <view class="card-confirm">
-            <view bindtap="acceptCard" data-cid="">通过</view>
-            <view bindtap="rejectCard" data-cid="">拒绝</view>
-          </view> -->
         </view>
       </view>
       <view class="one-card-bottom">
-        3小时前
+        {{tools.formatTime(item.createtime)}}
       </view>
       <view class="hr-bottom"></view>
     </view>
-    <!-- <view class="one-card">
-      <view class="one-card-top">
-        <view class="one-card-top-left">        
-          <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
-          <view class="one-card-txt">
-            <view class="name">用剑的法师</view>
-            <view class="info">申请交换名片</view>
-          </view>
-        </view>
-        <view class="one-card-top-right">
-          <view class="card-wait">申请已发送</view>
-        </view>
-      </view>
-      <view class="one-card-bottom">
-        3小时前
-      </view>
-      <view class="hr-bottom"></view>
-    </view>
-    <view class="one-card">
-      <view class="one-card-top">
-        <view class="one-card-top-left">        
-          <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
-          <view class="one-card-txt">
-            <view class="name">用剑的法师</view>
-            <view class="info">申请交换名片</view>
-          </view>
-        </view>
-        <view class="one-card-top-right">
-          <view class="card-reject">申请已拒绝</view>
-        </view>
-      </view>
-      <view class="one-card-bottom">
-        3小时前
-      </view>
-      <view class="hr-bottom"></view>
-    </view>
-    <view class="one-card">
-      <view class="one-card-top">
-        <view class="one-card-top-left">        
-          <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
-          <view class="one-card-txt">
-            <view class="name">用剑的法师</view>
-            <view class="info">申请交换名片</view>
-          </view>
-        </view>
-        <view class="one-card-top-right">
-          <view class="card-confirm">
-            <view bindtap="acceptCard" data-cid="">通过</view>
-            <view bindtap="rejectCard" data-cid="">拒绝</view>
-          </view>
-        </view>
-      </view>
-      <view class="one-card-bottom">
-        3小时前
-      </view>
-      <view class="hr-bottom"></view>
-    </view> -->
   </view>
   <!-- 名片申请的内容 -->
   <view class="nav2" wx:if="{{navIndex == 2}}">
@@ -100,148 +37,78 @@
       <view class="btn-tab {{tabIndex == 2 ? 'choose' : ''}}" bindtap="clickTap" data-tab="2">我发出的</view>
     </view>
     <view wx:if="{{tabIndex == 1}}">
-      <view class="one-card">
+      <view class="one-card" wx:for="{{nav2Tab1List}}" wx:key="index">
         <view class="one-card-top">
           <view class="one-card-top-left">        
-            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+            <image class="header" src="{{item.wechatheader}}" alt="头像"></image>
             <view class="one-card-txt">
-              <view class="name">用剑的法师</view>
-              <view class="info">申请交换名片</view>
+              <view class="name">{{item.wechatnick}}</view>
+              <view class="info" wx:if="{{item.replystatus == 0}}">申请与您交换名片</view>
+              <view class="info" wx:if="{{item.replystatus == 2}}">您拒绝了与他交换名片</view>
+              <view class="info" wx:if="{{item.replystatus == 1}}">您通过了与他交换名片</view>
             </view>
           </view>
           <view class="one-card-top-right">
-            <view class="card-show">查看名片</view>
-            <!-- <view class="card-wait">申请已发送</view>
-            <view class="card-reject">申请已拒绝</view>
-            <view class="card-confirm">
-              <view bindtap="acceptCard" data-cid="">通过</view>
-              <view bindtap="rejectCard" data-cid="">拒绝</view>
-            </view> -->
-          </view>
-        </view>
-        <view class="one-card-bottom">
-          3小时前
-        </view>
-        <view class="hr-bottom"></view>
-      </view>
-      <view class="one-card">
-        <view class="one-card-top">
-          <view class="one-card-top-left">        
-            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
-            <view class="one-card-txt">
-              <view class="name">用剑的法师</view>
-              <view class="info">申请交换名片</view>
-            </view>
-          </view>
-          <view class="one-card-top-right">
-            <view class="card-wait">申请已发送</view>
-          </view>
-        </view>
-        <view class="one-card-bottom">
-          3小时前
-        </view>
-        <view class="hr-bottom"></view>
-      </view>
-      <view class="one-card">
-        <view class="one-card-top">
-          <view class="one-card-top-left">        
-            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
-            <view class="one-card-txt">
-              <view class="name">用剑的法师</view>
-              <view class="info">申请交换名片</view>
-            </view>
-          </view>
-          <view class="one-card-top-right">
-            <view class="card-reject">申请已拒绝</view>
-          </view>
-        </view>
-        <view class="one-card-bottom">
-          3小时前
-        </view>
-        <view class="hr-bottom"></view>
-      </view>
-      <view class="one-card">
-        <view class="one-card-top">
-          <view class="one-card-top-left">        
-            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
-            <view class="one-card-txt">
-              <view class="name">用剑的法师</view>
-              <view class="info">申请交换名片</view>
-            </view>
-          </view>
-          <view class="one-card-top-right">
-            <view class="card-confirm">
-              <view bindtap="acceptCard" data-cid="">通过</view>
-              <view bindtap="rejectCard" data-cid="">拒绝</view>
+            <view class="card-show" wx:if="{{item.replystatus == 1}}">查看名片</view>
+            <view class="card-reject" wx:if="{{item.replystatus == 2}}">申请已拒绝</view>
+            <view class="card-confirm" wx:if="{{item.replystatus == 0}}">
+              <view bindtap="acceptCard" data-applyuid="{{item.applyuid}}" data-replyuid="{{item.replyuid}}" data-replystatus="1" data-idx="{{index}}">通过</view>
+              <view bindtap="acceptCard" data-applyuid="{{item.applyuid}}" data-replyuid="{{item.replyuid}}" data-replystatus="2" data-idx="{{index}}">拒绝</view>
             </view>
           </view>
         </view>
         <view class="one-card-bottom">
-          3小时前
+          <text wx:if="{{item.updatetime}}">{{tools.formatTime(item.updatetime)}}</text>
+          <text wx:else>{{tools.formatTime(item.createtime)}}</text>
         </view>
         <view class="hr-bottom"></view>
       </view>
     </view>
     <view wx:if="{{tabIndex == 2}}">
-      <view class="one-card">
+      <view class="one-card" wx:for="{{nav2Tab2List}}" wx:key="index">
         <view class="one-card-top">
           <view class="one-card-top-left">        
-            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
+            <image class="header" src="{{item.wechatheader}}" alt="头像"></image>
             <view class="one-card-txt">
-              <view class="name">用剑的法师</view>
-              <view class="info">申请交换名片</view>
+              <view class="name">{{item.wechatnick}}</view>
+              <view class="info" wx:if="{{item.replystatus == 0}}">向他发出了交换名片申请</view>
+              <view class="info" wx:if="{{item.replystatus == 1}}">通过了您的交换名片申请</view>
+              <view class="info" wx:if="{{item.replystatus == 2}}">拒绝了您的交换名片申请</view>
             </view>
           </view>
           <view class="one-card-top-right">
-            <view class="card-wait">申请已发送</view>
+            <view class="card-show" wx:if="{{item.replystatus == 1}}">查看名片</view>
+            <view class="card-wait" wx:if="{{item.replystatus == 0}}">申请已发送</view>
+            <view class="card-reject" wx:if="{{item.replystatus == 2}}">申请已拒绝</view>
           </view>
         </view>
         <view class="one-card-bottom">
-          3小时前
-        </view>
-        <view class="hr-bottom"></view>
-      </view>
-      <view class="one-card">
-        <view class="one-card-top">
-          <view class="one-card-top-left">        
-            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
-            <view class="one-card-txt">
-              <view class="name">用剑的法师</view>
-              <view class="info">申请交换名片</view>
-            </view>
-          </view>
-          <view class="one-card-top-right">
-            <view class="card-reject">申请已拒绝</view>
-          </view>
-        </view>
-        <view class="one-card-bottom">
-          3小时前
-        </view>
-        <view class="hr-bottom"></view>
-      </view>
-      <view class="one-card">
-        <view class="one-card-top">
-          <view class="one-card-top-left">        
-            <image class="header" src="http://images.kaishiba.com/482CDA8241C2937EE050190AFD01506F20190822165648" alt="头像"></image>
-            <view class="one-card-txt">
-              <view class="name">用剑的法师</view>
-              <view class="info">申请交换名片</view>
-            </view>
-          </view>
-          <view class="one-card-top-right">
-            <view class="card-confirm">
-              <view bindtap="acceptCard" data-cid="">通过</view>
-              <view bindtap="rejectCard" data-cid="">拒绝</view>
-            </view>
-          </view>
-        </view>
-        <view class="one-card-bottom">
-          3小时前
+          {{tools.formatTime(item.createtime)}}
         </view>
         <view class="hr-bottom"></view>
       </view>
     </view>
   </view>
-
+  <view class="card-detail" wx:if="{{showOnecard == 'true'}}">
+    <view class="mask"></view>
+    <view class="content">
+      <view class="line1">
+        <image bindtap="closeThisCard" class="icon-close" src="../../images/card/icon-close.png"></image>
+      </view>
+      <view class="line2">
+        <view class="hr-line"></view>
+        <image class="img-header" src="{{thisCard.wechatheader}}"></image>
+        <text>{{thisCard.wechatnick}}</text>
+      </view>
+      <view class="line3">
+        <image class="icon-phone" src="../../images/card/icon-phone.png"></image>
+        <text>{{thisCard.phone || '12233332222'}}</text>
+      </view>
+      <view class="line4">
+        <image class="icon-shop" src="../../images/card/icon-shop.png"></image>
+        <text>实体店铺 - {{thisCard.shopname || '暂无'}}</text>
+      </view>
+    </view>
+  </view>
 </view>
 

@@ -118,3 +118,72 @@ page{
   margin-left: 100rpx;
   margin-top: 33rpx;
 }
+
+.card-detail{
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0,0,0, 0.5);
+}
+.card-detail .content{
+  width: 650rpx;
+  height: 360rpx;
+  position: relative;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+  background-color: white;
+}
+.line1{
+  text-align: right;
+  padding-right: 34rpx;
+  padding-top: 25rpx;
+}
+.line3,
+.line4,
+.line2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.line2{
+  position: relative;
+  font-size: 28rpx;
+  color: #121212;
+  font-weight: 600;  
+}
+.line3{
+  margin-top: 72rpx;
+  font-size: 24rpx;
+  color: #595C69;
+}
+.line4{
+  margin-top: 25rpx;
+  color: #D54840;
+  font-size: 24rpx;
+}
+.icon-phone,
+.icon-shop,
+.icon-close{
+  display: inline-block;
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 15rpx;
+}
+.img-header{
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 36rpx;
+  margin-right: 16rpx;
+}
+.hr-line{
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  border-bottom: 1px solid #f4f4f4;
+  z-index: -1;
+}

@@ -1,10 +1,16 @@
-// pages/deployFunctions/deployFunctions.js
+// pages/card/index.js
+const api = require('../../utils/api.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    thisCard: {}, // 显示的名片
+    showOnecard: 'false', // 显示单个名片
+    nav1List: [],
+    nav2Tab1List: [],
+    nav2Tab2List: [],
     navIndex: 1,
     tabIndex: 1
   },
@@ -13,10 +19,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showToast({
-      title: '接口开发中',
-      icon: 'none'
-    })
+    this._getAllCards()
+    this._getCardsToMe()
+    this._getCardsFromMe()
   },
   clickNav(event) {
     this.setData({
@@ -30,9 +35,111 @@ Page({
     })
   },
   // 通过名片申请
-  acceptCard () {},
+  acceptCard (event) {
+    var applyuid = event.currentTarget.dataset.applyuid
+    var replyuid = event.currentTarget.dataset.replyuid
+    var replystatus = event.currentTarget.dataset.replystatus
+    var obj = {
+      applyuid: applyuid,
+      replyuid: replyuid,
+      replystatus: replystatus
+    }
+    var idx = event.currentTarget.dataset.idx
+    var title = '确认通过申请？'
+    if (replystatus == 2) {
+      title = '确认拒绝申请？'
+    }
+    wx.showModal({
+      title: title,
+      success: resmodal => {
+        if (resmodal.confirm) {
+          api.post('/api/card/reply', obj).then(res => {
+            if (res.code === "200") {
+              wx.showToast({
+                title: '操作成功',
+                icon: 'none'
+              })
+              this.setData({
+                ['nav2Tab1List[' + idx +'].replystatus']: replystatus
+              })
+            } else {
+              wx.showToast({
+                title: '操作失败',
+                icon: 'none'
+              })
+            }
+          })
+        } else {}
+      }
+    })
+  },
   // 拒绝名片申请
-  rejectCard () {},
+  rejectCard (event) {
+    var applyuid = event.currentTarget.dataset.applyuid
+    var replyuid = event.currentTarget.dataset.replyuid
+    var replystatus = event.currentTarget.dataset.replystatus
+  },
+  // 获取我所有能看的名片
+  _getAllCards () {
+    api.get('/api/card/list/done').then(res => {
+      if (res.code == '200') {
+        this.setData({
+          nav1List: res.result
+        })
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  showThisCard (event) {
+    console.log(event)
+    var idx = event.currentTarget.dataset.idx
+    console.log('idx', idx)
+    var item = this.data.nav1List[idx]
+    console.log('显示的当前用户名片', item.wechatnnick, item)
+    this.setData({
+      showOnecard: 'true',
+      thisCard: item
+    })
+  },
+  closeThisCard () {
+    this.setData({
+      showOnecard: 'false'
+    })
+  },
+  // 获取所有向我申请的名片请求
+  _getCardsToMe () {
+    api.get('/api/card/list/mine').then(res => {
+      if (res.code == '200') {
+        this.setData({
+          nav2Tab1List: res.result
+        })
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  // 获取所有我发出的申请
+  _getCardsFromMe () {
+    api.get('/api/card/list/other').then(res => {
+      if (res.code == '200') {
+        this.setData({
+          nav2Tab2List: res.result
+        })
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: 'none'
+        })
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -45,7 +152,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**

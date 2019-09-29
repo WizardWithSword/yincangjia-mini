@@ -126,7 +126,8 @@ Page({
     app.globalData.API.get('/api/thing/mylikes').then(res => {
       console.log('我喜欢的藏品:', res)
       if (res.code == '200') {
-        var things = this._dealMyRes(res.result)
+        var things = this._dealMyRes(res.result, 'noheader')
+        things = this._dealMyRes(res.result)
         this.setData({
           itemList3: things
         })
@@ -138,13 +139,15 @@ Page({
       }
     })
   },
-  _dealMyRes: function (arr) {
+  _dealMyRes: function (arr, noheader) {
     let tmparr = []
     for(var i = 0; i < arr.length; i++) {
       arr[i].showAll = false
       arr[i].imagesList = arr[i].images.split(';')
-      arr[i].wechatnick = app.globalData.wxuser.nickName
-      arr[i].wechatheader = app.globalData.wxuser.avatarUrl
+      if (noheader !== 'noheader') {
+        arr[i].wechatnick = app.globalData.wxuser.nickName
+        arr[i].wechatheader = app.globalData.wxuser.avatarUrl
+      }
       tmparr.push(arr[i])
     }
     return tmparr

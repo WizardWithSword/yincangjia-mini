@@ -17,12 +17,12 @@
       </view>
     </view>
     <view class="title" bindtap="goDetail" data-tid="{{item.tid}}">{{item.name}}</view>
-    <view class="content" wx:if="{{item.content.length > 54 && item.showAll == false}}">{{tools.substr(item.content, 0, 48) + '...'}} <view class="span" catchtap="showAll" data-idx="{{index}}" data-tid="{{item.tid}}">全文</view></view>
-    <view class="content" wx:else>{{item.content}}</view>
+    <view class="content" bindtap="goDetail" data-tid="{{item.tid}}" wx:if="{{item.content.length > 54 && item.showAll == false}}">{{tools.substr(item.content, 0, 48) + '...'}} <view class="span" catchtap="showAll" data-idx="{{index}}" data-tid="{{item.tid}}">全文</view></view>
+    <view class="content" bindtap="goDetail" data-tid="{{item.tid}}" wx:else>{{item.content}}</view>
     <view class="images-more" bindtap="goDetail" data-tid="{{item.tid}}">
       <image mode="aspectFill" wx:for="{{item.imagesList}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="imgIndex" class="" src="{{imgItem}}"></image>
     </view>
-    <view class="function">
+    <view class="function" bindtap="goDetail" data-tid="{{item.tid}}">
       <view class="praise" data-tid="{{item.tid}}"  data-idx="{{index}}">
          <!-- <span>点赞数量：</span>  -->
          <image class="icon" src="../../images/icon-parise.png"></image>
