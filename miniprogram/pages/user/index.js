@@ -152,7 +152,11 @@ Page({
     }
     return tmparr
   },
-
+  goMuseum () {
+    wx.navigateTo({
+      url: '/pages/museum/index'
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

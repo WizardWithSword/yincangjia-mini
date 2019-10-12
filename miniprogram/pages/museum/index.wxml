@@ -1,0 +1,46 @@
+<!--miniprogram/pages/museum/index.wxml-->
+<view class="top">
+  <view class="top-bg">
+    <view class="top-bg-mask"></view>
+    <image class="top-bg-img" src="../../images/index_banner.png"></image>
+  </view>
+  <view class="top-line1">
+    <view class="top-line1-left">
+      <image mode="aspectFill" class="header" src="{{info.wechatheader}}"></image>
+    </view>
+    <view class="top-line1-right">
+      <view class="nick">{{info.wechatnick}}</view>
+      <view class="desc" wx:if="{{info.experenceyear}}"><text>入行{{info.experenceyear}}年</text></view>
+    </view>
+    <!-- <view class="btn-follow">关注</view> -->
+    <view bindtap="goApplyCard" wx:if="{{whosMuseum == 'other' && cardStatus == -1}}" class="btn-follow">请求名片</view>
+    <view wx:if="{{whosMuseum == 'other' && cardStatus == 0}}" class="btn-follow">名片已请求，等待应答</view>
+    <view bindtap="goViewCard" wx:if="{{whosMuseum == 'other' && cardStatus == 1}}" class="btn-follow">查看名片</view>
+  </view>
+  <view class="top-line2">
+    <view class="top-line2-shop" wx:if="{{info.hasshop == 1}}">
+      <image class="icon-shop" src="../../images/card/icon-shop-op0.png" role="img"></image>
+      <text>实体店铺：{{info.shopcity}} - {{info.shopname || ''}}</text>
+    </view>
+  </view>
+</view>
+<view class="content">
+  <view class="content-top">
+    <text class="black">藏品类目{{thingCate.length}}种</text>
+    <text class="red">共{{thinglist.length}}件藏品</text>
+  </view>
+  <view class="list-wrap">
+    <view class="one-cate" wx:for="{{thingCate}}" wx:key="index" bindtap="goPreview" data-cate="{{item.category}}">
+      <view class="one-cate-top">
+        <image mode="aspectFill" class="img" src="{{item.img}}"></image>
+        <view class="mask"></view>
+        <text class="txt">{{item.count}}件</text>
+      </view>
+      <view class="one-cate-bottom">{{item.name}}</view>
+    </view>
+  </view>
+</view>
+<view class="btn-share-wrap" wx:if="{{whosMuseum == 'mine'}}">
+  <button open-type="share" bindtap="goShare" class="btn-share">立即分享</button>
+</view>
+

@@ -1,0 +1,24 @@
+<!--miniprogram/pages/museum/preview.wxml-->
+<scroll-view class="nav-scroll-wrap" enable-flex="true" scroll-x="true" style="width: 100%" bindscroll="scroll" >
+  <view bindtap="clickNav" class="one-nav {{ navNow == 'all' ? 'choose' : ''}}" data-cate="all">全部{{thinglist.length}}</view>
+  <view wx:for="{{thingCate}}" wx:key="item.id" bindtap="clickNav" class="one-nav {{ navNow == item.id ? 'choose' : ''}}" data-cate="{{item.id}}">{{item.name}} {{item.count}}</view>
+</scroll-view>
+<view wx:if="{{navNow == 'all'}}">
+  <view class="one-cate-wrap" wx:for="{{thingCate}}" wx:key="item.id">
+    <view class="title">
+    <image class="icon-title" src="../../images/icon-title.png"></image>
+    {{item.name}}
+    <image class="icon-title icon-title-right" src="../../images/icon-title.png"></image>
+    </view>
+    <view class="one-thing" wx:for="{{item.things}}" wx:for-index="idx" wx:for-item="thingItem" wx:key="thingItem.tid" data-tid="{{thingItem.tid}}" bindtap="goDetail">
+      <image class="img" src="{{thingItem.imagesList[0]}}"></image>
+      <view class="name">{{thingItem.name}}</view>
+    </view>
+  </view>
+</view>
+<view class="other-wrap" wx:if="{{navNow != 'all'}}">
+  <view class="one-thing" wx:for="{{thisCateThingList}}" wx:key="item.tid" data-tid="{{item.tid}}" bindtap="goDetail">
+    <image class="img" src="{{item.imagesList[0]}}"></image>
+    <view class="name">{{item.name}}</view>
+  </view>
+</view>

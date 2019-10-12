@@ -25,8 +25,11 @@ Page({
   // 前往用户首页
   goUserDetail: function (event) {
     var uid = event.currentTarget.dataset.uid
+    // wx.navigateTo({
+    //   url: '/pages/user/detail?uid=' + uid
+    // })
     wx.navigateTo({
-      url: '/pages/user/detail?uid=' + uid
+      url: '/pages/museum/index?uid=' + uid
     })
   },
   inputcomment: function (event) {

@@ -1,0 +1,72 @@
+/* miniprogram/pages/museum/preview.wxss */
+page{
+  background-color: #fff;
+}
+.nav-scroll-wrap,
+.nav-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 102rpx;
+  width: 100%;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px 0 rgba(244,244,244,0.60);
+}
+.one-nav{
+  display: inline-block;
+  padding: 0 25rpx;
+  height: 100rpx;
+  margin-right: 40rpx;
+  margin-left: 40rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 32rpx;
+}
+.choose{
+  border-bottom: 4rpx solid #D54840;
+  color: #D54840;
+}
+
+.other-wrap{
+  padding-top: 44rpx;
+}
+.icon-title{
+  display: inline-block;
+  width: 103rpx;
+  height: 30rpx;
+  line-height: 44rpx;
+  vertical-align: middle;
+}
+.icon-title-right{
+  transform: rotateY(180deg);
+}
+.title{
+  text-align: center;
+  margin: 40rpx auto;
+  font-size: 32rpx;
+  line-height: 44rpx;
+  color: #121212;
+}
+.one-thing{
+  position: relative;
+}
+.img{
+  width: 674rpx;
+  height: 376rpx;
+  object-fit: cover;
+  margin: 0 auto;
+  margin-bottom: 60rpx;
+}
+.name{
+  position: absolute;
+  bottom: -10rpx;
+  background: rgba(249,206,160,0.8);
+  color: white;
+  font-size: 32rpx;
+  width: 690rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  left: 30rpx;
+  text-align: center;
+  font-weight: 600;
+}
