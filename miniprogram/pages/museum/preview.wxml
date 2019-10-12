@@ -11,14 +11,14 @@
     <image class="icon-title icon-title-right" src="../../images/icon-title.png"></image>
     </view>
     <view class="one-thing" wx:for="{{item.things}}" wx:for-index="idx" wx:for-item="thingItem" wx:key="thingItem.tid" data-tid="{{thingItem.tid}}" bindtap="goDetail">
-      <image class="img" src="{{thingItem.imagesList[0]}}"></image>
+      <image mode="aspectFill" class="img" src="{{thingItem.imagesList[0]}}"></image>
       <view class="name">{{thingItem.name}}</view>
     </view>
   </view>
 </view>
 <view class="other-wrap" wx:if="{{navNow != 'all'}}">
   <view class="one-thing" wx:for="{{thisCateThingList}}" wx:key="item.tid" data-tid="{{item.tid}}" bindtap="goDetail">
-    <image class="img" src="{{item.imagesList[0]}}"></image>
+    <image mode="aspectFill" class="img" src="{{item.imagesList[0]}}"></image>
     <view class="name">{{item.name}}</view>
   </view>
 </view>

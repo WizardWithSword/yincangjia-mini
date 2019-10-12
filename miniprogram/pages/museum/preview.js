@@ -57,6 +57,12 @@ Page({
       thinglist: all
     })
     this._computedThings()
+    if (options.cate) {
+      this.setData({
+        navNow: options.cate
+      })
+      this._reRenderThing()
+    }
   },
   _computedThings: function () {
     const cateCount = {}

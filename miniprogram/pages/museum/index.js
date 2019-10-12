@@ -57,19 +57,22 @@ Page({
    */
   onLoad: function (options) {
     console.log('进入页面参数：', options, options.uid)
-    var myuid = wx.getStorageSync('uid')
+    const myuid = wx.getStorageSync('uid')
+    const optionsuid = options.uid
     this.setData({
       myuid: myuid,
-      uid: options.uid || ''
+      uid: optionsuid || ''
     })
-    if (options.uid !== undefined && options.uid !== myuid) {
+    if (optionsuid !== undefined && (optionsuid - 0) !== myuid) {
+      console.log('别人的博物馆')
       // 他人的博物馆
-      this._getUserDetail(options.uid)
-      this._getCardStatus(options.uid, myuid)
+      this._getUserDetail(optionsuid)
+      this._getCardStatus(optionsuid, myuid)
       this.setData({
         whosMuseum: 'other'
       })
     } else {
+      console.log('我的博物馆')
       // 我的博物馆
       this._getUserDetail(myuid)
       this.setData({
