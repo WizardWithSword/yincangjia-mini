@@ -99,7 +99,7 @@ Page({
   // 前往名片夹
   goViewCard () {
     wx.navigateTo({
-      path: '/pages/card/index'
+      url: '/pages/card/index'
     })
   },
   // 申请交换名片

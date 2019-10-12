@@ -150,7 +150,8 @@ page{
 
 .btn-follow{
   display: inline-block;
-  width: 160rpx;
+  min-width: 160rpx;
+  padding: 0 10rpx;
   height: 52rpx;
   background-color: white;
   color: #121212;

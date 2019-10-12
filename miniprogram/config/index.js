@@ -1,7 +1,7 @@
 // export const apiDomain = 'http://localhost:9500'
 // 本机测试环境
-// export const apiDomain = 'http://192.168.21.91:9500'
 // export const apiDomain = 'http://192.168.31.100:9500' // 家
+// export const apiDomain = 'http://192.168.21.91:9500'
 // export const wechatEnv = 'wenya-dev-pt0d5'
 
 // 正式环境

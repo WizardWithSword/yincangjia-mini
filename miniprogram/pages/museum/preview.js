@@ -130,6 +130,9 @@ Page({
   goDetail(e) {
     var tid = e.currentTarget.dataset.tid
     console.log('前往藏品详情', tid)
+    wx.navigateTo({
+      url: '/pages/thing/detail?tid=' + tid
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
