@@ -1,5 +1,6 @@
 // miniprogram/pages/museum/index.js
 const api = require('../../utils/api.js')
+const app = getApp()
 Page({
 
   /**
@@ -104,6 +105,20 @@ Page({
   },
   // 申请交换名片
   goApplyCard () {
+    // 检查当前用户是否有手机号。如果没有前往个人中心。
+    if (!app.globalData.thisuser.phone) { // 手机号码不合法
+      wx.showModal({
+        title: '交换名片需要完善个人手机号码，是否前往个人中心填写？',
+        success: resmodal => {
+          if (resmodal.confirm) {
+            wx.navigateTo({
+              url: '/pages/user/setting'
+            })
+          } else {}
+        }
+      })
+      return false
+    }
     var obj = {}
     obj.applyuid = this.data.myuid
     obj.replyuid = this.data.uid

@@ -49,7 +49,7 @@
             </view>
           </view>
           <view class="one-card-top-right">
-            <view class="card-show" wx:if="{{item.replystatus == 1}}">查看名片</view>
+            <view class="card-show" wx:if="{{item.replystatus == 1}}" bindtap="showThisCardTab1" data-idx="{{index}}">查看名片</view>
             <view class="card-reject" wx:if="{{item.replystatus == 2}}">申请已拒绝</view>
             <view class="card-confirm" wx:if="{{item.replystatus == 0}}">
               <view bindtap="acceptCard" data-applyuid="{{item.applyuid}}" data-replyuid="{{item.replyuid}}" data-replystatus="1" data-idx="{{index}}">通过</view>
@@ -77,7 +77,7 @@
             </view>
           </view>
           <view class="one-card-top-right">
-            <view class="card-show" wx:if="{{item.replystatus == 1}}">查看名片</view>
+            <view class="card-show" wx:if="{{item.replystatus == 1}}"  bindtap="showThisCardTab2" data-idx="{{index}}">查看名片</view>
             <view class="card-wait" wx:if="{{item.replystatus == 0}}">申请已发送</view>
             <view class="card-reject" wx:if="{{item.replystatus == 2}}">申请已拒绝</view>
           </view>
@@ -102,7 +102,7 @@
       </view>
       <view class="line3">
         <image class="icon-phone" src="../../images/card/icon-phone.png"></image>
-        <text>{{thisCard.phone || '12233332222'}}</text>
+        <text>{{thisCard.phone || 'TA还未填写手机号'}}</text>
       </view>
       <view class="line4">
         <image class="icon-shop" src="../../images/card/icon-shop.png"></image>

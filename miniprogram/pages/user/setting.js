@@ -130,6 +130,9 @@ Page({
           icon: 'none',
           title: '更新成功'
         })
+        if (obj.phone) {
+          app.globalData.thisuser.phone = obj.phone
+        }
       } else {
         wx.showToast({
           icon: 'none',

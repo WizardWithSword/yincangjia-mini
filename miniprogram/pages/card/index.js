@@ -1,5 +1,6 @@
 // pages/card/index.js
 const api = require('../../utils/api.js')
+const app = getApp()
 Page({
 
   /**
@@ -36,6 +37,21 @@ Page({
   },
   // 通过名片申请
   acceptCard (event) {
+    // 检查当前用户是否有手机号。如果没有前往个人中心。
+    if (!app.globalData.thisuser.phone) { // 手机号码不合法
+      wx.showModal({
+        title: '交换名片需要完善个人手机号码，是否前往个人中心填写？',
+        success: resmodal => {
+          if (resmodal.confirm) {
+            wx.navigateTo({
+              url: '/pages/user/setting'
+            })
+          } else {}
+        }
+      })
+      return false
+    }
+
     var applyuid = event.currentTarget.dataset.applyuid
     var replyuid = event.currentTarget.dataset.replyuid
     var replystatus = event.currentTarget.dataset.replystatus
@@ -99,6 +115,24 @@ Page({
     var idx = event.currentTarget.dataset.idx
     console.log('idx', idx)
     var item = this.data.nav1List[idx]
+    console.log('显示的当前用户名片', item.wechatnnick, item)
+    this.setData({
+      showOnecard: 'true',
+      thisCard: item
+    })
+  },
+  showThisCardTab1 (event) {
+    var idx = event.currentTarget.dataset.idx
+    var item = this.data.nav2Tab1List[idx]
+    console.log('显示的当前用户名片', item.wechatnnick, item)
+    this.setData({
+      showOnecard: 'true',
+      thisCard: item
+    })
+  },
+  showThisCardTab2 (event) {
+    var idx = event.currentTarget.dataset.idx
+    var item = this.data.nav2Tab2List[idx]
     console.log('显示的当前用户名片', item.wechatnnick, item)
     this.setData({
       showOnecard: 'true',
