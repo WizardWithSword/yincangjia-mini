@@ -43,6 +43,12 @@ page{
   margin: 0 auto;
   margin-bottom: 60rpx;
 }
+.oneline.mb0{
+  margin-bottom: 0;
+}
+.mb60{
+  margin-bottom: 60rpx;
+}
 .text{
   width: 260rpx;
   font-weight: 700;
@@ -52,6 +58,15 @@ page{
   font-weight: 500;
 }
 
+.btn-getphone{
+  margin-left: 20rpx;
+  font-size: 20rpx;
+  padding: 0 10rpx;
+  margin: 0;
+}
+.phone .input{
+  width: 200rpx;
+}
 .input{
   width:400rpx;
   border:1rpx solid #ccc;

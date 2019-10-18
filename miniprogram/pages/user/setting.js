@@ -13,10 +13,39 @@ Page({
     hasShopArray: ['有', '没有'],
     hasShopIndex: 0,
     personSign: '',
+    phone: '',
     shopcityArr: [],
     customItem: '其他',
     shopName: '',
     shopAddr: '',
+  },
+  getPhoneNumber (e) {
+    console.log('手机号码回调', e)
+    let cloudid = e.detail.cloudID
+    if (cloudid == undefined) { // 用户拒绝。
+      return false
+    }
+    let that = this
+    wx.cloud.callFunction({
+      name: 'getPhoneNumber',
+      data: {
+        phoneData: wx.cloud.CloudID(cloudid), // 这个 CloudID 值到云函数端会被替换
+        obj: {
+        }
+      },
+      success: res => {
+        console.log('[云函数] [phone] res: ', res)
+        if (res.result) {
+          let phone = res.result.phone.phoneNumber
+          that.setData({
+            phone: phone
+          })
+        }
+      },
+      fail: err => {
+        console.error('[云函数] [phone] 调用失败', err)
+      }
+    })
   },
   selectCHange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -60,6 +89,15 @@ Page({
     obj.personalsign = this.data.personSign // 个性签名
     obj.shopcity = this.data.shopcityArr.join(',') // 店铺城市名称
     obj.shopaddr = this.data.shopAddr // 详细地址
+    obj.phone = this.data.phone
+
+    if (obj.phone == '') {
+      wx.showToast({
+        icon: 'none',
+        title: '请填写手机号码'
+      })
+      return false
+    }
     if (obj.hasshop) {
       if (obj.shopname == '' || obj.shopaddr == '') {
         wx.showToast({
@@ -68,6 +106,22 @@ Page({
         })
         return false
       }
+    }
+
+    let haschanged = false
+    let changekeys = ['phone', 'shopaddr', 'shopcity', 'personalsign', 'shopname', 'experenceyear', 'hasshop']
+    for (let i = 0; i< changekeys.length; i++) {
+      let tmp = app.globalData.thisuser[changekeys[i]] || ''
+      if (tmp != obj[changekeys[i]]) {
+        haschanged = true
+      }
+    }
+    if (haschanged === false) {
+      wx.showToast({
+        icon: 'none',
+        title: '暂无信息更新'
+      })
+      return false
     }
     console.log('更新的个人信息有', obj)
     api.post('/api/user/invitereg', obj).then(res => {
@@ -95,6 +149,7 @@ Page({
           app.globalData.thisuser = res.result
           wx.setStorageSync('thisuser', res.result)
           this.setData({
+            phone: res.result.phone || '',
             hasShopIndex: res.result.hasshop == 1 ? 0 : 1,
             shopName: res.result.shopname || '',
             personSign: res.result.personalsign || '',

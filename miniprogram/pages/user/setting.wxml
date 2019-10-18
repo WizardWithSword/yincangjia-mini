@@ -18,6 +18,12 @@
         <text class="text">个人签名<text class="tip">(非必填)</text></text>
         <input class="input" bindinput="bindInputSign" maxlength="20" placeholder="认证头衔等，限20字" value="{{personSign}}" />
       </view>
+      <view class="oneline phone">
+        <text class="text">手机号码<text class="tip">(必填)</text></text>
+        <input class="input" bindinput="bindInputPhone" maxlength="11" placeholder="11位数字" value="{{phone}}" />
+        <button class="btn-getphone" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授权微信手机号码</button>
+      </view>
+      
       <view class="h1"><text>店铺信息</text></view>
 
       <view class="oneline">

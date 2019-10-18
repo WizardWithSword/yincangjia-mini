@@ -47,6 +47,9 @@
       </view>
     </view>
   </view>
+  <view class="my-museum"  bindtap="goMuseum">
+    <image src="../../images/icon/icon-museum.png"></image>
+  </view>
   <view class="content">
     <view class="content-line1">
       <view bindtap="goswiper" data-idx="0" class="{{swiperIndex != 2  ? 'choose' : ''}}">我的藏品</view>

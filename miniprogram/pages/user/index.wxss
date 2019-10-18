@@ -168,3 +168,15 @@ page{
   text-align: center;
   padding: 30rpx;
 }
+.my-museum{
+  position: fixed;
+  z-index: 100;
+  right: 60rpx;
+  top: 800rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+.my-museum image{
+  width: 100rpx;
+  height: 100rpx;
+}

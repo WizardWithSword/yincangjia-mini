@@ -30,6 +30,14 @@
     <text class="red">共{{thinglist.length}}件藏品</text>
   </view>
   <view class="list-wrap">
+    <view class="one-cate" bindtap="goPreview" data-cate="all">
+      <view class="one-cate-top">
+        <image mode="aspectFill" class="img" src="{{thingCate[0].img}}"></image>
+        <view class="mask"></view>
+        <text class="txt">{{thinglist.length}}件</text>
+      </view>
+      <view class="one-cate-bottom">全部</view>
+    </view>
     <view class="one-cate" wx:for="{{thingCate}}" wx:key="index" bindtap="goPreview" data-cate="{{item.category}}">
       <view class="one-cate-top">
         <image mode="aspectFill" class="img" src="{{item.img}}"></image>
