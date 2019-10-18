@@ -1,0 +1,2 @@
+<!--miniprogram/pages/test/date.wxml-->
+<calender blueDates="{{blueDates}}" pinkDates="{{pinkDates}}" bind:changeDay="onChangeDay" bind:changeMonth="onChangeMonth" ></calender>

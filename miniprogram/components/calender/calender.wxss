@@ -1,0 +1,90 @@
+/* miniprogram/pages/canlender.wxss */
+.calender-wrap{
+  width:716rpx;
+  /*height:814rpx;*/
+  background:rgba(242,242,242,1);
+  box-shadow:4rpx 6rpx 8rpx 10rpx rgba(0,0,0,0.06);
+  border-radius:20rpx;
+  margin: 0 auto;
+}
+.ca-line1{
+  height: 106rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ca-line1-middle{
+  width: 200rpx;
+  text-align: center;
+}
+.ca-txt-1{
+  font-size:20rpx;
+  font-family:PingFangSC-Regular,PingFangSC;
+  color:rgba(71,68,68,1);
+}
+.ca-txt-2{
+  font-family:PingFangSC-Regular,PingFangSC;
+  font-size:32rpx;
+  color:rgba(71,68,68,1);
+}
+.ca-line1-right,
+.ca-line1-left{
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ca-icon-right,
+.ca-icon-left{
+  width: 58rpx;
+  height: 58rpx;
+}
+.ca-icon-right{
+  transform: rotate(180deg);
+}
+.ca-line2{
+  height: 54rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #DBDBDB;
+  color: #474444;
+}
+.ca-orange{
+  color:#EA6828;
+}
+.ca-line3-1{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.ca-one-date{
+  width: 102rpx;
+  height: 102rpx;
+  /*border: 1px solid #ccc;*/
+  background-color: #f2f2f2;
+  color: #404040;
+  /*text-indent: 20rpx;*/
+  text-align: center;
+  padding-top: 10rpx;
+  font-size: 28rpx;
+}
+.ca-one-date.disabled{
+  color: #9c9c9c;
+  background-color: #EBEBEB;
+}
+.icon-circle-blue,
+.icon-circle-pink{
+  display: inline-block;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 16rpx;
+}
+.icon-circle-blue{
+  background-color: #93DBED;
+}
+.icon-circle-pink{
+  background-color: #FFB5B5;
+  margin-right: 5rpx;
+}
