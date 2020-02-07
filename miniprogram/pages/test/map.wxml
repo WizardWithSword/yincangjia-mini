@@ -1,0 +1,8 @@
+<!--miniprogram/pages/test/map.wxml-->
+<map longitude="{{longitude}}" latitude="{{latitude}}" name="mymap" class="map" bindtap="clickmap" polyline="{{polyline}}"></map>
+<cover-view class="overview">
+  <cover-view>地图覆盖的内容</cover-view>
+  <cover-view>接收位置次数{{listenNum}}</cover-view>
+  <cover-view>lo:{{changeLongitude}}</cover-view>
+  <cover-view>la:{{changeLatitude}}</cover-view>
+</cover-view>
