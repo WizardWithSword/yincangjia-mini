@@ -77,7 +77,8 @@ Page({
         var num = this.data.itemList[idx].praisenum
         num++
         this.setData({
-         ['itemList[' + idx + '].praisenum']: num
+         ['itemList[' + idx + '].praisenum']: num,
+         ['itemList[' + idx + '].hasPraise']: true
         })
       } else {
         wx.showToast({
@@ -252,6 +253,7 @@ Page({
           itemList: d
         })
         this._dealShareImg()
+        this.updateLike() // 更新喜欢的内容
       } else {
         wx.showToast({
           title: res.message,
@@ -261,12 +263,48 @@ Page({
       }
     })
   },
+  updateLike (useLocalData) {
+    // 本地存储当前用户喜欢的内容，和收藏的内容id。进行比对更新
+    let obj = wx.getStorageSync('likeAndPraise') || ''
+    if (obj !== '' && useLocalData === true) {
+      this._dealIndexDataOfLike(obj)
+    } else {
+      api.get('/api/thing/myLikesAndPraises').then(res => {
+        if (res.code === '200') {
+          console.log('喜欢点赞的id列表：', res)
+          wx.setStorageSync('likeAndPraise', res.result)
+          this._dealIndexDataOfLike(res.result)
+        }
+      })
+    }
+  },
+  // 首页列表处理喜欢和点赞的数据
+  _dealIndexDataOfLike (obj) {
+    let like = obj.likes || []
+    let praise = obj.praises || []
+    let likeStr = ',' + like.join(',') + ','
+    let praiseStr = ',' + praise.join(',') + ','
+    let arr = this.data.itemList
+    for (var i = arr.length - 1; i >= 0; i--) {
+      let tid = ',' + arr[i].tid + ','
+      if (likeStr.indexOf(tid) !== -1) {
+        arr[i].likeThisThing = true
+      }
+      if (praiseStr.indexOf(tid) !== -1) {
+        arr[i].hasPraise = true
+      }
+    }
+    this.setData({
+      itemList: arr
+    })
+  },
   // 首页列表数据处理
   _dealData: function (arr) {
     var tmp = arr
     for (var i = arr.length - 1; i >= 0; i--) {
       arr[i].showAll = false
       arr[i].likeThisThing = false
+      arr[i].hasPraise = false
       arr[i].shareImg = ''
       arr[i].imagesList = arr[i].images.split(';')
     }

@@ -59,7 +59,9 @@
           <span>喜欢</span>
         </view>
         <view class="praise" bindtap="goPraise" data-tid="{{item.tid}}"  data-idx="{{index}}">
-          <image class="icon" src="../../images/icon-parise.png"></image>
+          <image wx:if="{{item.hasPraise}}" class="icon" src="../../images/dianzan-6.png" style="margin-top:-5rpx;"></image>
+          <image wx:else class="icon" src="../../images/icon-parise.png"></image>
+          
           <span>{{item.praisenum}}</span>
         </view>
         <view class="comment" bindtap="goDetail" data-tid="{{item.tid}}"  data-idx="{{index}}">
